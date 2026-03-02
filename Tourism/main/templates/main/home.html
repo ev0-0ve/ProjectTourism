@@ -1,0 +1,23 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<div class="info-card">
+    <h2>О сайте</h2>
+    <p><strong>Ваш Туризм</strong> — студенческий проект, сделанный для изучения достопримечательностей в г. Красноярск.</p>
+    <p>Мы хотим, чтобы людям было удобно и интересно создавать собственные маршруты.</p>
+  </div>
+
+  <div class="note-card">
+    <p>Сайт находится на этапе разработки, некоторые функции могут работать некорректно.</p>
+    <p>Мы обещаем стараться :D</p>
+  </div>
+
+  <div class="bottom-actions">
+    <a href="{% url 'guide' %}" class="btn-large">Путеводитель</a>
+    <a href="{% url 'events' %}" class="btn-large">События</a>
+    <a href="{% url 'create_tour' %}" class="btn-large">Собери тур</a>
+  </div>
+{% endblock %}

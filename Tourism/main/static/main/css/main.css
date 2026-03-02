@@ -177,6 +177,11 @@ body{
   border: 6px solid rgba(255,255,255,0.04);
 }
 
+.avatar-link {
+    text-decoration: none;   /* убирает подчеркивание */
+    color: inherit;          /* наследует цвет от родителя */
+}
+
 /* навигация внутри панели */
 .side-panel .nav{
   margin-top:8px;

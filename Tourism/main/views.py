@@ -1,25 +1,37 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .forms import ProfileForm
 
 # Методы для main.urls
 
-def index(request):
-    return render(request, 'main/index.html')
+def home(request):
+    return render(request, 'main/home.html')
 
 def about(request):
     return render(request, 'main/about.html')
 
 def guide(request):
-    return render(request, 'main/guide.html')   # создайте шаблон guide.html (может наследовать layout)
+    return render(request, 'main/guide.html')
 
 def events(request):
     return render(request, 'main/events.html')
-
-def home(request):
-    return render(request, 'main/home.html')
 
 def create_tour(request):
     return render(request, 'main/create_tour.html')
 
 def favorites(request):
     return render(request, 'main/favorites.html')
+
+def profile(request):
+    data = None
+
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            data = form.cleaned_data
+    else:
+        form = ProfileForm()
+
+    return render(request, 'main/profile.html', {
+        'form': form,
+        'data': data
+    })

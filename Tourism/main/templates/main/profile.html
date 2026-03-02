@@ -1,0 +1,67 @@
+{% extends 'main/layout.html' %}
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+<div style="
+    max-width: 720px;
+    margin: 60px 0 0 60px;
+">
+
+    <h2 class="mb-4">Вход / Регистрация</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.avatar.label_tag }}
+            {{ form.avatar }}
+        </div>
+
+        <div class="mb-3 form-check">
+            {{ form.agree }}
+            {{ form.agree.label_tag }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Отправить
+        </button>
+    </form>
+
+    {% if data %}
+        <hr class="my-4">
+
+        <h4>Полученные данные:</h4>
+
+        <table class="table table-bordered mt-3">
+            <tr>
+                <th style="width: 170px;">Имя</th>
+                <td>{{ data.username }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ data.email }}</td>
+            </tr>
+            <tr>
+                <th>Согласие</th>
+                <td>{{ data.agree }}</td>
+            </tr>
+        </table>
+    {% endif %}
+
+</div>
+{% endblock %}
