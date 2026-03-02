@@ -1,6 +1,6 @@
 {% load static %}
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -11,7 +11,42 @@
     <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+  <div class="hero">
+    <!-- затемнение и содержимое поверх фона -->
+    <div class="container-hero">
+      {% block content %}{% endblock %}
+    </div>
+
+    <div class="photo-credit">
+    Фото: Сергей Токарев | @tokarevs
+    </div>
+
+    <!-- Правая панель (везде одинаковая) -->
+    <aside class="side-panel" role="complementary" aria-label="Панель навигации">
+      <a href="{% url 'profile' %}" class="avatar-link" title="Профиль" aria-label="Перейти в профиль">
+        <div class="avatar">АС</div>
+      </a>
+
+      <nav class="nav">
+        <a href="{% url 'favorites' %}">Избранное</a>
+        <a href="{% url 'create_tour' %}">Собери тур</a>
+        <a href="{% url 'home' %}">Главная</a>
+        <a href="{% url 'guide' %}">Путеводитель</a>
+        <a href="{% url 'events' %}">События</a>
+        <a href="{% url 'about' %}">О нас</a>
+      </nav>
+
+      <button class="side-toggle" aria-expanded="true" title="Развернуть/Свернуть панель">
+        <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="20" height="2" rx="1" fill="currentColor"/>
+          <rect y="5" width="20" height="2" rx="1" fill="currentColor"/>
+          <rect y="10" width="20" height="2" rx="1" fill="currentColor"/>
+        </svg>
+      </button>
+    </aside>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'main/js/main.js' %}"></script>
 </body>
 </html>

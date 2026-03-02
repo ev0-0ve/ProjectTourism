@@ -1,5 +1,4 @@
-/* main.css — стиль главной страницы
-   Путь к картинке: ../img/background.png (поскольку css лежит в main/css) */
+/* main.css — стиль главной страницы */
 
 :root{
   --accent-rgba: 120, 95, 140; /* базовый фиолетово-бордовый оттенок (RGB parts) */
@@ -175,6 +174,11 @@ body{
   font-size:28px;
   color: rgba(255,255,255,0.9);
   border: 6px solid rgba(255,255,255,0.04);
+}
+
+.avatar-link {
+    text-decoration: none;   /* убирает подчеркивание */
+    color: inherit;          /* наследует цвет от родителя */
 }
 
 /* навигация внутри панели */
