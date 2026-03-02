@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.1.2. Добавление Джанго приложения main">
-      <change afterPath="$PROJECT_DIR$/Tourism/main/templates/main/about.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tourism/main/templates/main/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tourism/main/static/main/img/background.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/Tourism/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/Tourism/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/Tourism/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/Tourism/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,18 +31,18 @@
     <branch-grouping />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "ev0-0ve"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ev0-0ve&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/ev0-0ve/ProjectTourism.git",
-    "accountId": "71022b1c-60d8-4a64-a346-6f827ba972ba"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ev0-0ve/ProjectTourism.git&quot;,
+    &quot;accountId&quot;: &quot;71022b1c-60d8-4a64-a346-6f827ba972ba&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -50,16 +54,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/tcf12/PycharmProjects/Project/Tourism/main/static/main/img"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tcf12\PycharmProjects\Project\Tourism\main\static\main\img" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
