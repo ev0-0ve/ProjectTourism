@@ -268,17 +268,131 @@ body{
   color:white;
 }
 
-/* адаптив */
-@media (max-width:1200px){
-  .info-card{ width:42%; min-width:260px; top:8% }
-  .side-panel{ display:flex; right:18px; width:76px; padding:12px; height:auto; top:8%; border-radius:40px; }
-  .side-panel .nav{ display:none; }
-  .bottom-actions{ left:3%; gap:18px }
-  .btn-large{ min-width:220px; padding:18px 30px; font-size:20px }
+.features {
+    padding: 40px 60px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-@media (max-width:800px){
-  .info-card{ position:relative; width:88%; left:6%; top:6%; }
-  .bottom-actions{ position:relative; left:auto; bottom:auto; margin:28px auto 48px; justify-content:center }
-  .hero::before{ background: linear-gradient(rgba(6,8,10,0.45), rgba(6,8,10,0.6)); }
+.features h1 {
+    font-size: 48px;
+    margin-bottom: 40px;
+    color: white;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    gap: 90px;
+    max-height: 70vh; /* ограничиваем высоту */
+    overflow-y: auto; /* включаем вертикальный скролл */
+    padding-right: 15px; /* отступ для красивой полосы */
+}
+
+/* Стилизация скролла внутри сетки событий */
+.events-grid::-webkit-scrollbar {
+    width: 8px;
+}
+
+.events-grid::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.events-grid::-webkit-scrollbar-thumb {
+    background: rgba(120, 95, 140, 0.6);
+    border-radius: 10px;
+}
+
+.event-card {
+    background: rgba(16, 28, 36, 0.55);
+    backdrop-filter: blur(6px);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+}
+
+.event-card-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.event-card-content {
+    padding: 25px;
+}
+
+.event-card-date {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 10px;
+}
+
+.event-card-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.event-card-location {
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.event-card-location::before {
+    content: "📍";
+    font-size: 14px;
+}
+
+.event-card-description {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 15px;
+}
+
+.no-events {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    background: rgba(16, 28, 36, 0.55);
+    border-radius: 20px;
+    color: rgba(255,255,255,0.7);
+}
+
+@media (max-width: 992px) {
+    .events-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .features {
+        padding: 20px;
+    }
+
+    .features h1 {
+        font-size: 36px;
+    }
+
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .event-card-image {
+        height: 200px;
+    }
 }

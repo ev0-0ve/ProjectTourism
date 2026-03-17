@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.1.4. Практическая 1 по КСП, добавление страницы профиля и формы с записью и выводом данных без БД">
+      <change afterPath="$PROJECT_DIR$/Tourism/events/templates/events/events_home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tourism/events/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/Tourism/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/Tourism/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/Tourism/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/Tourism/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +152,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772514158274</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="1.1.4. Практическая 1 по КСП, добавление страницы профиля и формы с записью и выводом данных без БД">
+      <option name="closed" value="true" />
+      <created>1772526535036</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1772526535036</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -165,18 +180,8 @@
     <MESSAGE value="1.1.3. Статические файлы. Добавление Bootstrap. Стиль и структура главной страницы" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;Tourism/Tourism/urls.py&#10;#&#9;Tourism/main/urls.py&#10;#&#9;Tourism/main/views.py" />
     <MESSAGE value="1.1.4. Статические файлы. Добавление Bootstrap. Стиль и структура главной страницы" />
+    <MESSAGE value="1.1.4. Сдана практическая 1 по КСП, тсраница регистрации через форму без добавления бд" />
     <MESSAGE value="1.1.4. Практическая 1 по КСП, добавление страницы профиля и формы с записью и выводом данных без БД" />
     <option name="LAST_COMMIT_MESSAGE" value="1.1.4. Практическая 1 по КСП, добавление страницы профиля и формы с записью и выводом данных без БД" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Tourism/Tourism/wsgi.py</url>
-          <line>9</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

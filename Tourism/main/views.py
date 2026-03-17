@@ -12,9 +12,6 @@ def about(request):
 def guide(request):
     return render(request, 'main/guide.html')
 
-def events(request):
-    return render(request, 'main/events.html')
-
 def create_tour(request):
     return render(request, 'main/create_tour.html')
 

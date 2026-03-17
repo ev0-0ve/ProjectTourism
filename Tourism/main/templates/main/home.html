@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block title %}Главная страница{% endblock %}
+{% block body_class %}no-scroll{% endblock %}
 
 {% block content %}
 <div class="info-card">
@@ -17,7 +18,7 @@
 
   <div class="bottom-actions">
     <a href="{% url 'guide' %}" class="btn-large">Путеводитель</a>
-    <a href="{% url 'events' %}" class="btn-large">События</a>
+    <a href="{% url 'events_home' %}" class="btn-large">События</a>
     <a href="{% url 'create_tour' %}" class="btn-large">Собери тур</a>
   </div>
 {% endblock %}
