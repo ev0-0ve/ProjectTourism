@@ -1,0 +1,30 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+<div class="info-card">
+    <h2>Создание профиля</h2>
+    <p>Присоединяйтесь к нашему сообществу исследователей Красноярска!</p>
+</div>
+{% endblock %}
+
+{% block auth_content %}
+    <h2 class="auth-title" style="font-size: 22px;">РЕГИСТРАЦИЯ</h2>
+    <form method="post" enctype="multipart/form-data" class="nav" style="gap: 10px; align-items: flex-start;">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div style="width: 100%; text-align: left;">
+                <label style="font-size: 12px; color: var(--muted);">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div style="color: #ff6b6b; font-size: 10px;">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="btn-large" style="background: rgba(120, 95, 140, 0.9); width: 100%; margin-top: 10px;">Создать</button>
+        <a href="{% url 'login' %}" class="auth-link" style="width: 100%; text-align: center;">уже есть аккаунт?</a>
+    </form>
+{% endblock %}

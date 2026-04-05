@@ -1,0 +1,41 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Мой профиль{% endblock %}
+
+{% block content %}
+<div class="features">
+    <div style="display: flex; gap: 30px; align-items: center; margin-bottom: 40px;">
+        <div class="avatar" style="width: 120px; height: 120px; font-size: 40px;">
+            {% if user.profile.avatar %}
+                <img src="{{ user.profile.avatar.url }}" style="width:100%; height:100%; object-fit:cover; border-radius:50%">
+            {% else %}
+                {{ user.username|slice:":2"|upper }}
+            {% endif %}
+        </div>
+        <div>
+            <h1 style="margin: 0;">{{ user.username }}</h1>
+            <p style="color: var(--muted);">{{ user.email }} | {{ user.profile.phone }}</p>
+        </div>
+    </div>
+
+    <h2>Мои заметки (Таблица 3)</h2>
+    <div class="events-grid">
+        {% for note in notes %}
+            <div class="event-card">
+                {% if note.image %}
+                    <img src="{{ note.image.url }}" class="event-card-image">
+                {% endif %}
+                <div class="event-card-content">
+                    <div class="event-card-title">{{ note.title }}</div>
+                    <div class="event-card-description">{{ note.text }}</div>
+                    <div class="event-card-date">{{ note.created_at|date:"d.m.Y" }}</div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="no-events">
+                <p>У вас пока нет заметок. Добавьте их через админку для теста!</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

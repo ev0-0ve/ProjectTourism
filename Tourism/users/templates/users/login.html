@@ -1,0 +1,22 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+<div class="info-card">
+    <h2>Личный кабинет</h2>
+    <p>Авторизуйтесь, чтобы получить доступ к своим маршрутам и заметкам.</p>
+</div>
+{% endblock %}
+
+{% block auth_content %}
+    <h2 class="auth-title">ВХОД</h2>
+    <form method="post" class="nav" style="gap: 15px;">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Логин" class="btn-large" style="min-width: 100%; font-size: 16px; padding: 8px;">
+        <input type="password" name="password" placeholder="Пароль" class="btn-large" style="min-width: 100%; font-size: 16px; padding: 8px;">
+
+        <button type="submit" class="btn-large" style="background: rgba(120, 95, 140, 0.9); margin-top: 10px;">Войти</button>
+        <a href="{% url 'register' %}" class="auth-link">зарегистрироваться</a>
+    </form>
+{% endblock %}

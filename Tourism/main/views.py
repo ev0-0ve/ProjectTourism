@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from .forms import ProfileForm
 
 # Методы для main.urls
 
@@ -17,18 +16,3 @@ def create_tour(request):
 
 def favorites(request):
     return render(request, 'main/favorites.html')
-
-def profile(request):
-    data = None
-
-    if request.method == "POST":
-        form = ProfileForm(request.POST, request.FILES)
-        if form.is_valid():
-            data = form.cleaned_data
-    else:
-        form = ProfileForm()
-
-    return render(request, 'main/profile.html', {
-        'form': form,
-        'data': data
-    })
