@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, NoteForm
 from .models import Profile
 from django.contrib.auth import logout
 
@@ -23,9 +23,18 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 def profile_view(request):
-    # Здесь будем выводить заметки пользователя из 3-й таблицы
-    notes = request.user.notes.all()
-    return render(request, 'users/profile.html', {'notes': notes})
+    if request.method == 'POST':
+        form = NoteForm(request.POST, request.FILES)
+        if form.is_valid():
+            note = form.save(commit=False)
+            note.author = request.user  # Привязываем заметку к текущему юзеру
+            note.save()
+            return redirect('profile') # Перезагружаем страницу после сохранения
+    else:
+        form = NoteForm()
+
+    notes = request.user.notes.all().order_by('-created_at') # Новые сверху
+    return render(request, 'users/profile.html', {'notes': notes, 'form': form})
 
 def user_logout(request):
     logout(request)

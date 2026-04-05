@@ -241,38 +241,168 @@ body {
   width: 100%;
   margin: 10px 0;
   text-align: center;
+  display: flex;         /* Добавляем флекс, чтобы центрировать форму */
+  flex-direction: column;
+  align-items: center;
 }
 
 .auth-title {
   font-family: 'Alumni Sans SC', sans-serif;
   font-weight: 400;
-  font-size: 28px;
-  line-height: 1.2;
+  font-size: 24px;
   color: white;
+  margin-bottom: 20px;
+}
+
+.auth-block form input {
+  width: 100%;
+  background: rgba(82, 98, 114, 0.8); /* Тот самый серо-синий цвет из макета */
+  border: none;
+  border-radius: 12px; /* Более мягкое скругление как на фото */
+  padding: 14px 20px;
+  color: white;
+  font-family: inherit;
+  font-size: 18px;
+  text-align: center;
   margin-bottom: 12px;
+  outline: none;
+  transition: background 0.3s ease;
 }
 
-.auth-links {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
+.auth-block form input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }
 
+.auth-block form input:focus {
+  background: rgba(92, 108, 124, 1);
+}
+
+/* Кнопка "Создать" / "Войти" */
+.auth-block form button {
+  background: #6D6A85; /* Фиолетовый оттенок из макета */
+  border-radius: 12px;
+  color: white;
+  padding: 10px 45px; /* Сделал её шире, как на кнопке "Создать" */
+  font-size: 22px;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  margin: 15px auto 8px auto;
+  display: inline-block;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.auth-block form button:hover {
+  background: #7E7B96;
+  transform: scale(1.03);
+}
+
+/* Ссылка "Войти" под кнопкой */
 .auth-link {
+  display: block;
   font-family: 'Alumni Sans SC', sans-serif;
-  font-weight: 400;
   font-size: 14px;
   color: white;
   text-decoration: none;
-  transition: opacity 0.2s ease;
+  opacity: 0.8;
+  margin-top: 5px;
 }
 
 .auth-link:hover {
-  opacity: 0.4;
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* СПЕЦИФИКА ДЛЯ ПРОФИЛЯ (ДВЕ КОЛОНКИ) */
+.profile-layout {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.profile-info-side {
+  flex: 0 0 350px; /* Фиксированная ширина левой части */
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-notes-side {
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+
+  margin-right: 240px;
+  padding-right: 15px;
+}
+
+.profile-notes-side::-webkit-scrollbar {
+    width: 6px;
+}
+
+.profile-notes-side::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.profile-notes-side::-webkit-scrollbar-thumb {
+    background: rgba(120, 95, 140, 0.5); /* Цвет в тон твоему дизайну */
+    border-radius: 10px;
+}
+
+/* МАЛЕНЬКИЕ КНОПКИ ДЛЯ БОКОВОЙ ПАНЕЛИ */
+.btn-side {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 8px 15px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-light);
+  background: rgba(120, 95, 140, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
   text-decoration: none;
+  transition: all .2s ease;
+}
+
+.btn-side:hover {
+  background: rgba(120, 95, 140, 0.8);
   color: white;
+}
+
+/* ИМЯ ПОД АВАТАРОМ В САЙДБАРЕ */
+.side-user-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.side-username {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-light);
+  letter-spacing: 0.5px;
+}
+
+/* СЕТКА ЗАМЕТОК В ПРОФИЛЕ (2 колонки вместо 3) */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-height: 65vh;
+  overflow-y: auto;
+  padding-right: 10px;
 }
 
 /* ПОДПИСЬ АВТОРА ФОТО */
@@ -508,3 +638,149 @@ body {
     font-size: 16px;
   }
 }
+
+/* Общие заголовки в правой части */
+.profile-title-main {
+    font-size: 48px;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.notes-tab-header {
+    font-size: 24px;
+    border-bottom: 2px solid #D9D9D9;
+    display: inline-block;
+    margin-bottom: 25px;
+    padding-bottom: 5px;
+}
+
+/* Кнопка "Добавить заметку" как на скрине */
+.add-note-trigger-wrapper {
+    margin-bottom: 30px;
+}
+
+.add-note-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(100, 105, 125, 0.6); /* Серый цвет с прозрачностью */
+    padding: 10px 25px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    color: rgba(255,255,255,0.8);
+}
+
+.plus-icon {
+    background: #5D5A75;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 24px;
+}
+
+/* Стили самой заметки (плашка) */
+.note-item-wrapper {
+    margin-bottom: 25px;
+}
+
+.note-label {
+    font-size: 18px;
+    margin-bottom: 8px;
+    margin-left: 5px;
+}
+
+.note-card-custom {
+    background: rgba(180, 180, 180, 0.7); /* Светло-серая плашка из Figma */
+    border-radius: 20px;
+    padding: 20px;
+    color: #333; /* Темный текст для контраста на сером */
+    max-width: 600px;
+}
+
+.note-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.add-img-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.plus-icon.small {
+    width: 24px;
+    height: 24px;
+    font-size: 18px;
+}
+
+.delete-note-btn {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.delete-note-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.note-content p {
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 0;
+    color: #222;
+}
+
+/* Заголовки */
+.profile-title-main { font-size: 48px; margin-bottom: 5px; }
+.notes-tab-header { font-size: 24px; border-bottom: 2px solid white; display: inline-block; margin-bottom: 20px; }
+
+/* Кнопка добавления */
+.add-note-btn-style {
+    display: flex; align-items: center; gap: 15px;
+    background: rgba(100, 105, 125, 0.6);
+    border: none; color: white; padding: 10px 20px;
+    border-radius: 15px; cursor: pointer;
+}
+
+/* Серая карточка как в Figma */
+.note-card-custom {
+    background: #B4B4B4; /* Тот самый серый цвет */
+    border-radius: 18px;
+    padding: 20px;
+    color: #333;
+    max-width: 550px;
+}
+
+/* Убираем рамки у полей ввода Django */
+.note-inputs-area input, .note-inputs-area textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 18px;
+    color: #222;
+}
+
+/* Плюсики */
+.plus-icon {
+    background: #5D5A75; width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px;
+}
+.plus-icon.small { width: 22px; height: 22px; font-size: 14px; }
+
+.note-card-top { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.add-img-btn { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 14px; }

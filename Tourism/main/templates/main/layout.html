@@ -48,10 +48,17 @@
     {% else %}
         <div class="auth-block">
             {% block auth_content %}
-                <h2 class="auth-title">ВХОД</h2>
+                <h2 class="auth-title">Ваш Туризм</h2>
+                <hr style="width: 80%; border-color: rgba(255,255,255,0.1); margin: 0 auto 40px auto;">
                 <nav class="nav">
-                    <a href="{% url 'login' %}">Войти</a>
+                    <a href="{% url 'login' %}" class="auth-link">Войти</a>
                     <a href="{% url 'register' %}" class="auth-link">Зарегистрироваться</a>
+
+                    <hr style="width: 80%; border-color: rgba(255,255,255,0.1); margin: 0 auto 80px auto;">
+
+                    <a href="{% url 'home' %}">Главная</a>
+                    <a href="{% url 'events_home' %}">События</a>
+                    <a href="{% url 'about' %}">О нас</a>
                 </nav>
             {% endblock %}
         </div>

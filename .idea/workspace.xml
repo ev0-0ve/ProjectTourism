@@ -4,24 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.1.5. Добавлено новое приложение для страницы &quot;События&quot;, переключение между страницыми, добавление записей через панель админа в адресной строке сайта">
-      <change afterPath="$PROJECT_DIR$/Tourism/users/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tourism/users/templates/users/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tourism/users/templates/users/register.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tourism/users/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project.iml" afterDir="false" />
+    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.1.6. Добавлено новое приложение для регистрации пользователя, добавление записей через панель админа и на сайте (нужно исправить представление и вход не для админа)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/Tourism/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/Tourism/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/Tourism/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/Tourism/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/profile.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +99,9 @@
       <workItem from="1775357981383" duration="1250000" />
       <workItem from="1775360205311" duration="3451000" />
       <workItem from="1775368079253" duration="1423000" />
-      <workItem from="1775370000698" duration="6063000" />
+      <workItem from="1775370000698" duration="6185000" />
+      <workItem from="1775386555350" duration="405000" />
+      <workItem from="1775389829817" duration="17087000" />
     </task>
     <task id="LOCAL-00001" summary="1.1.1. Создание проекта">
       <option name="closed" value="true" />
@@ -199,7 +191,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773734754246</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="1.1.6. Добавлено новое приложение для регистрации пользователя, добавление записей через панель админа и на сайте (нужно исправить представление и вход не для админа)">
+      <option name="closed" value="true" />
+      <created>1775376294929</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1775376294929</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,6 +225,7 @@
     <MESSAGE value="1.1.4. Сдана практическая 1 по КСП, тсраница регистрации через форму без добавления бд" />
     <MESSAGE value="1.1.4. Практическая 1 по КСП, добавление страницы профиля и формы с записью и выводом данных без БД" />
     <MESSAGE value="1.1.5. Добавлено новое приложение для страницы &quot;События&quot;, переключение между страницыми, добавление записей через панель админа в адресной строке сайта" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.1.5. Добавлено новое приложение для страницы &quot;События&quot;, переключение между страницыми, добавление записей через панель админа в адресной строке сайта" />
+    <MESSAGE value="1.1.6. Добавлено новое приложение для регистрации пользователя, добавление записей через панель админа и на сайте (нужно исправить представление и вход не для админа)" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.1.6. Добавлено новое приложение для регистрации пользователя, добавление записей через панель админа и на сайте (нужно исправить представление и вход не для админа)" />
   </component>
 </project>

@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Profile
+from .models import Note
 
 class UserRegisterForm(forms.ModelForm):
 
@@ -20,3 +21,22 @@ class UserRegisterForm(forms.ModelForm):
         if p1 != p2:
             raise forms.ValidationError("Пароли не совпадают")
         return p2
+
+class NoteForm(forms.ModelForm):
+    class Meta:
+        model = Note
+        fields = ['title', 'text', 'image']
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'class': 'form-input-glass',
+                'placeholder': 'Заголовок заметки'
+            }),
+            'text': forms.Textarea(attrs={
+                'class': 'form-input-glass',
+                'rows': 3,
+                'placeholder': 'О чем хотите рассказать?'
+            }),
+            'image': forms.FileInput(attrs={
+                'class': 'form-file-input'
+            }),
+        }

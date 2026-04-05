@@ -1,41 +1,85 @@
 {% extends 'main/layout.html' %}
+{% load static %}
 
 {% block title %}Мой профиль{% endblock %}
 
 {% block content %}
 <div class="features">
-    <div style="display: flex; gap: 30px; align-items: center; margin-bottom: 40px;">
-        <div class="avatar" style="width: 120px; height: 120px; font-size: 40px;">
-            {% if user.profile.avatar %}
-                <img src="{{ user.profile.avatar.url }}" style="width:100%; height:100%; object-fit:cover; border-radius:50%">
-            {% else %}
-                {{ user.username|slice:":2"|upper }}
-            {% endif %}
-        </div>
-        <div>
-            <h1 style="margin: 0;">{{ user.username }}</h1>
-            <p style="color: var(--muted);">{{ user.email }} | {{ user.profile.phone }}</p>
-        </div>
-    </div>
+    <h1 class="mb-4">Личный кабинет</h1>
 
-    <h2>Мои заметки (Таблица 3)</h2>
-    <div class="events-grid">
-        {% for note in notes %}
-            <div class="event-card">
-                {% if note.image %}
-                    <img src="{{ note.image.url }}" class="event-card-image">
+    <div class="profile-layout">
+        <div class="profile-info-side">
+            <div class="avatar" style="width: 150px; height: 150px; font-size: 50px;">
+                {% if user.profile.avatar %}
+                    <img src="{{ user.profile.avatar.url }}" style="width:100%; height:100%; object-fit:cover; border-radius:50%">
+                {% else %}
+                    {{ user.username|slice:":2"|upper }}
                 {% endif %}
-                <div class="event-card-content">
-                    <div class="event-card-title">{{ note.title }}</div>
-                    <div class="event-card-description">{{ note.text }}</div>
-                    <div class="event-card-date">{{ note.created_at|date:"d.m.Y" }}</div>
-                </div>
             </div>
-        {% empty %}
-            <div class="no-events">
-                <p>У вас пока нет заметок. Добавьте их через админку для теста!</p>
+
+            <a href="#" class="auth-link">Изменить фото</a>
+
+            <div style="width: 100%; margin-top: 20px;">
+                <p><strong>Логин:</strong> {{ user.username }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>Телефон:</strong> {{ user.profile.phone|default:"Не указан" }}</p>
             </div>
-        {% endfor %}
+
+            <a href="#" class="btn-side" style="background: var(--accent-rgba); margin-top: 20px;">Редактировать данные</a>
+        </div>
+
+        <div class="profile-notes-side">
+            <h2 class="profile-title-main">Профиль</h2>
+            <div class="notes-tab-header">Заметки</div>
+
+            <div class="add-note-section">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <button type="submit" class="add-note-btn-style">
+                        <span class="plus-icon">+</span> Добавить заметку
+                    </button>
+
+                    <div class="note-label" style="margin-top: 20px;">Новая заметка</div>
+                    <div class="note-card-custom">
+                        <div class="note-card-top">
+                            <label class="add-img-btn">
+                                <span class="plus-icon small">+</span> Добавить изображение
+                                <div style="display:none">{{ form.image }}</div>
+                            </label>
+                            <div class="delete-note-btn">🗑️</div>
+                        </div>
+
+                        <div class="note-inputs-area">
+                            {{ form.title }}
+                            {{ form.text }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <hr class="divider">
+
+            <div class="notes-list-container">
+                {% for note in notes %}
+                    <div class="note-item-wrapper">
+                        <div class="note-label">Заметка {{ forloop.revcounter }}</div>
+                        <div class="note-card-custom">
+                            <div class="note-card-top">
+                                <div class="add-img-btn">
+                                    <span class="plus-icon small">+</span> Добавить изображение
+                                </div>
+                                <div class="delete-note-btn">🗑️</div>
+                            </div>
+                            <div class="note-content">
+                                <p><strong>{{ note.title }}</strong></p>
+                                <p>{{ note.text }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
