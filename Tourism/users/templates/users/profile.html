@@ -29,7 +29,6 @@
         </div>
 
         <div class="profile-notes-side">
-            <h2 class="profile-title-main">Профиль</h2>
             <div class="notes-tab-header">Заметки</div>
 
             <div class="add-note-section">
@@ -63,20 +62,26 @@
             <div class="notes-list-container">
                 {% for note in notes %}
                     <div class="note-item-wrapper">
-                        <div class="note-label">Заметка {{ forloop.revcounter }}</div>
+                        <div class="note-label">Заметка {{ forloop.revcounter }} | {{ note.created_at|date:"d.m.Y" }}</div>
                         <div class="note-card-custom">
-                            <div class="note-card-top">
-                                <div class="add-img-btn">
-                                    <span class="plus-icon small">+</span> Добавить изображение
-                                </div>
+
+                            <div class="note-card-top" style="justify-content: flex-end;">
                                 <div class="delete-note-btn">🗑️</div>
                             </div>
+
+                            {% if note.image %}
+                                <img src="{{ note.image.url }}" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
+                            {% endif %}
+
                             <div class="note-content">
-                                <p><strong>{{ note.title }}</strong></p>
-                                <p>{{ note.text }}</p>
+                                <p style="font-size: 22px; margin-bottom: 5px; color: #111;"><strong>{{ note.title }}</strong></p>
+                                <p style="color: #333;">{{ note.text }}</p>
                             </div>
+
                         </div>
                     </div>
+                {% empty %}
+                    <p style="color: rgba(255,255,255,0.7); margin-top: 20px;">У вас пока нет заметок.</p>
                 {% endfor %}
             </div>
         </div>

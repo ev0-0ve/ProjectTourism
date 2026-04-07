@@ -4,13 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.1.6. Добавлено новое приложение для регистрации пользователя, добавление записей через панель админа и на сайте (нужно исправить представление и вход не для админа)">
+    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.1.6. Исправлено представление (доделать под Figma)">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/Tourism/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/Tourism/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/users/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/users/templates/users/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/templates/users/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/users/templates/users/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/templates/users/register.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,8 +64,11 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
@@ -101,7 +108,12 @@
       <workItem from="1775368079253" duration="1423000" />
       <workItem from="1775370000698" duration="6185000" />
       <workItem from="1775386555350" duration="405000" />
-      <workItem from="1775389829817" duration="17087000" />
+      <workItem from="1775389829817" duration="17232000" />
+      <workItem from="1775493668075" duration="479000" />
+      <workItem from="1775529428912" duration="5932000" />
+      <workItem from="1775536757265" duration="4776000" />
+      <workItem from="1775546219384" duration="2818000" />
+      <workItem from="1775549220296" duration="434000" />
     </task>
     <task id="LOCAL-00001" summary="1.1.1. Создание проекта">
       <option name="closed" value="true" />
@@ -199,7 +211,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775376294929</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="1.1.6. Исправлено представление (доделать под Figma)">
+      <option name="closed" value="true" />
+      <created>1775409681993</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1775409681993</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,6 +246,7 @@
     <MESSAGE value="1.1.4. Практическая 1 по КСП, добавление страницы профиля и формы с записью и выводом данных без БД" />
     <MESSAGE value="1.1.5. Добавлено новое приложение для страницы &quot;События&quot;, переключение между страницыми, добавление записей через панель админа в адресной строке сайта" />
     <MESSAGE value="1.1.6. Добавлено новое приложение для регистрации пользователя, добавление записей через панель админа и на сайте (нужно исправить представление и вход не для админа)" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.1.6. Добавлено новое приложение для регистрации пользователя, добавление записей через панель админа и на сайте (нужно исправить представление и вход не для админа)" />
+    <MESSAGE value="1.1.6. Исправлено представление (доделать под Figma)" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.1.6. Исправлено представление (доделать под Figma)" />
   </component>
 </project>

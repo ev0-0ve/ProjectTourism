@@ -7,11 +7,11 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST, request.FILES)
         if form.is_valid():
-            # 1. Сохраняем пользователя
+            # 1 Сохраняем пользователя
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.save()
-            # 2. Создаем профиль и привязываем к пользователю
+            # 2 Создаем профиль и привязываем к пользователю
             Profile.objects.create(
                 user=user,
                 phone=form.cleaned_data['phone'],

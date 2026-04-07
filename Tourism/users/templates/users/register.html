@@ -10,21 +10,21 @@
 {% endblock %}
 
 {% block auth_content %}
-    <h2 class="auth-title" style="font-size: 22px;">РЕГИСТРАЦИЯ</h2>
-    <form method="post" enctype="multipart/form-data" class="nav" style="gap: 10px; align-items: flex-start;">
+    <h2 class="auth-title" style="font-size: 22px; margin-bottom: 5px;">РЕГИСТРАЦИЯ</h2>
+    <form method="post" enctype="multipart/form-data" class="nav" style="gap: 4px; align-items: flex-start; width: 100%;">
         {% csrf_token %}
 
         {% for field in form %}
             <div style="width: 100%; text-align: left;">
-                <label style="font-size: 12px; color: var(--muted);">{{ field.label }}</label>
+                <label style="font-size: 11px; color: var(--muted); margin-bottom: 2px; display: block;">{{ field.label }}</label>
                 {{ field }}
                 {% if field.errors %}
-                    <div style="color: #ff6b6b; font-size: 10px;">{{ field.errors }}</div>
+                    <div style="color: #ff6b6b; font-size: 10px; line-height: 1; margin-top: 2px;">{{ field.errors }}</div>
                 {% endif %}
             </div>
         {% endfor %}
 
-        <button type="submit" class="btn-large" style="background: rgba(120, 95, 140, 0.9); width: 100%; margin-top: 10px;">Создать</button>
-        <a href="{% url 'login' %}" class="auth-link" style="width: 100%; text-align: center;">уже есть аккаунт?</a>
+        <button type="submit" class="btn-large" style="background: rgba(120, 95, 140, 0.9); width: 100%; margin-top: 5px; padding: 6px;">Создать</button>
+        <a href="{% url 'login' %}" class="auth-link" style="width: 100%; text-align: center; margin-top: 2px; font-size: 13px;">Уже есть аккаунт?</a>
     </form>
 {% endblock %}

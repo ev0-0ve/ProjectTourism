@@ -148,11 +148,11 @@ body {
   max-height: 820px;
   background: rgba(0, 19, 36, 0.7);
   border-radius: 26px;
-  padding: 24px 20px;
+  padding: 15px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
+  gap: 10px;
   z-index: 5;
   transition: width .35s ease, right .35s ease, transform .35s ease;
   box-shadow: 0 12px 34px rgba(3, 6, 12, 0.5);
@@ -241,7 +241,7 @@ body {
   width: 100%;
   margin: 10px 0;
   text-align: center;
-  display: flex;         /* Добавляем флекс, чтобы центрировать форму */
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -251,22 +251,31 @@ body {
   font-weight: 400;
   font-size: 24px;
   color: white;
-  margin-bottom: 20px;
+  margin-bottom: 10px; /* Сильно уменьшили отступ снизу */
 }
 
 .auth-block form input {
   width: 100%;
-  background: rgba(82, 98, 114, 0.8); /* Тот самый серо-синий цвет из макета */
+  background: rgba(82, 98, 114, 0.8);
   border: none;
-  border-radius: 12px; /* Более мягкое скругление как на фото */
-  padding: 14px 20px;
+  border-radius: 8px;
+  padding: 8px 12px;
   color: white;
   font-family: inherit;
-  font-size: 18px;
+  font-size: 14px;
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 0;
   outline: none;
+  height: 34px;
   transition: background 0.3s ease;
+}
+
+/* Исключение для поля загрузки Аватара, чтобы оно не ломалось */
+.auth-block form input[type="file"] {
+  padding: 6px;
+  font-size: 12px;
+  height: auto;
+  text-align: left;
 }
 
 .auth-block form input::placeholder {
@@ -277,17 +286,17 @@ body {
   background: rgba(92, 108, 124, 1);
 }
 
-/* Кнопка "Создать" / "Войти" */
+/* КНОПКА ОТПРАВКИ */
 .auth-block form button {
-  background: #6D6A85; /* Фиолетовый оттенок из макета */
-  border-radius: 12px;
+  background: #6D6A85;
+  border-radius: 10px;
   color: white;
-  padding: 10px 45px; /* Сделал её шире, как на кнопке "Создать" */
-  font-size: 22px;
+  padding: 4px 20px;
+  font-size: 20px;
   font-family: inherit;
   border: none;
   cursor: pointer;
-  margin: 15px auto 8px auto;
+  margin: 15px auto 6px auto;
   display: inline-block;
   transition: transform 0.2s ease, background 0.2s ease;
 }
@@ -305,7 +314,7 @@ body {
   color: white;
   text-decoration: none;
   opacity: 0.8;
-  margin-top: 5px;
+  margin-top: 2px;
 }
 
 .auth-link:hover {
@@ -323,7 +332,7 @@ body {
 }
 
 .profile-info-side {
-  flex: 0 0 350px; /* Фиксированная ширина левой части */
+  flex: 0 0 350px;
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
   padding: 30px;
@@ -353,7 +362,7 @@ body {
 }
 
 .profile-notes-side::-webkit-scrollbar-thumb {
-    background: rgba(120, 95, 140, 0.5); /* Цвет в тон твоему дизайну */
+    background: rgba(120, 95, 140, 0.5);
     border-radius: 10px;
 }
 
@@ -654,7 +663,7 @@ body {
     padding-bottom: 5px;
 }
 
-/* Кнопка "Добавить заметку" как на скрине */
+/* Кнопка "Добавить заметку" */
 .add-note-trigger-wrapper {
     margin-bottom: 30px;
 }
