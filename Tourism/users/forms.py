@@ -1,13 +1,10 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile
-from .models import Note
+from .models import Profile, Note
 
 class UserRegisterForm(forms.ModelForm):
-
     password = forms.CharField(widget=forms.PasswordInput, label="Пароль")
     password_confirm = forms.CharField(widget=forms.PasswordInput, label="Подтвердите пароль")
-
     phone = forms.CharField(max_length=20, required=False, label="Телефон")
     avatar = forms.ImageField(required=False, label="Аватар")
 
@@ -28,15 +25,32 @@ class NoteForm(forms.ModelForm):
         fields = ['title', 'text', 'image']
         widgets = {
             'title': forms.TextInput(attrs={
-                'class': 'form-input-glass',
-                'placeholder': 'Заголовок заметки'
+                'class': 'form-input-glass figma-input',
+                'placeholder': 'Добавить заметку...'
             }),
             'text': forms.Textarea(attrs={
-                'class': 'form-input-glass',
-                'rows': 3,
-                'placeholder': 'О чем хотите рассказать?'
+                'class': 'form-input-glass figma-input',
+                'rows': 2,
+                'placeholder': 'Текст заметки'
             }),
             'image': forms.FileInput(attrs={
                 'class': 'form-file-input'
             }),
+        }
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'figma-input'}),
+            'email': forms.EmailInput(attrs={'class': 'figma-input'}),
+        }
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['phone', 'avatar']
+        widgets = {
+            'phone': forms.TextInput(attrs={'class': 'figma-input'}),
         }

@@ -12,6 +12,123 @@
   font-synthesis: none;
 }
 
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: "Alumni Sans SC";
+  color: var(--text-light);
+  background: #0b1116;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- СЕКЦИЯ: SIDEBAR (Боковая панель) --- */
+.side-panel {
+  position: fixed;
+  right: 36px;
+  top: 6%;
+  width: 280px;
+  height: 86vh;
+  background: rgba(0, 19, 36, 0.7);
+  border-radius: 26px;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 5;
+  transition: width .35s ease, right .35s ease, transform .35s ease;
+  box-shadow: 0 12px 34px rgba(3, 6, 12, 0.5);
+}
+
+.side-panel.collapsed {
+  width: 72px;
+  padding: 18px 8px;
+  right: 18px;
+  border-radius: 40px;
+}
+
+.side-panel.collapsed .nav,
+.side-panel.collapsed .side-username,
+.side-panel.collapsed .auth-block {
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+}
+
+/* --- СЕКЦИЯ: СОБЫТИЯ (Detail View) --- */
+.no-scroll-container {
+    display: flex;
+    height: 70vh;
+    background: rgba(115, 123, 134, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    margin: 20px 40px 0 20px;
+    gap: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    color: white;
+}
+
+.no-scroll-left {
+    flex: 1;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #D1D5DB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-scroll-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-scroll-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.back-arrow {
+    font-size: 38px;
+    color: white;
+    text-decoration: none;
+    line-height: 1;
+    margin-bottom: 5px;
+    display: inline-block;
+    transition: transform 0.2s;
+    width: fit-content;
+}
+
+.back-arrow:hover {
+    transform: translateX(-5px);
+    color: #f3bd48;
+}
+
+.event-title {
+    font-size: 36px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    line-height: 1.1;
+}
+
+.event-desc-box {
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.95;
+    overflow-y: auto;
+    padding-right: 15px;
+}
+
+/* Кастомный скролл для описания */
+.event-desc-box::-webkit-scrollbar { width: 4px; }
+.event-desc-box::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 4px; }
+
 /* БАЗОВЫЕ СТИЛИ */
 * {
   box-sizing: border-box;
@@ -159,6 +276,25 @@ body {
 }
 
 /* Аватар */
+.avatar {
+    width: 150px;
+    height: 150px;
+    font-size: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ccc; /* Цвет фона, если нет фото */
+}
+
+.avatar-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
 .side-panel .avatar {
   width: 90px;
   height: 90px;
@@ -793,3 +929,116 @@ body {
 
 .note-card-top { display: flex; justify-content: space-between; margin-bottom: 10px; }
 .add-img-btn { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 14px; }
+
+/* Принудительное скрытие/показ для JS-скрипта */
+.edit-mode {
+    display: none !important;
+}
+
+.view-mode {
+    display: block !important;
+}
+
+/* Кнопка "Подробнее" в заметках */
+.btn-more {
+    display: inline-block;
+    padding: 6px 18px;
+    background-color: #5D5A75; /* Цвет как у иконки плюса */
+    color: white !important;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-more:hover {
+    background-color: #785F8C; /* Акцентный цвет из твоего root */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Контейнер на один экран без прокрутки страницы */
+    .no-scroll-container {
+        display: flex;
+        height: 70vh; /* Строго ограничиваем высоту */
+        background: rgba(115, 123, 134, 0.9); /* Цвет в стиле карточек */
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        margin: 20px 40px 0 20px;
+        gap: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        color: white;
+    }
+
+    /* Левая часть под картинку */
+    .no-scroll-left {
+        flex: 1;
+        border-radius: 15px;
+        overflow: hidden;
+        background: #D1D5DB; /* Светлый плейсхолдер */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .no-scroll-left img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Правая часть с текстом */
+    .no-scroll-right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden; /* Запрещаем блоку расширяться за пределы 70vh */
+    }
+
+    /* Стрелка "Назад" */
+    .back-arrow {
+        font-size: 38px;
+        color: white;
+        text-decoration: none;
+        line-height: 1;
+        margin-bottom: 5px;
+        display: inline-block;
+        transition: transform 0.2s;
+        width: fit-content;
+    }
+
+    .back-arrow:hover {
+        transform: translateX(-5px); /* Анимация сдвига при наведении */
+        color: #f3bd48; /* Легкий желтый акцент (опционально) */
+    }
+
+    .event-title {
+        font-size: 36px;
+        font-weight: 500;
+        margin-bottom: 10px;
+        line-height: 1.1;
+    }
+
+    .event-meta {
+        font-size: 15px;
+        opacity: 0.8;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    /* Описание: если текста будет супер много, появится аккуратный ВНУТРЕННИЙ скролл */
+    .event-desc-box {
+        font-size: 16px;
+        line-height: 1.6;
+        opacity: 0.95;
+        overflow-y: auto;
+        padding-right: 15px;
+    }
+
+    .event-desc-box::-webkit-scrollbar { width: 4px; }
+    .event-desc-box::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 4px; }

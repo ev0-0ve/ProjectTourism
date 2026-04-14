@@ -1,0 +1,41 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+<div class="features">
+    <div class="no-scroll-container">
+
+        <!-- Левая часть: Картинка -->
+        <div class="no-scroll-left">
+            {% if event.image %}
+                <img src="{{ event.image.url }}" alt="{{ event.title }}">
+            {% else %}
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="#9CA3AF"><path d="M14 6l-3.75 5-2.25-3-3 4h14l-5-6z"/></svg>
+            {% endif %}
+        </div>
+
+        <!-- Правая часть: Информация -->
+        <div class="no-scroll-right">
+            <!-- Стрелка возврата -->
+            <a href="{% url 'events_home' %}" class="back-arrow" title="Назад к списку событий">←</a>
+
+            <h1 class="event-title">{{ event.title }}</h1>
+
+            <div class="event-meta">
+                <span>📅 {{ event.date|date:"d.m.Y" }}</span>
+                <span>📍 {{ event.location }}</span>
+            </div>
+
+            <hr style="border-color: rgba(255,255,255,0.2); margin-bottom: 20px;">
+
+            <!-- Описание с внутренним скроллом если нужно -->
+            <div class="event-desc-box">
+                {{ event.description|linebreaks }}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

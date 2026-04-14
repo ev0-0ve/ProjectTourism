@@ -4,17 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.1.6. Исправлено представление (доделать под Figma)">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.1.7. Сдана 8 ПР добавлена страница профиля с данными (сделать редактирование и удаление записей)">
+      <change afterPath="$PROJECT_DIR$/Tourism/events/templates/events/event_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/Tourism/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/Tourism/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/events/templates/events/events_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/events/templates/events/events_home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/events/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/events/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/events/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/events/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/users/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/users/templates/users/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/templates/users/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/users/templates/users/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/templates/users/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,7 +115,9 @@
       <workItem from="1775529428912" duration="5932000" />
       <workItem from="1775536757265" duration="4776000" />
       <workItem from="1775546219384" duration="2818000" />
-      <workItem from="1775549220296" duration="434000" />
+      <workItem from="1775549220296" duration="932000" />
+      <workItem from="1775994465318" duration="12239000" />
+      <workItem from="1776133605369" duration="4232000" />
     </task>
     <task id="LOCAL-00001" summary="1.1.1. Создание проекта">
       <option name="closed" value="true" />
@@ -219,7 +223,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775409681993</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="1.1.7. Сдана 8 ПР добавлена страница профиля с данными (сделать редактирование и удаление записей)">
+      <option name="closed" value="true" />
+      <created>1775549775667</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1775549775667</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,6 +259,7 @@
     <MESSAGE value="1.1.5. Добавлено новое приложение для страницы &quot;События&quot;, переключение между страницыми, добавление записей через панель админа в адресной строке сайта" />
     <MESSAGE value="1.1.6. Добавлено новое приложение для регистрации пользователя, добавление записей через панель админа и на сайте (нужно исправить представление и вход не для админа)" />
     <MESSAGE value="1.1.6. Исправлено представление (доделать под Figma)" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.1.6. Исправлено представление (доделать под Figma)" />
+    <MESSAGE value="1.1.7. Сдана 8 ПР добавлена страница профиля с данными (сделать редактирование и удаление записей)" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.1.7. Сдана 8 ПР добавлена страница профиля с данными (сделать редактирование и удаление записей)" />
   </component>
 </project>

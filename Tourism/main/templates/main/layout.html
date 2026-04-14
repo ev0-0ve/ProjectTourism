@@ -33,6 +33,11 @@
                 {% endif %}
             </div>
         </a>
+
+        <div style="color: white; text-align: center; margin-top: 10px; font-weight: bold;">
+            {{ user.username }}
+        </div>
+        
         <nav class="nav">
             <a href="{% url 'profile' %}">Мой профиль</a>
             <a href="{% url 'logout' %}">Выйти</a>
