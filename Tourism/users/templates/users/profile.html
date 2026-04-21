@@ -5,16 +5,18 @@
 
 {% block content %}
 <style>
-    .edit-mode { display: none; }
-    .view-mode { display: block; }
+.edit-mode { display: none; }
+.view-mode { display: block; }
+#email-message { font-size: 14px; margin-top: 5px; display: block; }
 </style>
 
 <div class="features">
     <h1 class="mb-4">Личный кабинет</h1>
 
     <div class="profile-layout">
+        <!-- ЛЕВАЯ ЧАСТЬ: ПРОФИЛЬ -->
         <div class="profile-info-side">
-            <form method="post" enctype="multipart/form-data">
+            <form method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="hidden" name="update_profile" value="1">
 
@@ -40,7 +42,10 @@
 
                     <div class="edit-mode">
                         <input type="text" name="username" value="{{ user.username }}" class="form-control mb-2" placeholder="Логин">
-                        <input type="email" name="email" value="{{ user.email }}" class="form-control mb-2" placeholder="Email">
+
+                        <input type="email" id="email-input" name="email" value="{{ user.email }}" class="form-control mb-2" placeholder="Email">
+                        <span id="email-message"></span>
+
                         <input type="text" name="phone" value="{{ user.profile.phone|default:'' }}" class="form-control mb-2" placeholder="Телефон">
                         <input type="password" name="old_password" class="form-control mb-2" placeholder="Старый пароль">
                         <input type="password" name="new_password" class="form-control mb-2" placeholder="Новый пароль">
@@ -53,11 +58,12 @@
             </form>
         </div>
 
+        <!-- ПРАВАЯ ЧАСТЬ: ЗАМЕТКИ -->
         <div class="profile-notes-side">
             <div class="notes-tab-header">Заметки</div>
 
             <div class="add-note-section">
-                <form method="post" enctype="multipart/form-data">
+                <form method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     <input type="hidden" name="add_note" value="1">
                     <button type="submit" class="add-note-btn-style">
@@ -84,11 +90,11 @@
 
             <div class="notes-list-container">
                 {% for note in notes %}
-                    <div class="note-item-wrapper">
+                    <div class="note-item-wrapper" id="note-{{ note.id }}">
                         <div class="note-label">Заметка {{ forloop.revcounter }} | {{ note.created_at|date:"d.m.Y" }}</div>
                         <div class="note-card-custom">
                             <div class="note-card-top" style="justify-content: flex-end;">
-                                <a href="{% url 'note_delete' note.id %}" class="delete-note-btn" style="text-decoration:none" onclick="return confirm('Удалить эту заметку?')">🗑️</a>
+                                <button class="delete-note-btn" data-note-id="{{ note.id }}" style="background: none; border: none; cursor: pointer;">&#x1F5D1;&#xFE0F;</button>
                             </div>
 
                             {% if note.image %}
@@ -106,18 +112,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    function toggleEdit(show) {
-        const viewElems = document.querySelectorAll('.view-mode');
-        const editElems = document.querySelectorAll('.edit-mode');
-
-        viewElems.forEach(el => {
-            el.style.setProperty('display', show ? 'none' : 'block', 'important');
-        });
-        editElems.forEach(el => {
-            el.style.setProperty('display', show ? 'block' : 'none', 'important');
-        });
-    }
-</script>
 {% endblock %}

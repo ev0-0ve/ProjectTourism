@@ -24,13 +24,12 @@
             <h1 class="event-title">{{ event.title }}</h1>
 
             <div class="event-meta">
-                <span>📅 {{ event.date|date:"d.m.Y" }}</span>
-                <span>📍 {{ event.location }}</span>
+                <span>{{ event.date|date:"d.m.Y" }}</span>
+                <span>{{ event.location }}</span>
             </div>
 
             <hr style="border-color: rgba(255,255,255,0.2); margin-bottom: 20px;">
 
-            <!-- Описание с внутренним скроллом если нужно -->
             <div class="event-desc-box">
                 {{ event.description|linebreaks }}
             </div>

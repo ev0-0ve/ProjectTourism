@@ -8,5 +8,6 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
     path('profile/', views.profile_view, name='profile'),
 
-    path('note/<int:note_id>/delete/', views.note_delete, name='note_delete'),
+    path('note/delete/<int:note_id>/', views.note_delete, name='note_delete'),
+    path('ajax/check_email/', views.CheckEmailAjaxView.as_view(), name='ajax_check_email'),
 ]
