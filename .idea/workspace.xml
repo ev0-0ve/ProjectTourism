@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.1.8. Добавлена страница дополнительно для событий, есть редактирование и удаление записей в профиле  (отредактировать css, убрать подробнее в событиях сделать в JS)">
-      <change afterPath="$PROJECT_DIR$/Tourism/main/static/main/js/main.js" afterDir="false" />
+    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.1.9. ЛР 10-11 на темы JS и AJAX: редактирование без обновления страницы и удаление заметки с доп AJAX запросом (сверстать оставшиеся страницы и сделать последнюю работу по КСП)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/events/templates/events/event_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/events/templates/events/event_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,7 +117,17 @@
       <workItem from="1776614824292" duration="608000" />
       <workItem from="1776705279591" duration="5676000" />
       <workItem from="1776715358697" duration="1101000" />
-      <workItem from="1776737513037" duration="9546000" />
+      <workItem from="1776737513037" duration="11474000" />
+      <workItem from="1776756345638" duration="285000" />
+      <workItem from="1776756938088" duration="988000" />
+      <workItem from="1776759573463" duration="869000" />
+      <workItem from="1777273749626" duration="731000" />
+      <workItem from="1777281909600" duration="543000" />
+      <workItem from="1777292422475" duration="627000" />
+      <workItem from="1777295211208" duration="240000" />
+      <workItem from="1777302793913" duration="7476000" />
+      <workItem from="1777351297578" duration="3020000" />
+      <workItem from="1777361086831" duration="1937000" />
     </task>
     <task id="LOCAL-00001" summary="1.1.1. Создание проекта">
       <option name="closed" value="true" />
@@ -240,7 +249,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776138280104</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="1.1.9. ЛР 10-11 на темы JS и AJAX: редактирование без обновления страницы и удаление заметки с доп AJAX запросом (сверстать оставшиеся страницы и сделать последнюю работу по КСП)">
+      <option name="closed" value="true" />
+      <created>1776748326354</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1776748326354</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,6 +287,7 @@
     <MESSAGE value="1.1.6. Исправлено представление (доделать под Figma)" />
     <MESSAGE value="1.1.7. Сдана 8 ПР добавлена страница профиля с данными (сделать редактирование и удаление записей)" />
     <MESSAGE value="1.1.8. Добавлена страница дополнительно для событий, есть редактирование и удаление записей в профиле  (отредактировать css, убрать подробнее в событиях сделать в JS)" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.1.8. Добавлена страница дополнительно для событий, есть редактирование и удаление записей в профиле  (отредактировать css, убрать подробнее в событиях сделать в JS)" />
+    <MESSAGE value="1.1.9. ЛР 10-11 на темы JS и AJAX: редактирование без обновления страницы и удаление заметки с доп AJAX запросом (сверстать оставшиеся страницы и сделать последнюю работу по КСП)" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.1.9. ЛР 10-11 на темы JS и AJAX: редактирование без обновления страницы и удаление заметки с доп AJAX запросом (сверстать оставшиеся страницы и сделать последнюю работу по КСП)" />
   </component>
 </project>
