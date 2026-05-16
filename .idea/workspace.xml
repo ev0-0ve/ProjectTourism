@@ -4,13 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.1.9. ЛР 10-11 на темы JS и AJAX: редактирование без обновления страницы и удаление заметки с доп AJAX запросом (сверстать оставшиеся страницы и сделать последнюю работу по КСП)">
+    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.1.10. ЛР 12 на темы JS и AJAX (JQuery): удаление заметки в профиле с анимацией AJAX запросом (сверстать оставшиеся страницы, начать делать бд страниц)">
+      <change afterPath="$PROJECT_DIR$/Tourism/favorites/templates/favorites/favorites.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tourism/favorites/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tourism/guide/templates/guide/guide.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tourism/guide/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tourism/main/static/main/js/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tourism/tours/templates/tours/builder.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tourism/tours/templates/tours/create_tour.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tourism/tours/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/Tourism/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/Tourism/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/Tourism/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/Tourism/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/js/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +77,7 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/tcf12/PycharmProjects/Project/Tourism/main/static/main/img&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/tcf12/PycharmProjects/ProjectTourism/Tourism/favorites&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -80,7 +90,15 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\favorites" />
+      <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\tours" />
+      <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\guide" />
       <recent name="C:\Users\tcf12\PycharmProjects\Project\Tourism\main\static\main\img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\favorites\templates\favorites" />
+      <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\guide\templates\guide" />
+      <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\tours\templates\tours" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -127,7 +145,7 @@
       <workItem from="1777295211208" duration="240000" />
       <workItem from="1777302793913" duration="7476000" />
       <workItem from="1777351297578" duration="3020000" />
-      <workItem from="1777361086831" duration="1937000" />
+      <workItem from="1777361086831" duration="2637000" />
     </task>
     <task id="LOCAL-00001" summary="1.1.1. Создание проекта">
       <option name="closed" value="true" />
@@ -257,7 +275,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776748326354</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="1.1.10. ЛР 12 на темы JS и AJAX (JQuery): удаление заметки в профиле с анимацией AJAX запросом (сверстать оставшиеся страницы, начать делать бд страниц)">
+      <option name="closed" value="true" />
+      <created>1777363651420</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1777363651420</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,6 +314,7 @@
     <MESSAGE value="1.1.7. Сдана 8 ПР добавлена страница профиля с данными (сделать редактирование и удаление записей)" />
     <MESSAGE value="1.1.8. Добавлена страница дополнительно для событий, есть редактирование и удаление записей в профиле  (отредактировать css, убрать подробнее в событиях сделать в JS)" />
     <MESSAGE value="1.1.9. ЛР 10-11 на темы JS и AJAX: редактирование без обновления страницы и удаление заметки с доп AJAX запросом (сверстать оставшиеся страницы и сделать последнюю работу по КСП)" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.1.9. ЛР 10-11 на темы JS и AJAX: редактирование без обновления страницы и удаление заметки с доп AJAX запросом (сверстать оставшиеся страницы и сделать последнюю работу по КСП)" />
+    <MESSAGE value="1.1.10. ЛР 12 на темы JS и AJAX (JQuery): удаление заметки в профиле с анимацией AJAX запросом (сверстать оставшиеся страницы, начать делать бд страниц)" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.1.10. ЛР 12 на темы JS и AJAX (JQuery): удаление заметки в профиле с анимацией AJAX запросом (сверстать оставшиеся страницы, начать делать бд страниц)" />
   </component>
 </project>
