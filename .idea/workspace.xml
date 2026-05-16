@@ -4,23 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.1.10. ЛР 12 на темы JS и AJAX (JQuery): удаление заметки в профиле с анимацией AJAX запросом (сверстать оставшиеся страницы, начать делать бд страниц)">
-      <change afterPath="$PROJECT_DIR$/Tourism/favorites/templates/favorites/favorites.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tourism/favorites/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tourism/guide/templates/guide/guide.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tourism/guide/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tourism/main/static/main/js/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tourism/tours/templates/tours/builder.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tourism/tours/templates/tours/create_tour.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tourism/tours/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project.iml" afterDir="false" />
+    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.2. Закончены переходы на все страницы с временными заглушками (сделать html и css страницы Путеводитель с его javaScript представлением)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/Tourism/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/Tourism/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/Tourism/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/Tourism/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -283,7 +268,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777363651420</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="1.2. Закончены переходы на все страницы с временными заглушками (сделать html и css страницы Путеводитель с его javaScript представлением)">
+      <option name="closed" value="true" />
+      <created>1778917144279</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1778917144279</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,6 +308,7 @@
     <MESSAGE value="1.1.8. Добавлена страница дополнительно для событий, есть редактирование и удаление записей в профиле  (отредактировать css, убрать подробнее в событиях сделать в JS)" />
     <MESSAGE value="1.1.9. ЛР 10-11 на темы JS и AJAX: редактирование без обновления страницы и удаление заметки с доп AJAX запросом (сверстать оставшиеся страницы и сделать последнюю работу по КСП)" />
     <MESSAGE value="1.1.10. ЛР 12 на темы JS и AJAX (JQuery): удаление заметки в профиле с анимацией AJAX запросом (сверстать оставшиеся страницы, начать делать бд страниц)" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.1.10. ЛР 12 на темы JS и AJAX (JQuery): удаление заметки в профиле с анимацией AJAX запросом (сверстать оставшиеся страницы, начать делать бд страниц)" />
+    <MESSAGE value="1.2. Закончены переходы на все страницы с временными заглушками (сделать html и css страницы Путеводитель с его javaScript представлением)" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.2. Закончены переходы на все страницы с временными заглушками (сделать html и css страницы Путеводитель с его javaScript представлением)" />
   </component>
 </project>
