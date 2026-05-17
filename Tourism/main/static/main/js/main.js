@@ -11,7 +11,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidePanel = document.querySelector('.side-panel');
     const sideToggle = document.querySelector('.side-toggle');
     if (sideToggle && sidePanel) {
-        sideToggle.addEventListener('click', () => sidePanel.classList.toggle('collapsed'));
+
+    const isHome = document.body.classList.contains('home-page');
+
+    if (!isHome) {
+        sidePanel.classList.add('collapsed');
+    }
+
+    sideToggle.addEventListener('click', () => {
+
+        sidePanel.classList.toggle('collapsed');
+
+    });
     }
 
     // Получение CSRF токена
@@ -81,6 +92,117 @@ document.addEventListener('DOMContentLoaded', function() {
             xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
             xhr.send();
+        });
+    });
+
+    /* Раскрытие карточек */
+    const guideCards = document.querySelectorAll('.guide-card');
+
+    guideCards.forEach(card => {
+
+        card.addEventListener('click', function(e) {
+
+            if (e.target.closest('.guide-icon-btn')) {
+                return;
+            }
+
+            guideCards.forEach(c => {
+
+                if (c !== this) {
+                    c.classList.remove('active');
+                }
+
+            });
+
+            this.classList.toggle('active');
+
+        });
+
+    });
+
+    /* ФИЛЬТР POPUP */
+    const filterBtn = document.getElementById('filterBtn');
+    const filterPopup = document.getElementById('filterPopup');
+
+    if (filterBtn && filterPopup) {
+
+        filterBtn.addEventListener('click', function(e) {
+
+            e.stopPropagation();
+
+            filterPopup.classList.toggle('active');
+
+        });
+
+        document.addEventListener('click', function(e) {
+
+            if (!filterPopup.contains(e.target)) {
+
+                filterPopup.classList.remove('active');
+
+            }
+        });
+    }
+
+    /* ПОИСК ПО КАРТОЧКАМ */
+    const searchInput = document.getElementById('guideSearch');
+
+    if (searchInput) {
+
+        searchInput.addEventListener('input', function () {
+            const value = this.value.toLowerCase();
+            guideCards.forEach(card => {
+
+                const title = card.querySelector('.guide-card-title')
+                    .textContent
+                    .toLowerCase();
+
+                if (title.includes(value)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    }
+
+    $('#resetFilterBtn').on('click', function () {
+
+        $('.guide-card').show();
+
+    });
+
+    /* ФИЛЬТРАЦИЯ */
+    const categoryInputs = document.querySelectorAll('input[name="category"]');
+
+    categoryInputs.forEach(input => {
+
+        input.addEventListener('change', function () {
+
+            const category = this.value;
+            guideCards.forEach(card => {
+
+                if (
+                    card.dataset.category === category
+                ) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+
+            });
+        });
+    });
+
+    /* АВТОРАСШИРЕНИЕ TEXTAREA */
+    const textareas = document.querySelectorAll('textarea');
+
+    textareas.forEach(textarea => {
+
+        textarea.addEventListener('input', function () {
+
+            this.style.height = 'auto';
+            this.style.height = this.scrollHeight + 'px';
         });
     });
 });

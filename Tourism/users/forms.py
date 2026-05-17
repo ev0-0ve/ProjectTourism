@@ -26,12 +26,12 @@ class NoteForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'form-input-glass figma-input',
-                'placeholder': 'Добавить заметку...'
+                'placeholder': 'Заголовок'
             }),
             'text': forms.Textarea(attrs={
                 'class': 'form-input-glass figma-input',
                 'rows': 2,
-                'placeholder': 'Текст заметки'
+                'placeholder': 'Начните ввод'
             }),
             'image': forms.FileInput(attrs={
                 'class': 'form-file-input'

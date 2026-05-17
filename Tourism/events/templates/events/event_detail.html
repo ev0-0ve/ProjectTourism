@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block title %}{{ event.title }}{% endblock %}
+{% block body_class %}no-scroll{% endblock %}
 
 {% block content %}
 <div class="features">
@@ -30,7 +31,7 @@
 
             <hr style="border-color: rgba(255,255,255,0.2); margin-bottom: 20px;">
 
-            <div class="event-desc-box">
+            <div class="event-desc-box custom-scroll">
                 {{ event.description|linebreaks }}
             </div>
         </div>

@@ -88,7 +88,7 @@
 
             <hr class="divider">
 
-            <div class="notes-list-container">
+            <div class="notes-grid notes-list-container custom-scroll">
                 {% for note in notes %}
                     <div class="note-item-wrapper" id="note-{{ note.id }}">
                         <div class="note-label">Заметка {{ forloop.revcounter }} | {{ note.created_at|date:"d.m.Y" }}</div>
@@ -98,12 +98,14 @@
                             </div>
 
                             {% if note.image %}
-                                <img src="{{ note.image.url }}" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
+                              <div class="note-image-container">
+                                <img src="{{ note.image.url }}" class="note-image" alt="{{ note.title }}">
+                              </div>
                             {% endif %}
 
                             <div class="note-content">
-                                <p style="font-size: 22px; margin-bottom: 5px; color: #111;"><strong>{{ note.title }}</strong></p>
-                                <p style="color: #333;">{{ note.text }}</p>
+                              <p class="note-title">{{ note.title }}</p>
+                              <p>{{ note.text }}</p>
                             </div>
                         </div>
                     </div>
