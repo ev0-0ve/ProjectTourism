@@ -1,10 +1,243 @@
 {% extends 'main/layout.html' %}
+{% load static %}
 
-{% block title %}Про нас{% endblock %}
+{% block title %}Собери тур{% endblock %}
+{% block body_class %}no-scroll{% endblock %}
 
 {% block content %}
-    <h1>Как с нами связаться:</h1>
-    <ul>
-        <li></li>
-    </ul>
+
+<div class="tour-page">
+
+    <div class="tour-header">
+
+        <h1 class="tour-title">
+            Собери тур
+        </h1>
+
+        <div class="tour-controls">
+
+            <!-- ВЫБОР ТУРА -->
+
+            <div class="tour-dropdown-wrapper">
+
+                <button class="tour-menu-btn" id="tourMenuButton">
+                    ☰
+                </button>
+
+                <div class="tour-dropdown" id="tourDropdown">
+
+                    {% for tour in tours %}
+
+                        <a
+                            href="{% url 'select_tour' tour.id %}"
+                            class="tour-dropdown-item
+                            {% if selected_tour.id == tour.id %}
+                                active
+                            {% endif %}"
+                        >
+                            {{ tour.title }}
+                        </a>
+
+                    {% empty %}
+
+                        <div class="tour-empty-small">
+                            Туров пока нет
+                        </div>
+
+                    {% endfor %}
+
+                    <a
+                        href="{% url 'create_tour' %}"
+                        class="tour-create-btn"
+                    >
+                        + Создать тур
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- КНОПКА ИЗБРАННОГО -->
+
+            <button class="tour-add-btn" id="favoritesOpenBtn">
+                +
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="tour-layout">
+
+        <!-- ЛЕВАЯ ЧАСТЬ -->
+
+        <div class="tour-left glass-block">
+
+            {% if selected_tour %}
+
+                <div class="tour-current-title">
+                    {{ selected_tour.title }}
+                </div>
+
+                <div class="tour-cards-grid custom-scroll">
+
+                    {% for item in selected_tour.items.all %}
+
+                        <div class="tour-card">
+
+                            {% if item.place.image %}
+                                <img
+                                    src="{{ item.place.image.url }}"
+                                    class="tour-card-image"
+                                >
+                            {% endif %}
+
+                            <div class="tour-card-content">
+
+                                <div class="tour-card-title">
+                                    {{ item.place.title }}
+                                </div>
+
+                                <div class="tour-card-desc">
+                                    {{ item.place.description|truncatechars:120 }}
+                                </div>
+
+                            </div>
+
+                            <a
+                                href="{% url 'remove_from_tour' item.id %}"
+                                class="tour-remove-btn"
+                            >
+                                ✕
+                            </a>
+
+                        </div>
+
+                    {% empty %}
+
+                        <div class="tour-empty">
+                            Добавьте места из избранного
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="tour-empty">
+                    Создайте тур
+                </div>
+
+            {% endif %}
+
+        </div>
+
+        <!-- ПРАВАЯ ЧАСТЬ -->
+
+        <div class="tour-right">
+
+            <div class="glass-block tour-map-block">
+
+                <div class="tour-map-placeholder">
+                    🗺 Карта маршрута
+                </div>
+
+            </div>
+
+            <div class="glass-block route-block">
+
+                <div class="route-title">
+                    Маршрут
+                </div>
+
+                <ol class="tour-route-list">
+
+                    {% if selected_tour %}
+
+                        {% for item in selected_tour.items.all %}
+
+                            <li class="route-item">
+
+                                <span class="route-place">
+                                    {{ item.place.title }}
+                                </span>
+
+                                <span class="route-address">
+                                    ({{ item.place.address }})
+                                </span>
+
+                            </li>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                </ol>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- МОДАЛКА -->
+
+<div class="favorites-modal" id="favoritesModal">
+
+    <div class="favorites-modal-content">
+
+        <div class="favorites-modal-header">
+
+            <h2>Избранное</h2>
+
+            <button id="favoritesCloseBtn">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="favorites-modal-grid">
+
+            {% for favorite in favorites %}
+
+                {% if favorite.guide %}
+
+                    <div class="favorite-mini-card">
+
+                        {% if favorite.guide.image %}
+                            <img src="{{ favorite.guide.image.url }}">
+                        {% endif %}
+
+                        <div class="favorite-mini-title">
+                            {{ favorite.guide.title }}
+                        </div>
+
+                        <a
+                            href="{% url 'add_to_tour' favorite.guide.id %}"
+                            class="favorite-add-btn"
+                        >
+                            +
+                        </a>
+
+                    </div>
+
+                {% endif %}
+
+            {% empty %}
+
+                <div class="tour-empty">
+                    Нет избранных мест
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
 {% endblock %}

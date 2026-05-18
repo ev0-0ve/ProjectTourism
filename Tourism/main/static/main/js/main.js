@@ -241,4 +241,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    const menuBtn = document.getElementById('tourMenuButton');
+    const dropdown = document.getElementById('tourDropdown');
+
+    menuBtn.addEventListener('click', () => {
+        dropdown.classList.toggle('active');
+    });
+
+    const modal = document.getElementById('favoritesModal');
+
+    document.getElementById('favoritesOpenBtn')
+    .addEventListener('click', () => {
+        modal.classList.add('active');
+    });
+
+    document.getElementById('favoritesCloseBtn')
+    .addEventListener('click', () => {
+        modal.classList.remove('active');
+    });
+
 });
