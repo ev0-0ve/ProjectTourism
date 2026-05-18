@@ -18,9 +18,13 @@
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 
+a {
+    text-decoration: none;
+}
+
 body {
   margin: 0;
-  font-family: "Alumni Sans SC";
+  font-family: 'MyMono', monospace;
   color: var(--text-light);
   background: #0b1116;
   -webkit-font-smoothing: antialiased;
@@ -165,7 +169,7 @@ html, body {
 
 body {
   margin: 0;
-  font-family: "Alumni Sans SC";
+  font-family: 'MyMono', monospace;
   color: var(--text-light);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -413,7 +417,7 @@ body {
 }
 
 .auth-title {
-  font-family: 'Alumni Sans SC', sans-serif;
+  font-family: 'MyMono', monospace;
   font-weight: 400;
   font-size: 24px;
   color: white;
@@ -427,7 +431,7 @@ body {
   border-radius: 8px;
   padding: 8px 12px;
   color: white;
-  font-family: inherit;
+  font-family: 'MyMono', monospace;
   font-size: 14px;
   text-align: center;
   margin-bottom: 0;
@@ -459,7 +463,7 @@ body {
   color: white;
   padding: 4px 20px;
   font-size: 20px;
-  font-family: inherit;
+  font-family: 'MyMono', monospace;
   border: none;
   cursor: pointer;
   margin: 15px auto 6px auto;
@@ -475,7 +479,7 @@ body {
 /* Ссылка "Войти" под кнопкой */
 .auth-link {
   display: block;
-  font-family: 'Alumni Sans SC', sans-serif;
+  font-family: 'MyMono', monospace;
   font-size: 14px;
   color: white;
   text-decoration: none;
@@ -710,6 +714,29 @@ body {
     padding: 20px 0 40px 0;
 }
 
+.btn-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
+
+  padding: 8px 8px;
+
+  border-radius: 10px;
+
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 16px;
+}
+
+.btn-more:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+}
+
 .guide-title {
     text-align: center;
     font-size: 52px;
@@ -794,35 +821,54 @@ body {
   border-radius: 10px;
 }
 
-.guide-card {
-
-    position: relative;
-
-    background: rgba(255,255,255,0.12);
-
-    border-radius: 24px;
-
-    overflow: visible;
-
-    cursor: pointer;
-
-    transition: .25s ease;
-
-    backdrop-filter: blur(10px);
-
-    z-index: 1;
-}
-
 .guide-card-title { /* НАЗВАНИЕ */
     padding: 15px;
     font-size: 28px;
 }
 
-.guide-card.active .guide-expanded { /* КОГДА КАРТОЧКА ОТКРЫТА */
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+.guide-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    /* ВАЖНО: убираем overflow: hidden, чтобы блок выпадал наружу */
+    overflow: visible;
+    /* Обычный слой для неактивных карточек */
+    z-index: 1;
+    transition: z-index 0s step-end;
+}
+
+/* Когда карточка активна, она прыгает на передний план поверх сетки */
+.guide-card.active {
+    z-index: 99;
+    transition: none;
+}
+
+.guide-expanded {
+    position: absolute;
+    /* Плашка начинается ровно там, где заканчивается картинка/заголовок */
+    top: 100%;
+    left: 0;
+    width: 100%;
+
+    /* Делаем слой повыше */
     z-index: 100;
+    background: rgba(56, 67, 80, 0.98);
+    backdrop-filter: blur(18px);
+
+    /* Скругляем только нижние углы, как на макете */
+    border-radius: 0 0 24px 24px;
+    padding: 20px;
+    display: none;
+
+    /* Красивая глубокая тень вниз, перекрывающая нижние элементы */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Показ блока при наличии класса active */
+.guide-card.active .guide-expanded {
+    display: block;
 }
 
 .guide-image { /* ИЗОБРАЖЕНИЕ */
@@ -832,36 +878,7 @@ body {
     object-fit: cover;
 }
 
-.guide-expanded {
 
-    position: absolute;
-
-    top: calc(100% - 20px);
-
-    left: 0;
-
-    width: 100%;
-
-    z-index: 200;
-
-    background: rgba(56, 67, 80, 0.98);
-
-    backdrop-filter: blur(18px);
-
-    border-radius: 0 0 24px 24px;
-
-    padding: 20px;
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transform: translateY(-10px);
-
-    transition: .25s ease;
-
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
 
 .guide-hover-actions {
 
@@ -945,27 +962,39 @@ body {
 }
 
 .guide-icon-btn {
-    width: 50px;
-    height: 50px;
+    border-radius: 18px;
+    width: 88px;
+    height: 88px;
 
     border: none;
-
-    border-radius: 14px;
-
     background: rgba(109, 106, 133, 0.9);
-
     color: white;
-
     font-size: 22px;
-
     cursor: pointer;
-
     backdrop-filter: blur(10px);
-
     transition: 0.2s ease;
 }
 
 .guide-icon-btn:hover {
+    transform: scale(1.08);
+    background: #785F8C;
+}
+
+.guide-icon-btn-low {
+    width: 66px;
+    height: 66px;
+    border: none;
+    border-radius: 18px;
+
+    background: rgba(109, 106, 133, 0.9);
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: 0.2s ease;
+}
+
+.guide-icon-btn-low:hover {
     transform: scale(1.08);
     background: #785F8C;
 }
@@ -1268,26 +1297,6 @@ body {
     display: block !important;
 }
 
-/* Кнопка "Подробнее" в заметках */
-.btn-more {
-    display: inline-block;
-    padding: 6px 18px;
-    background-color: #5D5A75; /* Цвет как у иконки плюса */
-    color: white !important;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: all 0.2s ease;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-more:hover {
-    background-color: #785F8C; /* Акцентный цвет из твоего root */
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
 /* Контейнер на один экран без прокрутки страницы */
 /* Левая часть под картинку */
 .no-scroll-left {
@@ -1358,3 +1367,246 @@ body {
 
 .event-desc-box::-webkit-scrollbar { width: 4px; }
 .event-desc-box::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 4px; }
+
+/* =========================
+   ИЗБРАННОЕ
+========================= */
+
+.favorites-page {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    padding: 20px 0 40px 0;
+}
+
+.favorites-title {
+
+    font-size: 56px;
+
+    margin-bottom: 35px;
+
+    font-weight: 500;
+
+    color: white;
+}
+
+.favorites-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 30px;
+
+    max-height: 80vh;
+
+    overflow-y: auto;
+
+    overflow-x: visible;
+
+    padding-right: 15px;
+
+    position: relative;
+}
+
+.favorites-grid::-webkit-scrollbar {
+
+    width: 8px;
+}
+
+.favorites-grid::-webkit-scrollbar-track {
+
+    background: rgba(255,255,255,0.05);
+
+    border-radius: 10px;
+}
+
+.favorites-grid::-webkit-scrollbar-thumb {
+
+    background: rgba(120,95,140,0.6);
+
+    border-radius: 10px;
+}
+
+.empty-favorites {
+
+    background: rgba(255,255,255,0.08);
+
+    border-radius: 24px;
+
+    padding: 50px;
+
+    text-align: center;
+
+    font-size: 30px;
+
+    color: rgba(255,255,255,0.8);
+
+    backdrop-filter: blur(10px);
+}
+
+/* АДАПТИВ */
+
+@media (max-width: 1200px) {
+
+    .favorites-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .favorites-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .favorites-title {
+
+        font-size: 42px;
+    }
+
+    .favorite-content h2 {
+
+        font-size: 24px;
+    }
+
+    .favorite-content p {
+
+        font-size: 16px;
+    }
+}
+
+.auth-form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Уменьшили вертикальный зазор между полями */
+            width: 100%;
+        }
+
+        /* Круглый интерактивный блок загрузки аватара по Figma (масштаб уменьшен на 10%) */
+        .avatar-upload-zone {
+            width: 108px;
+            height: 108px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px dashed rgba(255, 255, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin: 0 auto 5px auto;
+            position: relative;
+            transition: all 0.2s ease-in-out;
+            overflow: hidden;
+        }
+
+        .avatar-upload-zone:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .avatar-upload-zone .plus-sign {
+            font-size: 32px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            line-height: 1;
+        }
+
+        .avatar-upload-zone img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* Кастомная верстка чекбоксов */
+        .auth-checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            margin-top: 3px;
+            text-align: left;
+        }
+
+        /* Оборачиваем инпут внутрь label, чтобы не использовать атрибут for */
+        .auth-checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-light);
+            cursor: pointer;
+            user-select: none;
+            margin: 0;
+            opacity: 0.85;
+        }
+
+        .auth-checkbox-group label input[type="checkbox"] {
+            width: 16px !important;
+            height: 16px !important;
+            background: rgba(255, 255, 255, 0.1) !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            border-radius: 4px !important;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin: 0 !important;
+        }
+
+        /* Переопределяем огромные инпуты под аккуратный масштаб 90% */
+        .auth-block form input,
+        .auth-form-container input {
+            height: 38px !important;
+            font-size: 13px !important;
+            padding: 8px 12px !important;
+            border-radius: 8px !important;
+            background: rgba(82, 98, 114, 0.5) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .auth-block form input::placeholder,
+        .auth-form-container input::placeholder {
+            color: rgba(255, 255, 255, 0.5) !important;
+            font-size: 13px !important;
+        }
+
+        /* Кнопка Создать в масштабе */
+        .auth-submit-btn {
+            height: 38px !important;
+            font-size: 15px !important;
+            padding: 8px 16px !important;
+            border-radius: 8px !important;
+            margin-top: 8px !important;
+        }
+
+        /* Декоративный гамбургер внизу */
+        .sidebar-decor-footer {
+            margin-top: auto;
+            padding-top: 15px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .decor-hamburger {
+            width: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            opacity: 0.4;
+        }
+
+        .decor-hamburger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: white;
+            border-radius: 1px;
+        }

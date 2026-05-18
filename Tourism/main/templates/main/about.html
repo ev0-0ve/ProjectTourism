@@ -3,8 +3,26 @@
 {% block title %}Про нас{% endblock %}
 
 {% block content %}
-    <h1>Как с нами связаться:</h1>
-    <ul>
-        <li></li>
-    </ul>
+<div style="max-width: 800px; margin: 40px auto;">
+    <h1 class="page-title text-center">О нас</h1>
+
+    <div class="event-card" style="padding: 40px;">
+        <h2 class="card-title" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-bottom: 20px;">Как с нами связаться:</h2>
+
+        <p class="text-main">
+            Данный ресурс разработан для тех, кто хочет познакомиться с лучшими культурными, природными и религиозными достопримечательностями города Красноярска.
+        </p>
+
+        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 15px; margin-top: 25px;">
+            <li class="text-main" style="display: flex; align-items: center; gap: 15px;">
+                <span style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: rgba(255,255,255,0.1); border-radius: 8px;">✉</span>
+                <strong>Email:</strong> support@yourtourism.ru
+            </li>
+            <li class="text-main" style="display: flex; align-items: center; gap: 15px;">
+                <span style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: rgba(255,255,255,0.1); border-radius: 8px;">📱</span>
+                <strong>Telegram:</strong> @your_tourism_krsk
+            </li>
+        </ul>
+    </div>
+</div>
 {% endblock %}

@@ -6,9 +6,9 @@
 
 {% block content %}
 
-<div class="guide-page">
+<div class="guide-page custom-scroll">
 
-    <h1 class="guide-title">Путеводитель</h1>
+    <h1 class="text-center mb-4">Путеводитель</h1>
 
     <!-- ПОИСК -->
     <div class="guide-top-bar">
@@ -64,12 +64,19 @@
                 <!-- КНОПКИ ПРИ НАВЕДЕНИИ -->
                 <div class="guide-hover-actions">
 
-                    <button class="guide-icon-btn">
-                        ♡
-                    </button>
+                    <a
+                        href="{% url 'add_favorite' place.id %}"
+                        class="btn-more guide-icon-btn"
+                    >
+                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M63.3334 70L40.0001 53.3333L16.6667 70V16.6667C16.6667 14.8986 17.3691 13.2029 18.6194 11.9526C19.8696 10.7024 21.5653 10 23.3334 10H56.6667C58.4349 10 60.1305 10.7024 61.3808 11.9526C62.631 13.2029 63.3334 14.8986 63.3334 16.6667V70Z" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
 
                     <button class="guide-icon-btn">
-                        ＋
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M30 27.5V42.5M22.5 35H37.5M55 47.5C55 48.8261 54.4732 50.0978 53.5355 51.0355C52.5979 51.9732 51.3261 52.5 50 52.5H10C8.67392 52.5 7.40215 51.9732 6.46447 51.0355C5.52678 50.0978 5 48.8261 5 47.5V12.5C5 11.1739 5.52678 9.90215 6.46447 8.96447C7.40215 8.02678 8.67392 7.5 10 7.5H22.5L27.5 15H50C51.3261 15 52.5979 15.5268 53.5355 16.4645C54.4732 17.4021 55 18.6739 55 20V47.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
                     </button>
 
                 </div>
@@ -84,6 +91,26 @@
             <!-- РАСКРЫТИЕ -->
             <div class="guide-expanded">
 
+                <!-- КНОПКИ ВНИЗУ -->
+                <div class="guide-detail-actions">
+
+                    <a
+                        href="{% url 'add_favorite' place.id %}"
+                        class="btn-more guide-icon-btn-low"
+                    >
+                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M63.3334 70L40.0001 53.3333L16.6667 70V16.6667C16.6667 14.8986 17.3691 13.2029 18.6194 11.9526C19.8696 10.7024 21.5653 10 23.3334 10H56.6667C58.4349 10 60.1305 10.7024 61.3808 11.9526C62.631 13.2029 63.3334 14.8986 63.3334 16.6667V70Z" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+
+                    <button class="btn-more guide-icon-btn-low">
+                        <svg width="80" height="80" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M30 27.5V42.5M22.5 35H37.5M55 47.5C55 48.8261 54.4732 50.0978 53.5355 51.0355C52.5979 51.9732 51.3261 52.5 50 52.5H10C8.67392 52.5 7.40215 51.9732 6.46447 51.0355C5.52678 50.0978 5 48.8261 5 47.5V12.5C5 11.1739 5.52678 9.90215 6.46447 8.96447C7.40215 8.02678 8.67392 7.5 10 7.5H22.5L27.5 15H50C51.3261 15 52.5979 15.5268 53.5355 16.4645C54.4732 17.4021 55 18.6739 55 20V47.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                </div>
+
                 <div class="guide-info">
 
                     <p>{{ place.price }}</p>
@@ -93,19 +120,6 @@
                     <p>{{ place.work_time }}</p>
 
                     <p>{{ place.short_description }}</p>
-
-                </div>
-
-                <!-- КНОПКИ ВНИЗУ -->
-                <div class="guide-detail-actions">
-
-                    <button class="guide-icon-btn">
-                        ♡
-                    </button>
-
-                    <button class="guide-icon-btn">
-                        ＋
-                    </button>
 
                 </div>
 

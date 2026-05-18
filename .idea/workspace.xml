@@ -4,22 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.2. Закончены переходы на все страницы с временными заглушками (сделать html и css страницы Путеводитель с его javaScript представлением)">
-      <change beforePath="$PROJECT_DIR$/.idea/Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project.iml" afterDir="false" />
+    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.3. Сделаны html и css страницы Путеводитель с его javaScript представлением, исправлены некоторые недочёты, а также немного поломаны заметки в профиле (Исправить профиль по Figma и сделать страницу Избранное с функционалом добавления из Путиводителя, разделить css)">
+      <change afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/auth.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/events.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/guide.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/profile.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/responsive.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/sidebar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/events/templates/events/event_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/events/templates/events/event_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/events/templates/events/event_detail.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/events/templates/events/events_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/events/templates/events/events_home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/guide/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/guide/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/guide/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/guide/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/events/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/events/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/events/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/events/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/favorites/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/favorites/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/favorites/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/favorites/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/favorites/templates/favorites/favorites.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/favorites/templates/favorites/favorites.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/favorites/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/favorites/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/favorites/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/favorites/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/guide/templates/guide/guide.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/guide/templates/guide/guide.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/guide/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/guide/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/guide/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/guide/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/about.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/users/templates/users/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/templates/users/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/users/templates/users/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/templates/users/register.html" afterDir="false" />
@@ -302,7 +309,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778919961206</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="1.3. Сделаны html и css страницы Путеводитель с его javaScript представлением, исправлены некоторые недочёты, а также немного поломаны заметки в профиле (Исправить профиль по Figma и сделать страницу Избранное с функционалом добавления из Путиводителя, разделить css)">
+      <option name="closed" value="true" />
+      <created>1779040345302</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1779040345303</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,6 +350,7 @@
     <MESSAGE value="1.1.9. ЛР 10-11 на темы JS и AJAX: редактирование без обновления страницы и удаление заметки с доп AJAX запросом (сверстать оставшиеся страницы и сделать последнюю работу по КСП)" />
     <MESSAGE value="1.1.10. ЛР 12 на темы JS и AJAX (JQuery): удаление заметки в профиле с анимацией AJAX запросом (сверстать оставшиеся страницы, начать делать бд страниц)" />
     <MESSAGE value="1.2. Закончены переходы на все страницы с временными заглушками (сделать html и css страницы Путеводитель с его javaScript представлением)" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.2. Закончены переходы на все страницы с временными заглушками (сделать html и css страницы Путеводитель с его javaScript представлением)" />
+    <MESSAGE value="1.3. Сделаны html и css страницы Путеводитель с его javaScript представлением, исправлены некоторые недочёты, а также немного поломаны заметки в профиле (Исправить профиль по Figma и сделать страницу Избранное с функционалом добавления из Путиводителя, разделить css)" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.3. Сделаны html и css страницы Путеводитель с его javaScript представлением, исправлены некоторые недочёты, а также немного поломаны заметки в профиле (Исправить профиль по Figma и сделать страницу Избранное с функционалом добавления из Путиводителя, разделить css)" />
   </component>
 </project>

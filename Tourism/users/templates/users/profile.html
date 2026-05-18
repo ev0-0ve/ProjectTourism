@@ -49,12 +49,18 @@
                         <input type="text" name="phone" value="{{ user.profile.phone|default:'' }}" class="form-control mb-2" placeholder="Телефон">
                         <input type="password" name="old_password" class="form-control mb-2" placeholder="Старый пароль">
                         <input type="password" name="new_password" class="form-control mb-2" placeholder="Новый пароль">
-                        <button type="submit" class="btn btn-success btn-sm w-100">Сохранить</button>
-                        <button type="button" onclick="toggleEdit(false)" class="btn btn-link btn-sm w-100 text-white">Отмена</button>
+                        <button type="submit" class="btn-large btn-sm w-100">Сохранить</button>
+                        <button type="button" onclick="toggleEdit(false)" class="btn btn-sm w-100 text-white">Отмена</button>
                     </div>
                 </div>
 
                 <a href="javascript:void(0)" onclick="toggleEdit(true)" class="btn-side view-mode" style="background: var(--accent-rgba); margin-top: 20px; text-decoration: none; text-align: center;">Редактировать данные</a>
+            </form>
+            <form method="post" action="{% url 'logout' %}" class="view-mode" style="width: 100%; margin-top: 10px;">
+                {% csrf_token %}
+                <button type="submit" class="btn-side" style="background: rgba(219, 68, 85, 0.2); border: 1px solid rgba(219, 68, 85, 0.4); color: #ff6b7a;">
+                    Выйти из аккаунта
+                </button>
             </form>
         </div>
 

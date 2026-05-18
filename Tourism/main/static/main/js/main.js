@@ -1,4 +1,6 @@
-// Редактирование в профиле
+// ==========================================================================
+// 1. РЕДАКТИРОВАНИЕ В ПРОФИЛЕ (Глобальная функция)
+// ==========================================================================
 function toggleEdit(show) {
     const viewElems = document.querySelectorAll('.view-mode');
     const editElems = document.querySelectorAll('.edit-mode');
@@ -6,26 +8,12 @@ function toggleEdit(show) {
     editElems.forEach(el => el.style.setProperty('display', show ? 'block' : 'none', 'important'));
 }
 
+// ==========================================================================
+// 2. ОСНОВНАЯ ЛОГИКА ИНИЦИАЛИЗАЦИИ ИНТЕРФЕЙСА
+// ==========================================================================
 document.addEventListener('DOMContentLoaded', function() {
-    // Боковая панель
-    const sidePanel = document.querySelector('.side-panel');
-    const sideToggle = document.querySelector('.side-toggle');
-    if (sideToggle && sidePanel) {
 
-    const isHome = document.body.classList.contains('home-page');
-
-    if (!isHome) {
-        sidePanel.classList.add('collapsed');
-    }
-
-    sideToggle.addEventListener('click', () => {
-
-        sidePanel.classList.toggle('collapsed');
-
-    });
-    }
-
-    // Получение CSRF токена
+    // --- Вспомогательная функция: Получение CSRF токена ---
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
@@ -41,9 +29,26 @@ document.addEventListener('DOMContentLoaded', function() {
         return cookieValue;
     }
 
-    // AJAX ПРОВЕРКА EMAIL
+    // --- Боковая панель ---
+    const sidePanel = document.querySelector('.side-panel');
+    const sideToggle = document.querySelector('.side-toggle');
+
+    if (sideToggle && sidePanel) {
+        const isHome = document.body.classList.contains('home-page');
+
+        if (!isHome) {
+            sidePanel.classList.add('collapsed');
+        }
+
+        sideToggle.addEventListener('click', () => {
+            sidePanel.classList.toggle('collapsed');
+        });
+    }
+
+    // --- AJAX: Проверка Email ---
     const emailInput = document.getElementById('email-input');
     const emailMessage = document.getElementById('email-message');
+
     if (emailInput) {
         emailInput.addEventListener('input', function() {
             let emailData = 'email=' + encodeURIComponent(this.value);
@@ -61,8 +66,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // AJAX УДАЛЕНИЕ ЗАМЕТКИ
+    // --- AJAX: Удаление заметки ---
     const deleteButtons = document.querySelectorAll('.delete-note-btn');
+
     deleteButtons.forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
@@ -70,8 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const noteId = this.getAttribute('data-note-id');
             const xhr = new XMLHttpRequest();
-
             const url = '/user/note/delete/' + noteId + '/';
+
             console.log('Попытка удаления по адресу:', url);
 
             xhr.open('POST', url, true);
@@ -95,64 +101,55 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    /* Раскрытие карточек */
+    // --- Путеводитель / События / Избранное: Раскрытие карточек ---
     const guideCards = document.querySelectorAll('.guide-card');
 
     guideCards.forEach(card => {
-
         card.addEventListener('click', function(e) {
-
-            if (e.target.closest('.guide-icon-btn')) {
+            // Если кликнули на крестик, любую кнопку или ссылку внутри карточки — не переключаем класс active
+            if (
+                e.target.closest('.guide-icon-btn') ||
+                e.target.closest('.guide-icon-btn-low') ||
+                e.target.closest('a') ||
+                e.target.closest('button')
+            ) {
                 return;
             }
 
             guideCards.forEach(c => {
-
                 if (c !== this) {
                     c.classList.remove('active');
                 }
-
             });
 
             this.classList.toggle('active');
-
         });
-
     });
 
-    /* ФИЛЬТР POPUP */
+    // --- Путеводитель: Фильтр Popup ---
     const filterBtn = document.getElementById('filterBtn');
     const filterPopup = document.getElementById('filterPopup');
 
     if (filterBtn && filterPopup) {
-
         filterBtn.addEventListener('click', function(e) {
-
             e.stopPropagation();
-
             filterPopup.classList.toggle('active');
-
         });
 
         document.addEventListener('click', function(e) {
-
             if (!filterPopup.contains(e.target)) {
-
                 filterPopup.classList.remove('active');
-
             }
         });
     }
 
-    /* ПОИСК ПО КАРТОЧКАМ */
+    // --- Путеводитель: Поиск по карточкам ---
     const searchInput = document.getElementById('guideSearch');
 
     if (searchInput) {
-
         searchInput.addEventListener('input', function () {
             const value = this.value.toLowerCase();
             guideCards.forEach(card => {
-
                 const title = card.querySelector('.guide-card-title')
                     .textContent
                     .toLowerCase();
@@ -166,43 +163,82 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    $('#resetFilterBtn').on('click', function () {
-
-        $('.guide-card').show();
-
-    });
-
-    /* ФИЛЬТРАЦИЯ */
+    // --- Путеводитель: Фильтрация по категориям ---
     const categoryInputs = document.querySelectorAll('input[name="category"]');
 
     categoryInputs.forEach(input => {
-
         input.addEventListener('change', function () {
-
             const category = this.value;
             guideCards.forEach(card => {
-
-                if (
-                    card.dataset.category === category
-                ) {
+                if (card.dataset.category === category) {
                     card.style.display = 'block';
                 } else {
                     card.style.display = 'none';
                 }
-
             });
         });
     });
 
-    /* АВТОРАСШИРЕНИЕ TEXTAREA */
+    // --- Формы: Авторасширение Textarea ---
     const textareas = document.querySelectorAll('textarea');
 
     textareas.forEach(textarea => {
-
         textarea.addEventListener('input', function () {
-
             this.style.height = 'auto';
             this.style.height = this.scrollHeight + 'px';
         });
     });
+
+    // --- Авторизация: Клик и интерактивный предпросмотр аватара ---
+    const uploadZone = document.getElementById("avatarUploadZone");
+    const fileInput = document.querySelector('input[type="file"]');
+    const previewImg = document.getElementById("avatarPreview");
+    const plusSign = document.getElementById("plusSign");
+
+    if (uploadZone && fileInput) {
+        uploadZone.addEventListener("click", function() {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener("change", function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    if (previewImg) {
+                        previewImg.src = e.target.result;
+                        previewImg.style.display = "block";
+                    }
+                    if (plusSign) {
+                        plusSign.style.display = "none";
+                    }
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    // --- Авторизация: Интеллектуальный маппинг плейсхолдеров Django под Figma ---
+    const authInputs = document.querySelectorAll(".auth-form-container input:not([type='checkbox']):not([type='file'])");
+
+    authInputs.forEach(input => {
+        const name = input.name.toLowerCase();
+
+        if (name.includes("username") || name.includes("user")) {
+            input.setAttribute("placeholder", "Имя пользователя");
+        } else if (name.includes("email") || name.includes("mail")) {
+            input.setAttribute("placeholder", "Email");
+        } else if (name.includes("birthday") || name.includes("date") || name.includes("birth")) {
+            input.setAttribute("placeholder", "Дата рождения");
+        } else if (name.includes("country") || name.includes("residence") || name.includes("city")) {
+            input.setAttribute("placeholder", "Страна проживания");
+        } else if (name.includes("password") && (name.includes("confirm") || name.includes("repeat") || name.includes("2"))) {
+            input.setAttribute("placeholder", "Повторите пароль");
+        } else if (name.includes("password")) {
+            input.setAttribute("placeholder", "Придумайте пароль");
+        } else if (name.includes("phone") || name.includes("tel")) {
+            input.setAttribute("placeholder", "Телефон");
+        }
+    });
+
 });
