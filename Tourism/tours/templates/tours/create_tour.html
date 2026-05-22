@@ -139,9 +139,7 @@
 
             <div class="glass-block tour-map-block">
 
-                <div class="tour-map-placeholder">
-                    🗺 Карта маршрута
-                </div>
+                <div id="map"></div>
 
             </div>
 
@@ -239,5 +237,5 @@
     </div>
 
 </div>
-
+{{ tour_places|json_script:"tour-data" }}
 {% endblock %}

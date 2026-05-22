@@ -29,6 +29,21 @@ def tours_page(request):
         user=request.user
     )
 
+    tour_places = []
+
+    if selected_tour:
+
+        for item in selected_tour.items.all():
+
+            place = item.place
+
+            if place.latitude and place.longitude:
+                tour_places.append({
+                    'title': place.title,
+                    'lat': place.latitude,
+                    'lng': place.longitude,
+                })
+
     return render(
         request,
         'tours/create_tour.html',
@@ -36,6 +51,7 @@ def tours_page(request):
             'tours': tours,
             'selected_tour': selected_tour,
             'favorites': favorites,
+            'tour_places': tour_places,
         }
     )
 

@@ -1,7 +1,7 @@
 from django.db import models
 
-
 class GuidePlace(models.Model):
+
     CATEGORY_CHOICES = [
         ('culture', 'Культура и история'),
         ('religion', 'Религия'),
@@ -17,7 +17,22 @@ class GuidePlace(models.Model):
         choices=CATEGORY_CHOICES
     )
 
-    address = models.CharField('Адрес', max_length=255)
+    address = models.CharField(
+        'Адрес',
+        max_length=255
+    )
+
+    latitude = models.FloatField(
+        'Широта',
+        null=True,
+        blank=True
+    )
+
+    longitude = models.FloatField(
+        'Долгота',
+        null=True,
+        blank=True
+    )
 
     work_time = models.CharField(
         'Часы работы',

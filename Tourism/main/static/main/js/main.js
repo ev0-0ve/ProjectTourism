@@ -260,4 +260,49 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.classList.remove('active');
     });
 
+    const data = JSON.parse(
+        document.getElementById('tour-data').textContent
+    );
+
+    const map = L.map('map').setView(
+        [56.0153, 92.8932],
+        11
+    );
+
+    L.tileLayer(
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+            attribution: '&copy; OpenStreetMap'
+        }
+    ).addTo(map);
+
+    const points = [];
+
+    data.forEach(place => {
+
+        L.marker([
+            place.lat,
+            place.lng
+        ]).addTo(map);
+
+        points.push([
+            place.lat,
+            place.lng
+        ]);
+
+    });
+
+    if(points.length > 1){
+
+        L.polyline(
+            points,
+            {
+                color:'blue'
+            }
+        ).addTo(map);
+
+        map.fitBounds(points);
+
+    }
+
 });

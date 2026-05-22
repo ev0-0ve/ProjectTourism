@@ -20,6 +20,10 @@ class Tour(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = 'Тур '
+        verbose_name_plural = 'Туры'
+
 
 class TourPlace(models.Model):
     tour = models.ForeignKey(
@@ -36,3 +40,7 @@ class TourPlace(models.Model):
     created_at = models.DateTimeField(
         auto_now_add=True
     )
+    
+    class Meta:
+        verbose_name = 'Место тура'
+        verbose_name_plural = 'Места тура'
