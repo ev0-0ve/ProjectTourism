@@ -31,4 +31,16 @@ urlpatterns = [
         views.remove_from_tour,
         name='remove_from_tour'
     ),
+
+    path(
+        'rename/<int:tour_id>/',
+        views.rename_tour,
+        name='rename_tour'
+    ),
+
+    path(
+        'delete/<int:tour_id>/',
+        views.delete_tour,
+        name='delete_tour'
+    ),
 ]

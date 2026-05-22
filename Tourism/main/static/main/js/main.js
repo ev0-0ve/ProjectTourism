@@ -8,9 +8,6 @@ function toggleEdit(show) {
     editElems.forEach(el => el.style.setProperty('display', show ? 'block' : 'none', 'important'));
 }
 
-// ==========================================================================
-// 2. ОСНОВНАЯ ЛОГИКА ИНИЦИАЛИЗАЦИИ ИНТЕРФЕЙСА
-// ==========================================================================
 document.addEventListener('DOMContentLoaded', function() {
 
     // --- Вспомогательная функция: Получение CSRF токена ---
@@ -241,25 +238,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    const menuBtn = document.getElementById('tourMenuButton');
-    const dropdown = document.getElementById('tourDropdown');
-
-    menuBtn.addEventListener('click', () => {
-        dropdown.classList.toggle('active');
-    });
-
-    const modal = document.getElementById('favoritesModal');
-
-    document.getElementById('favoritesOpenBtn')
-    .addEventListener('click', () => {
-        modal.classList.add('active');
-    });
-
-    document.getElementById('favoritesCloseBtn')
-    .addEventListener('click', () => {
-        modal.classList.remove('active');
-    });
-
     const data = JSON.parse(
         document.getElementById('tour-data').textContent
     );
@@ -304,5 +282,100 @@ document.addEventListener('DOMContentLoaded', function() {
         map.fitBounds(points);
 
     }
+// ======================================
+// МЕНЮ ТУРОВ
+// ======================================
+
+const menuBtn = document.getElementById('tourMenuButton');
+const dropdown = document.getElementById('tourDropdown');
+
+if(menuBtn && dropdown){
+
+    menuBtn.addEventListener('click', function(e){
+
+        e.stopPropagation();
+
+        dropdown.classList.toggle('active');
+
+        const favoritesDropdown = document.getElementById('favoritesDropdown');
+
+        if(favoritesDropdown){
+            favoritesDropdown.classList.remove('active');
+        }
+
+    });
+
+}
+
+// ======================================
+// ИЗБРАННОЕ
+// ======================================
+
+const favoritesBtn = document.getElementById('favoritesOpenBtn');
+const favoritesDropdown = document.getElementById('favoritesDropdown');
+
+if(favoritesBtn && favoritesDropdown){
+
+    favoritesBtn.addEventListener('click', function(e){
+
+        e.stopPropagation();
+
+        favoritesDropdown.classList.toggle('active');
+
+        if(dropdown){
+            dropdown.classList.remove('active');
+        }
+
+    });
+
+}
+
+// ======================================
+// ЗАКРЫТИЕ DROPDOWN ПРИ КЛИКЕ ВНЕ
+// ======================================
+
+document.addEventListener('click', function(e){
+
+    if(dropdown && !e.target.closest('.tour-dropdown-wrapper')){
+        dropdown.classList.remove('active');
+    }
+
+    if(favoritesDropdown && !e.target.closest('.favorites-wrapper')){
+        favoritesDropdown.classList.remove('active');
+    }
+
+});
+
+// ======================================
+// РЕДАКТИРОВАНИЕ ТУРА
+// ======================================
+
+const editButtons = document.querySelectorAll('.edit-tour-btn');
+
+editButtons.forEach(button => {
+
+    button.addEventListener('click', function(){
+
+        const row = this.closest('.tour-dropdown-row');
+
+        row.classList.add('editing');
+
+    });
+
+});
+
+const cancelButtons = document.querySelectorAll('.cancel-tour-btn');
+
+cancelButtons.forEach(button => {
+
+    button.addEventListener('click', function(){
+
+        const row = this.closest('.tour-dropdown-row');
+
+        row.classList.remove('editing');
+
+    });
+
+});
 
 });

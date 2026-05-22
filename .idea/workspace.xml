@@ -4,16 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.5. Страница &quot;Собери тур&quot; без карты готова (Поправить стили по Figma, распределить css и js? добавить функционал карты)">
+    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.5. На странице &quot;Собери тур&quot; готова карта (Поправить стили по Figma, распределить css и js, починить заметки и остальной функционал допилить)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/guide/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/guide/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/events/templates/events/events_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/events/templates/events/events_home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/favorites/templates/favorites/favorites.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/favorites/templates/favorites/favorites.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/guide/templates/guide/guide.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/guide/templates/guide/guide.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/tours/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/tours/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/tours/templates/tours/create_tour.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/tours/templates/tours/create_tour.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/tours/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/tours/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/tours/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/tours/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -327,7 +330,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779378256647</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="1.5. На странице &quot;Собери тур&quot; готова карта (Поправить стили по Figma, распределить css и js, починить заметки и остальной функционал допилить)">
+      <option name="closed" value="true" />
+      <created>1779420447894</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1779420447894</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -363,6 +374,7 @@
     <MESSAGE value="1.3. Сделаны html и css страницы Путеводитель с его javaScript представлением, исправлены некоторые недочёты, а также немного поломаны заметки в профиле (Исправить профиль по Figma и сделать страницу Избранное с функционалом добавления из Путиводителя, разделить css)" />
     <MESSAGE value="1.4. Сделаны html и css страницы Избранное с его javaScript представлением, исправлены некоторые недочёты, а также все ещё поломаны заметки в профиле (Исправить профиль по Figma и сделать страницу Собери тур с функционалом, распределить css и js)" />
     <MESSAGE value="1.5. Страница &quot;Собери тур&quot; без карты готова (Поправить стили по Figma, распределить css и js? добавить функционал карты)" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.5. Страница &quot;Собери тур&quot; без карты готова (Поправить стили по Figma, распределить css и js? добавить функционал карты)" />
+    <MESSAGE value="1.5. На странице &quot;Собери тур&quot; готова карта (Поправить стили по Figma, распределить css и js, починить заметки и остальной функционал допилить)" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.5. На странице &quot;Собери тур&quot; готова карта (Поправить стили по Figma, распределить css и js, починить заметки и остальной функционал допилить)" />
   </component>
 </project>

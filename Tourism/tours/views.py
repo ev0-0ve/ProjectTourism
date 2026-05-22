@@ -134,3 +134,40 @@ def remove_from_tour(request, item_id):
     item.delete()
 
     return redirect('tours')
+
+@login_required
+def rename_tour(request, tour_id):
+
+    tour = get_object_or_404(
+        Tour,
+        id=tour_id,
+        user=request.user
+    )
+
+    if request.method == 'POST':
+
+        title = request.POST.get('title')
+
+        if title:
+            tour.title = title
+            tour.save()
+
+    return redirect('tours')
+
+@login_required
+def delete_tour(request, tour_id):
+
+    tour = get_object_or_404(
+        Tour,
+        id=tour_id,
+        user=request.user
+    )
+
+    tour.delete()
+
+    selected = request.session.get('selected_tour')
+
+    if selected == tour_id:
+        request.session['selected_tour'] = None
+
+    return redirect('tours')
