@@ -10,4 +10,6 @@ urlpatterns = [
 
     path('note/delete/<int:note_id>/', views.note_delete, name='note_delete'),
     path('ajax/check_email/', views.CheckEmailAjaxView.as_view(), name='ajax_check_email'),
+    path('note/update/<int:note_id>/', views.update_note, name='update_note'
+),
 ]

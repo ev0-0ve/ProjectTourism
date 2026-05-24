@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block title %}Мой профиль{% endblock %}
+{% block body_class %}no-scroll{% endblock %}
 
 {% block content %}
 <style>
@@ -11,7 +12,7 @@
 </style>
 
 <div class="features">
-    <h1 class="mb-4">Личный кабинет</h1>
+    <h1 class="guide-title mb-4">Профиль</h1>
 
     <div class="profile-layout">
         <!-- ЛЕВАЯ ЧАСТЬ: ПРОФИЛЬ -->
@@ -69,38 +70,89 @@
             <div class="notes-tab-header">Заметки</div>
 
             <div class="add-note-section">
-                <form method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
+                <button
+                    type="button"
+                    class="add-note-btn-style"
+                    id="openNoteFormBtn"
+                >
+                    <span class="plus-icon">+</span>
+                    Добавить заметку
+                </button>
+
+                <form
+                    method="post"
+                    action="{% url 'profile' %}"
+                    enctype="multipart/form-data"
+                    class="note-create-form"
+                    id="noteCreateForm"
+                >
                     {% csrf_token %}
                     <input type="hidden" name="add_note" value="1">
-                    <button type="submit" class="add-note-btn-style">
-                        <span class="plus-icon">+</span> Добавить заметку
-                    </button>
 
-                    <div class="note-label" style="margin-top: 20px;">Новая заметка</div>
-                    <div class="note-card-custom">
-                        <div class="note-card-top">
-                            <label class="add-img-btn" style="cursor:pointer">
-                                <span class="plus-icon small">+</span> Добавить изображение
-                                <div style="display:none">{{ form.image }}</div>
-                            </label>
+                    <div class="note-label create-note-label">
+                        Новая заметка
+                    </div>
+
+                    <div class="note-card-custom create-note-card">
+
+                        <div class="note-card-header">
+
+                            <input
+                                type="text"
+                                name="title"
+                                class="create-note-title"
+                                placeholder="Название заметки"
+                            >
+
+                            <button
+                                type="button"
+                                class="delete-note-btn"
+                                id="closeNoteFormBtn"
+                            >
+                                ✕
+                            </button>
+
                         </div>
-                        <div class="note-inputs-area">
-                            {{ form.title }}
-                            {{ form.text }}
-                        </div>
+
+                        <textarea
+                            name="text"
+                            class="create-note-text"
+                            placeholder="Введите текст заметки..."
+                        ></textarea>
+
+                        <label class="note-upload-image">
+                            <input type="file" name="image" hidden>
+                            <span>+ Добавить изображение</span>
+                        </label>
+
+                        <button type="submit" class="save-note-btn">
+                            Сохранить заметку
+                        </button>
+
                     </div>
                 </form>
             </div>
-
-            <hr class="divider">
 
             <div class="notes-grid notes-list-container custom-scroll">
                 {% for note in notes %}
                     <div class="note-item-wrapper" id="note-{{ note.id }}">
                         <div class="note-label">Заметка {{ forloop.revcounter }} | {{ note.created_at|date:"d.m.Y" }}</div>
                         <div class="note-card-custom">
-                            <div class="note-card-top" style="justify-content: flex-end;">
-                                <button class="btn-more guide-icon-btn-low" data-note-id="{{ note.id }}">
+                            <div class="note-card-top">
+
+                                <div class="note-content">
+
+                                    <textarea
+                                        class="note-edit-title"
+                                        data-note-id="{{ note.id }}"
+                                        rows="1"
+                                    >{{ note.title }}</textarea>
+
+                                </div>
+
+                                <button
+                                    class="btn-more delete-note-btn"
+                                    data-note-id="{{ note.id }}">
                                     <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                       <path d="M0.800781 4.7998H2.80078M2.80078 4.7998H18.8008M2.80078 4.7998L2.80078 18.7998C2.80078 19.3302 3.0115 19.8389 3.38657 20.214C3.76164 20.5891 4.27035 20.7998 4.80078 20.7998H14.8008C15.3312 20.7998 15.8399 20.5891 16.215 20.214C16.5901 19.8389 16.8008 19.3302 16.8008 18.7998V4.7998M5.80078 4.7998V2.7998C5.80078 2.26937 6.0115 1.76066 6.38657 1.38559C6.76164 1.01052 7.27035 0.799805 7.80078 0.799805H11.8008C12.3312 0.799805 12.8399 1.01052 13.215 1.38559C13.5901 1.76066 13.8008 2.26937 13.8008 2.7998V4.7998M7.80078 9.79981V15.7998M11.8008 9.79981V15.7998" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
@@ -114,8 +166,13 @@
                             {% endif %}
 
                             <div class="note-content">
-                              <p class="note-title">{{ note.title }}</p>
-                              <p>{{ note.text }}</p>
+
+                                <textarea
+                                    class="note-edit-text"
+                                    data-note-id="{{ note.id }}"
+                                    rows="5"
+                                >{{ note.text }}</textarea>
+
                             </div>
                         </div>
                     </div>

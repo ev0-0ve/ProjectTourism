@@ -1,6 +1,4 @@
-// ==========================================================================
 // 1. РЕДАКТИРОВАНИЕ В ПРОФИЛЕ (Глобальная функция)
-// ==========================================================================
 function toggleEdit(show) {
     const viewElems = document.querySelectorAll('.view-mode');
     const editElems = document.querySelectorAll('.edit-mode');
@@ -29,16 +27,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Боковая панель ---
     const sidePanel = document.querySelector('.side-panel');
     const sideToggle = document.querySelector('.side-toggle');
+    const sideWrapper = document.querySelector('.side-wrapper');
 
     if (sideToggle && sidePanel) {
         const isHome = document.body.classList.contains('home-page');
 
         if (!isHome) {
             sidePanel.classList.add('collapsed');
+            sideWrapper.classList.add('collapsed');
         }
 
         sideToggle.addEventListener('click', () => {
             sidePanel.classList.toggle('collapsed');
+            sideWrapper.classList.toggle('collapsed');
         });
     }
 
@@ -62,6 +63,69 @@ document.addEventListener('DOMContentLoaded', function() {
             xhr.send(emailData);
         });
     }
+
+    // СОЗДАНИЕ ЗАМЕТКИ
+    const openBtn = document.getElementById('openNoteFormBtn');
+    const closeBtn = document.getElementById('closeNoteFormBtn');
+    const form = document.getElementById('noteCreateForm');
+
+    if(openBtn && closeBtn && form){
+
+        openBtn.addEventListener('click', () => {
+            form.classList.add('active');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            form.classList.remove('active');
+        });
+
+    }
+    // Сохранение заметки авто
+    const editableNotes = document.querySelectorAll(
+        '.note-edit-title, .note-edit-text'
+    );
+
+    editableNotes.forEach(field => {
+
+        field.addEventListener('input', function(){
+
+            clearTimeout(this.saveTimeout);
+
+            this.saveTimeout = setTimeout(() => {
+
+                const noteId = this.dataset.noteId;
+
+                const noteWrapper = this.closest('.note-card-custom');
+
+                const title = noteWrapper.querySelector(
+                    '.note-edit-title'
+                ).value;
+
+                const text = noteWrapper.querySelector(
+                    '.note-edit-text'
+                ).value;
+
+                fetch('/user/note/update/' + noteId + '/', {
+
+                    method:'POST',
+
+                    headers:{
+                        'Content-Type':'application/json',
+                        'X-CSRFToken':getCookie('csrftoken')
+                    },
+
+                    body:JSON.stringify({
+                        title:title,
+                        text:text
+                    })
+
+                });
+
+            }, 600);
+
+        });
+
+    });
 
     // --- AJAX: Удаление заметки ---
     const deleteButtons = document.querySelectorAll('.delete-note-btn');
@@ -180,10 +244,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const textareas = document.querySelectorAll('textarea');
 
     textareas.forEach(textarea => {
-        textarea.addEventListener('input', function () {
-            this.style.height = 'auto';
-            this.style.height = this.scrollHeight + 'px';
-        });
+
+        const resize = () => {
+
+            textarea.style.height = 'auto';
+
+            textarea.style.height = textarea.scrollHeight + 'px';
+        };
+
+        resize();
+
+        textarea.addEventListener('input', resize);
+
     });
 
     // --- Авторизация: Клик и интерактивный предпросмотр аватара ---
@@ -238,50 +310,58 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    const data = JSON.parse(
-        document.getElementById('tour-data').textContent
-    );
+    const tourDataElement = document.getElementById('tour-data');
+    const mapElement = document.getElementById('map');
 
-    const map = L.map('map').setView(
-        [56.0153, 92.8932],
-        11
-    );
+    if(tourDataElement && mapElement){
 
-    L.tileLayer(
-        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        {
-            attribution: '&copy; OpenStreetMap'
-        }
-    ).addTo(map);
+        const data = JSON.parse(
+            tourDataElement.textContent
+        );
 
-    const points = [];
+        const map = L.map('map').setView(
+            [56.0153, 92.8932],
+            11
+        );
 
-    data.forEach(place => {
-
-        L.marker([
-            place.lat,
-            place.lng
-        ]).addTo(map);
-
-        points.push([
-            place.lat,
-            place.lng
-        ]);
-
-    });
-
-    if(points.length > 1){
-
-        L.polyline(
-            points,
+        L.tileLayer(
+            'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
             {
-                color:'blue'
+                attribution: '&copy; OpenStreetMap'
             }
         ).addTo(map);
 
-        map.fitBounds(points);
+        const points = [];
+
+        data.forEach(place => {
+
+            L.marker([
+                place.lat,
+                place.lng
+            ]).addTo(map);
+
+            points.push([
+                place.lat,
+                place.lng
+            ]);
+
+        });
+
+        if(points.length > 1){
+
+            L.polyline(
+                points,
+                {
+                    color:'blue'
+                }
+            ).addTo(map);
+
+            map.fitBounds(points);
+
+        }
 
     }
+
 // ======================================
 // МЕНЮ ТУРОВ
 // ======================================

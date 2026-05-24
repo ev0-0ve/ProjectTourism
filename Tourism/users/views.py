@@ -1,5 +1,6 @@
 import re
 
+import json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
@@ -98,3 +99,29 @@ def note_delete(request, note_id):
             return JsonResponse({'status': 'success'})
 
         return redirect('profile')
+
+@login_required
+def update_note(request, note_id):
+
+    if request.method == 'POST':
+
+        note = get_object_or_404(
+            Note,
+            id=note_id,
+            author=request.user
+        )
+
+        data = json.loads(request.body)
+
+        note.title = data.get('title', '')
+        note.text = data.get('text', '')
+
+        note.save()
+
+        return JsonResponse({
+            'success': True
+        })
+
+    return JsonResponse({
+        'success': False
+    })
