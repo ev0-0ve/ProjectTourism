@@ -1,0 +1,113 @@
+/* =========================================
+   TOURS.CSS
+   Страница создания маршрута.
+   Сплит-скрин, карта, drag-n-drop (логика), дропдауны.
+========================================= */
+
+.tour-page { width: 100%; height: 100%; }
+
+.tour-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Гибкие колонки */
+    gap: 30px;
+    min-height: calc(100svh - 120px);
+}
+
+/* =========================================
+   LEFT SIDE
+========================================= */
+.tour-left { display: flex; flex-direction: column; overflow: hidden; }
+
+.tour-top-actions { display: flex; align-items: center; gap: 36px; margin-bottom: 26px; flex-wrap: wrap; }
+.tour-top { display: flex; align-items: center; gap: 18px; }
+.tour-add-text { color: white; font-size: 24px; font-weight: 400; white-space: nowrap; }
+.tour-add-info { color: white; font-size: 17px; line-height: 1.35; }
+
+/* DROPDOWN ТУРОВ */
+.tour-dropdown-wrapper { position: relative; }
+.tour-dropdown {
+    position: absolute; top: 78px; left: 0; width: 100%; min-width: 300px; max-width: 360px;
+    padding: 18px; border-radius: 26px; backdrop-filter: blur(20px);
+    background: rgba(0, 19, 36, 0.5); display: none; z-index: 200; box-sizing: border-box;
+}
+.tour-dropdown.active { display: block; }
+.tour-dropdown-row { margin-bottom: 14px; }
+
+.tour-view-mode { display: flex; align-items: center; gap: 10px; }
+.tour-edit-mode { display: none; align-items: center; gap: 10px; }
+.tour-dropdown-row.editing .tour-view-mode { display: none; }
+.tour-dropdown-row.editing .tour-edit-mode { display: flex; }
+
+.tour-dropdown-item {
+    flex: 1; padding: 14px 16px; border-radius: 16px; color: white;
+    background: rgba(255,255,255,0.06); transition: 0.2s; text-decoration: none; display: block;
+}
+.tour-dropdown-item:hover { background: rgba(255,255,255,0.1); }
+.tour-dropdown-item.active { background: rgba(120,95,140,0.72); }
+
+.tour-actions { display: flex; gap: 8px; }
+
+/* ИЗБРАННОЕ В ТУРАХ */
+.favorites-wrapper { position: relative; }
+.favorites-dropdown { display: none; }
+.favorites-dropdown.active { display: block; }
+.favorites-grid-dropdown {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px; max-height: 500px; overflow-y: auto; padding-right: 6px;
+}
+
+.favorite-mini-card { position: relative; overflow: hidden; border-radius: 22px; background: rgba(255,255,255,0.07); }
+.favorite-mini-card img { width: 100%; height: 190px; object-fit: cover; display: block; }
+.favorite-mini-title { padding: 16px; color: white; }
+
+/* КАРТОЧКИ ТУРОВ */
+.tour-cards-grid {
+    overflow-y: auto; display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px; padding-right: 10px;
+}
+.tour-card { position: relative; overflow: hidden; border-radius: 28px; background: rgba(255,255,255,0.07); height: 250px; transition: 0.2s; }
+.tour-card-image { width: 100%; height: 190px; object-fit: cover; display: block; }
+.tour-card-title { padding: 10px; color: white; line-height: 1.3; text-align: center; }
+
+/* =========================================
+   RIGHT SIDE (Карта и Маршрут)
+========================================= */
+.tour-right { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.tour-map-block { overflow: hidden; height: 280px; width: 100%; }
+#map { width: 100%; height: 100%; }
+
+.route-block { flex: 1; overflow-y: auto; }
+.tour-route-list { margin-top: 26px; color: white; font-size: 18px; padding-left: 20px; }
+.route-item { margin-bottom: 12px; }
+.route-place { color: white; font-size: 18px; }
+.route-address { color: rgba(255,255,255,0.6); font-size: 15px; }
+
+/* EMPTY STATES */
+.tour-empty, .tour-empty-small { color: rgba(255,255,255,0.7); font-size: 18px; }
+
+/* АДАПТИВНОСТЬ TOURS */
+@media (max-width: 992px) {
+  .tour-layout {
+      grid-template-columns: 1fr;
+      height: auto;
+  }
+  .tour-cards-grid {
+      max-height: 400px; /* Чтобы карточки не уходили в бесконечность на телефоне */
+  }
+  .tour-map-block {
+      height: 350px;
+  }
+  .tour-top-actions {
+      gap: 15px;
+  }
+  .tour-add-text {
+      font-size: 18px;
+  }
+}
+@media (max-width: 480px) {
+  .tour-dropdown {
+      min-width: 100%;
+      left: 0;
+  }
+}

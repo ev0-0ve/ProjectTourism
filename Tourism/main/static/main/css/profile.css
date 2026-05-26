@@ -1,0 +1,227 @@
+/* =========================================
+   PROFILE.CSS
+   Страница профиля, форма редактирования,
+   и логика гридов с заметками.
+========================================= */
+
+.profile-layout {
+  display: flex;
+  gap: 40px;
+  min-height: calc(100svh - 120px);
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+/* ЛЕВАЯ ЧАСТЬ (Данные) */
+.profile-info-side {
+  flex: 0 0 320px;
+  max-width: 100%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    justify-content: center;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.form-profile-control {
+    display: block;
+    width: 100%;
+    height: 38px; /* Задаем фиксированную высоту как в регистрации */
+    padding: 8px 12px;
+    font-size: 13px; /* Размер как в остальных формах */
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 100%;
+
+    text-align: center;
+
+    background: rgba(82, 98, 114, 0.5); /* Фон как в полях авторизации */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #ffffff;
+
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+
+    /* Плавный переход */
+    transition: background 0.3s ease;
+}
+
+.profile-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 15px;
+}
+
+/* ПРАВАЯ ЧАСТЬ (Заметки) */
+.profile-notes-side {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-bottom: 20px;
+    min-width: 0; /* предотвращает разрыв flex-контейнера */
+}
+
+.profile-notes-side::-webkit-scrollbar { width: 6px; }
+.profile-notes-side::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 10px; }
+.profile-notes-side::-webkit-scrollbar-thumb { background: rgba(120, 95, 140, 0.5); border-radius: 10px; }
+
+/* Тексты заголовков */
+.profile-title-main { font-size: 48px; margin-bottom: 10px; font-weight: 400; }
+.notes-tab-header { font-size: 24px; display: inline-block; margin-bottom: 10px; padding-bottom: 5px; }
+
+/* JS СКРЫТИЯ/ПОКАЗА */
+.edit-mode {
+    display: none;
+    align-items: center; /* Центрирует внутренние элементы */
+    text-align: center;
+}
+
+.view-mode {
+    display: block;
+    align-items: center; /* Центрирует внутренние элементы */
+    text-align: center;
+}
+
+#email-message {
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* ЗАМЕТКИ: Иконки и лэйблы */
+.plus-icon {
+    background: #5D5A75; width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px; font-size: 24px;
+}
+.plus-icon.small { width: 24px; height: 24px; font-size: 18px; }
+.note-label { font-size: 18px; margin-bottom: 8px; margin-left: 5px; }
+
+/* СЕТКА ЗАМЕТОК */
+.notes-grid {
+    display: grid;
+    gap: 24px;
+    align-items: start;
+    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    overflow-y: auto;
+    max-height: 75vh;
+    min-height: 0;
+    /* Grid адаптивность (не ломается на мобильных) */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.note-item-wrapper { width: 100%; }
+
+.note-card-custom {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(18px); border-radius: 28px; padding: 20px;
+    display: flex; flex-direction: column; gap: 18px; transition: 0.2s ease;
+}
+.note-card-custom:hover { transform: translateY(-2px); background: rgba(255,255,255,0.11); }
+
+.note-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.note-card-top { display: flex; align-items: flex-start; gap: 14px; }
+
+.note-image-container {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.note-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.note-content { flex: 1; min-width: 0; }
+
+.note-actions { display: flex; gap: 10px; margin-top: 20px; }
+.add-img-btn { display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer; }
+
+/* РЕДАКТИРОВАНИЕ ЗАМЕТОК */
+.note-edit-title, .note-edit-text {
+    width: 100%; background: transparent; border: none; outline: none;
+    resize: none; color: white; display: block; box-sizing: border-box;
+}
+.note-edit-title { font-size: 20px; font-weight: 600; }
+.note-edit-text { min-height: 50px; line-height: 1.5; }
+.note-edit-title:hover, .note-edit-text:hover { background: rgba(255,255,255,0.03); }
+
+/* ФОРМА СОЗДАНИЯ ЗАМЕТКИ */
+.note-create-form { display: none; margin-top: 20px; }
+.note-create-form.active { display: block; animation: fadeIn .25s ease; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.create-note-card { gap: 20px; }
+.create-note-title {
+    width: 100%; background: transparent; border: none; outline: none;
+    color: white; font-size: 24px; font-weight: 600; box-sizing: border-box;
+}
+.create-note-title::placeholder {
+    color: rgba(255,255,255,0.45);
+}
+
+.create-note-text {
+    width: 100%;
+    min-height: 100px;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: vertical;
+    color: white;
+    font-size: 16px;
+    line-height: 1.6;
+    box-sizing: border-box;
+}
+.create-note-text::placeholder { color: rgba(255,255,255,0.45); }
+.note-upload-image {
+    width: fit-content; padding: 12px 18px; border-radius: 16px;
+    background: rgba(255,255,255,0.06); cursor: pointer; transition: .2s ease;
+}
+.note-upload-image:hover { background: rgba(255,255,255,0.12); }
+
+/* АДАПТИВНОСТЬ PROFILE */
+@media (max-width: 992px) {
+  .profile-layout {
+      flex-direction: column;
+      overflow: visible;
+      height: auto;
+  }
+  .profile-info-side {
+      flex: none;
+      width: 100%;
+
+      align-items: center;
+      justify-content: center;
+  }
+  .notes-grid {
+      max-height: none; /* убираем лимит по высоте на мобильных */
+      overflow: visible;
+      grid-template-columns: 1fr;
+  }
+  .profile-notes-side {
+      overflow: visible;
+  }
+}

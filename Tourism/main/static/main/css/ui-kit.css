@@ -1,0 +1,236 @@
+/* =========================================
+   UI-KIT.CSS
+   Переиспользуемые компоненты: Кнопки,
+   Формы, Инпуты, Блюр-блоки, Аватары.
+========================================= */
+
+/* --- GLASS-BLOCK --- */
+.glass-block {
+    background: rgba(16, 28, 36, 0.56);
+    backdrop-filter: blur(12px);
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================
+   АВАТАРЫ
+========================================= */
+.avatar {
+    width: 150px; height: 150px; font-size: 50px;
+    overflow: hidden; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: #ccc;
+    flex-shrink: 0;
+}
+.avatar-wrapper { display: flex; justify-content: center; align-items: center; width: 100%; margin-bottom: 10px; }
+.side-panel .avatar {
+  width: 90px; height: 90px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06); display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 24px; color: rgba(255, 255, 255, 0.9);
+  border: 4px solid rgba(255, 255, 255, 0.04);
+}
+.avatar-link { text-decoration: none; color: inherit; }
+
+/* =========================================
+   КНОПКИ
+========================================= */
+.btn-large {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 220px; padding: var(--btn-padding-y) var(--btn-padding-x);
+  font-size: 20px; font-weight: 500; color: var(--text-light);
+  background: rgba(109, 96, 138, 0.74); border: none; border-radius: 22px;
+  text-decoration: none; backdrop-filter: blur(15px);
+  box-shadow: 0 8px 18px rgba(10, 12, 16, 0.45);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.btn-large:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(6, 8, 12, 0.55); background: rgba(109, 96, 138, 0.74); }
+
+.btn-side {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 100%; padding: 8px 15px; font-size: 16px; font-weight: 500;
+  color: var(--text-light); background: rgba(120, 95, 140, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px;
+  text-decoration: none; transition: all .2s ease; cursor: pointer;
+  box-sizing: border-box;
+}
+.btn-side:hover { background: rgba(120, 95, 140, 0.8); color: white; }
+
+.btn-more {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: fit-content; padding: 8px 8px; border-radius: 10px;
+  color: white; text-decoration: none; font-size: 16px;
+  transition: .2s ease;
+}
+.btn-more:hover { background: var(--accent); transform: translateY(-2px); }
+
+.guide-icon-btn {
+    border-radius: 18px; width: 88px; height: 88px; border: none;
+    background: rgba(109, 106, 133, 0.9); color: white; font-size: 22px;
+    cursor: pointer; backdrop-filter: blur(10px); transition: 0.2s ease;
+}
+.guide-icon-btn:hover { transform: scale(1.08); background: #785F8C; }
+
+.guide-icon-btn-low {
+    width: 66px; height: 66px; border: none; border-radius: 18px;
+    background: rgba(109, 106, 133, 0.9); color: white; font-size: 22px;
+    cursor: pointer; backdrop-filter: blur(10px); transition: 0.2s ease;
+}
+.guide-icon-btn-low:hover { transform: scale(1.08); background: #785F8C; }
+
+/* Специфичные кнопки (Тур, Заметки и тд) */
+.tour-small-icon {
+    width: 48px; height: 48px; border: none; border-radius: 16px;
+    background: rgba(255,255,255,0.08); color: white;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: 0.2s; flex-shrink: 0;
+}
+.tour-small-icon:hover { background: rgba(255,255,255,0.15); }
+.tour-small-icon.delete { background: rgba(219,68,85,0.18); }
+.tour-small-icon.delete:hover { background: rgba(219,68,85,0.34); }
+.tour-small-icon.save { background: rgba(111,180,126,0.18); }
+.tour-small-icon.save:hover { background: rgba(111,180,126,0.34); }
+
+.tour-menu-btn, .tour-add-btn, .route-side-button {
+    width: 62px; height: 62px; border: none; outline: none; border-radius: 20px;
+    background: rgba(119,105,144,0.92); color: white; font-size: 28px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: 0.2s; flex-shrink: 0;
+}
+.tour-menu-btn:hover, .tour-add-btn:hover, .route-side-button:hover { transform: scale(1.05); background: #8B76A7; }
+
+.favorite-add-btn {
+    position: absolute; top: 14px; right: 14px; width: 46px; height: 46px;
+    border-radius: 14px; background: rgba(120,95,140,0.92); color: white;
+    display: flex; align-items: center; justify-content: center; font-size: 28px;
+    transition: 0.2s; z-index: 5;
+}
+.favorite-add-btn:hover { background: #9A84B8; }
+
+.tour-remove-btn {
+    position: absolute; top: 14px; right: 14px; width: 44px; height: 44px;
+    border-radius: 14px; background: rgba(119,105,144,0.96);
+    display: flex; align-items: center; justify-content: center; color: white;
+    font-size: 22px; z-index: 5; transition: 0.2s;
+}
+.tour-remove-btn:hover { background: #A38CC3; }
+
+.delete-note-btn {
+    width: 42px; height: 42px; flex-shrink: 0; border: none; border-radius: 14px;
+    background: rgba(255,255,255,0.08); color: white; cursor: pointer; transition: 0.2s;
+}
+.delete-note-btn:hover { background: rgba(219,68,85,0.3); transform: scale(1.05); }
+
+.add-note-btn-style {
+    display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 22px; padding: 16px 22px;
+    color: white; font-size: 18px; cursor: pointer; transition: .2s ease;
+}
+.add-note-btn-style:hover { background: rgba(255,255,255,0.12); }
+.add-note-btn-style.hidden { display: none; }
+
+.save-note-btn {
+    width: 100%; height: 56px; border: none; border-radius: 18px;
+    background: rgba(120,95,140,0.85); color: white; font-size: 18px;
+    cursor: pointer; transition: .2s ease;
+}
+.save-note-btn:hover { background: #8B76A7; }
+
+.tour-create-btn {
+    display: block; margin-top: 12px; padding: 15px; border-radius: 16px;
+    text-align: center; background: rgba(120,95,140,0.82); color: white; transition: 0.2s;
+}
+.tour-create-btn:hover { background: #8B76A7; }
+
+/* =========================================
+   АВТОРИЗАЦИЯ И ИНПУТЫ ФОРМ
+========================================= */
+.auth-back { position: absolute; top: 40px; left: 40px; z-index: 20; }
+.auth-block { width: 100%; margin: 10px 0; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.auth-title { font-family: 'MyMono', monospace; font-weight: 400; font-size: 24px; color: white; margin-bottom: 10px; }
+
+.auth-block form input {
+  width: 100%; background: rgba(82, 98, 114, 0.8); border: none; border-radius: 8px;
+  padding: 8px 12px; color: white; font-family: 'MyMono', monospace; font-size: 14px;
+  text-align: center; margin-bottom: 0; outline: none; height: 34px; transition: background 0.3s ease;
+  box-sizing: border-box;
+}
+.auth-block form input[type="file"] { padding: 6px; font-size: 12px; height: auto; text-align: left; }
+.auth-block form input::placeholder { color: rgba(255, 255, 255, 0.7); }
+.auth-block form input:focus { background: rgba(92, 108, 124, 1); }
+.auth-block form button {
+  background: #6D6A85; border-radius: 10px; color: white; padding: 4px 20px;
+  font-size: 20px; font-family: 'MyMono', monospace; border: none; cursor: pointer;
+  margin: 15px auto 6px auto; display: inline-block; transition: transform 0.2s ease, background 0.2s ease;
+}
+.auth-block form button:hover { background: #7E7B96; transform: scale(1.03); }
+
+.auth-link { display: block; font-family: 'MyMono', monospace; font-size: 14px; color: white; text-decoration: none; opacity: 0.8; margin-top: 2px; }
+.auth-link:hover { opacity: 1; text-decoration: underline; }
+
+.auth-form-container { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+.avatar-upload-zone {
+    width: 108px; height: 108px; border-radius: 50%; background: rgba(255, 255, 255, 0.08);
+    border: 2px dashed rgba(255, 255, 255, 0.25); display: flex; align-items: center;
+    justify-content: center; cursor: pointer; margin: 0 auto 5px auto; position: relative;
+    transition: all 0.2s ease-in-out; overflow: hidden; flex-shrink: 0;
+}
+.avatar-upload-zone:hover { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.4); }
+.avatar-upload-zone .plus-sign { font-size: 32px; color: rgba(255, 255, 255, 0.7); font-weight: 300; line-height: 1; }
+.avatar-upload-zone img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
+
+.auth-checkbox-group { display: flex; align-items: center; gap: 8px; width: 100%; margin-top: 3px; text-align: left; }
+.auth-checkbox-group label { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-light); cursor: pointer; user-select: none; margin: 0; opacity: 0.85; }
+.auth-checkbox-group label input[type="checkbox"] {
+    width: 16px !important; height: 16px !important; background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important; border-radius: 4px !important; cursor: pointer; flex-shrink: 0; margin: 0 !important;
+}
+
+.auth-block form input, .auth-form-container input {
+    height: 38px !important; font-size: 13px !important; padding: 8px 12px !important;
+    border-radius: 8px !important; background: rgba(82, 98, 114, 0.5) !important;
+    color: #ffffff !important; border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+.auth-block form input::placeholder, .auth-form-container input::placeholder { color: rgba(255, 255, 255, 0.5) !important; font-size: 13px !important; }
+.auth-submit-btn { height: 38px !important; font-size: 15px !important; padding: 8px 16px !important; border-radius: 8px !important; margin-top: 8px !important; }
+
+/* Другие Инпуты */
+.guide-search {
+    width: 100%;
+    max-width: 455px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    background: #6a6785;
+    color: white;
+    font-size: 28px;
+    padding: 0 20px;
+    outline: none;
+    box-sizing: border-box;
+    transition: .2s ease;
+}
+.guide-search:focus { background: rgba(16, 28, 36, 0.85); box-shadow: 0 0 0 2px rgba(120,95,140,0.4), 0 10px 30px rgba(0,0,0,0.35); }
+
+.tour-rename-input {
+    flex: 1; height: 48px; border: none; outline: none; border-radius: 16px;
+    padding: 0 16px; background: rgba(255,255,255,0.08); color: white; font-size: 16px;
+    min-width: 0; /* Важно для флексов */
+}
+.tour-rename-input::placeholder { color: rgba(255,255,255,0.45); }
+
+/* АДАПТИВНОСТЬ UI-KIT */
+@media (max-width: 992px) {
+  .btn-large { min-width: 180px; font-size: 18px; padding: 10px 20px; }
+}
+@media (max-width: 768px) {
+  .auth-title { font-size: 22px; }
+  .auth-link { font-size: 15px; }
+  .guide-search { font-size: 20px; height: 50px; }
+  .guide-icon-btn { width: 60px; height: 60px; }
+}
+@media (max-width: 480px) {
+  .auth-title { font-size: 20px; }
+  .auth-link { font-size: 14px; }
+  .btn-large { min-width: 150px; font-size: 16px; }
+}

@@ -11,15 +11,10 @@
     <div class="tour-layout">
         <!-- ЛЕВАЯ ЧАСТЬ-->
         <div class="tour-left">
-
             <!-- КНОПКИ -->
-
             <div class="tour-top-actions">
-
                 <!-- МЕНЮ ТУРОВ -->
-
                 <div class="tour-dropdown-wrapper">
-
                     <div class="tour-top">
                         <button class="tour-menu-btn" id="tourMenuButton">
                             <svg width="32" height="32" viewBox="0 0 47 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,36 +25,24 @@
                     </div>
 
                     <!-- DROPDOWN -->
-
-                    <div
-                        class="tour-dropdown"
-                        id="tourDropdown"
-                    >
-
+                    <div class="tour-dropdown" id="tourDropdown">
                         {% for tour in tours %}
-
                             <div class="tour-dropdown-row">
-
                                 <!-- ОБЫЧНЫЙ РЕЖИМ -->
-
                                 <div class="tour-view-mode">
-
                                     <a
                                         href="{% url 'select_tour' tour.id %}"
                                         class="tour-dropdown-item
                                         {% if selected_tour.id == tour.id %}
                                             active
-                                        {% endif %}"
-                                    >
+                                        {% endif %}">
                                         {{ tour.title }}
                                     </a>
 
                                     <div class="tour-actions">
-
                                         <button
                                             type="button"
-                                            class="tour-small-icon edit-tour-btn"
-                                        >
+                                            class="tour-small-icon edit-tour-btn">
                                             <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                                               <path d="M13.9248 3.8934H3.71647C2.94292 3.8934 2.20106 4.20069 1.65408 4.74767C1.1071 5.29465 0.799805 6.03652 0.799805 6.81006V27.2267C0.799805 28.0003 1.1071 28.7421 1.65408 29.2891C2.20106 29.8361 2.94292 30.1434 3.71647 30.1434H24.1331C24.9067 30.1434 25.6486 29.8361 26.1955 29.2891C26.7425 28.7421 27.0498 28.0003 27.0498 27.2267V17.0184M24.8623 1.7059C25.4425 1.12574 26.2293 0.799805 27.0498 0.799805C27.8703 0.799805 28.6571 1.12574 29.2373 1.7059C29.8175 2.28606 30.1434 3.07293 30.1434 3.8934C30.1434 4.71387 29.8175 5.50074 29.2373 6.0809L15.3831 19.9351L9.5498 21.3934L11.0081 15.5601L24.8623 1.7059Z" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
@@ -67,15 +50,12 @@
 
                                         <a
                                             href="{% url 'delete_tour' tour.id %}"
-                                            class="tour-small-icon delete"
-                                        >
+                                            class="tour-small-icon delete">
                                             <svg width="28" height="31" viewBox="0 0 28 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                                               <path d="M0.799805 6.63314H3.71647M3.71647 6.63314H27.0498M3.71647 6.63314L3.71647 27.0498C3.71647 27.8234 4.02376 28.5652 4.57074 29.1122C5.11772 29.6592 5.85959 29.9665 6.63314 29.9665H21.2165C21.99 29.9665 22.7319 29.6592 23.2789 29.1122C23.8258 28.5652 24.1331 27.8234 24.1331 27.0498V6.63314M8.09147 6.63314V3.71647C8.09147 2.94292 8.39876 2.20106 8.94574 1.65408C9.49272 1.1071 10.2346 0.799805 11.0081 0.799805H16.8415C17.615 0.799805 18.3569 1.1071 18.9039 1.65408C19.4508 2.20106 19.7581 2.94292 19.7581 3.71647V6.63314M11.0081 13.9248V22.6748M16.8415 13.9248V22.6748" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </a>
-
                                     </div>
-
                                 </div>
 
                                 <!-- РЕЖИМ РЕДАКТИРОВАНИЯ -->
@@ -83,22 +63,15 @@
                                 <form
                                     method="post"
                                     action="{% url 'rename_tour' tour.id %}"
-                                    class="tour-edit-mode"
-                                >
+                                    class="tour-edit-mode">
 
                                     {% csrf_token %}
 
-                                    <input
-                                        type="text"
-                                        name="title"
-                                        value="{{ tour.title }}"
-                                        class="tour-rename-input"
-                                    >
+                                    <input type="text" name="title" value="{{ tour.title }}" class="tour-rename-input">
 
                                     <button
                                         type="submit"
-                                        class="tour-small-icon save"
-                                    >
+                                        class="tour-small-icon save">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                           <path d="M20 6L9 17L4 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
@@ -106,13 +79,10 @@
 
                                     <button
                                         type="button"
-                                        class="tour-small-icon cancel-tour-btn"
-                                    >
+                                        class="tour-small-icon cancel-tour-btn">
                                         ✕
                                     </button>
-
                                 </form>
-
                             </div>
 
                         {% empty %}
@@ -125,67 +95,46 @@
 
                         <a
                             href="{% url 'create_tour' %}"
-                            class="tour-create-btn"
-                        >
+                            class="tour-create-btn">
                             + Создать новый
                         </a>
-
                     </div>
-
                 </div>
 
                 <!-- КНОПКА ИЗБРАННОГО -->
 
                 <div class="favorites-wrapper">
-
                     <div class="tour-top">
-
                         <button
                             class="tour-add-btn"
-                            id="favoritesOpenBtn"
-                        >
+                            id="favoritesOpenBtn">
                             +
                         </button>
-
                         <div class="tour-add-text">
                             Добавить из избранного
                         </div>
 
                         <div
                             class="tour-dropdown custom-scroll"
-                            id="favoritesDropdown"
-                        >
+                            id="favoritesDropdown">
                             <div class="favorites-grid-dropdown">
-
                                 {% for favorite in favorites %}
-
                                     {% if favorite.guide %}
-
                                         <div class="favorite-mini-card">
-
                                             {% if favorite.guide.image %}
-
-                                                <img
-                                                    src="{{ favorite.guide.image.url }}"
-                                                >
-
+                                                <img src="{{ favorite.guide.image.url }}">
                                             {% endif %}
 
                                             <div class="favorite-mini-title">
-
                                                 {{ favorite.guide.title }}
-
                                             </div>
 
                                             <a
                                                 href="{% url 'add_to_tour' favorite.guide.id %}"
-                                                class="favorite-add-btn"
-                                            >
+                                                class="favorite-add-btn">
                                                 +
                                             </a>
-
                                         </div>
-
                                     {% endif %}
 
                                 {% empty %}

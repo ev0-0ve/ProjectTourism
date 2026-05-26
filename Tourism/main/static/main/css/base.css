@@ -1,0 +1,204 @@
+/* =========================================
+   BASE.CSS
+   Глобальные переменные, сбросы, скроллы,
+   общий layout и боковая панель (Sidebar).
+========================================= */
+
+:root {
+  --accent-rgba: 120, 95, 140;
+  --glass-bg: rgba(16, 28, 36, 0.55);
+  --glass-strong: rgba(12, 18, 26, 0.65);
+  --text-light: rgba(255, 255, 255, 0.95);
+  --muted: rgba(255, 255, 255, 0.78);
+  --btn-padding-y: 12px;
+  --btn-padding-x: 30px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+  --sidebar-open: 280px;
+  --sidebar-collapsed: 82px;
+  --page-padding: 30px;
+  font-synthesis: none;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'MyMono', monospace;
+  color: var(--text-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #0b1116;
+}
+
+a {
+    text-decoration: none;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* =========================================
+   ОБЩИЙ Layout и Wrappers
+========================================= */
+.page {
+    width: 100%;
+    max-width: 100%;
+    padding: 0px 0 40px 0;
+    box-sizing: border-box;
+}
+
+.hero {
+  position: relative;
+  min-height: 100svh; /* Адаптивно для мобилок */
+  width: 100%;
+  background-color: #536370;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: block;
+  overflow: hidden;
+  padding-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.container-hero {
+  position: relative;
+  z-index: 2;
+  min-height: 100svh;
+  width: 100%;
+  height: 100%;
+  padding:
+    calc(var(--page-padding) - 10px)
+    calc(var(--sidebar-collapsed) + 40px)
+    var(--page-padding)
+    var(--page-padding);
+  transition: padding-right .35s ease;
+  box-sizing: border-box;
+}
+
+.home-page .container-hero {
+    padding: 0;
+}
+
+/* ОБЩИЙ СКРОЛЛ */
+.custom-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(120,95,140,0.6) rgba(255,255,255,0.05);
+}
+.custom-scroll::-webkit-scrollbar { width: 8px; }
+.custom-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
+.custom-scroll::-webkit-scrollbar-thumb { background: rgba(120,95,140,0.6); border-radius: 10px; }
+
+/* =========================================
+   SIDEBAR (Боковая панель)
+========================================= */
+.side-wrapper {
+    position: fixed;
+    top: 6%;
+    right: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
+    z-index: 20;
+    transition: right .35s ease;
+}
+
+.sidebar-logo {
+    width: 280px;
+    height: 72px;
+    border-radius: 999px;
+    background: rgba(0, 19, 36, 0.7);
+    backdrop-filter: blur(15px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    font-weight: 500;
+    transition: width .35s ease, border-radius .35s ease, padding .35s ease;
+    overflow: hidden;
+}
+
+.logo-short { display: none; }
+.side-wrapper.collapsed .sidebar-logo { width: 72px; height: 72px; border-radius: 50%; }
+.side-wrapper.collapsed .logo-full { display: none; }
+.side-wrapper.collapsed .logo-short { display: block; }
+
+.side-panel {
+  position: relative;
+  right: 0;
+  top: 0;
+  width: 280px;
+  max-width: 100%;
+  height: 77vh;
+  background: rgba(0, 19, 36, 0.7);
+  backdrop-filter: blur(15px);
+  border-radius: 35px;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 5;
+  transition: width .35s ease, right .35s ease, transform .35s ease;
+  box-shadow: 0 12px 34px rgba(3, 6, 12, 0.5);
+  box-sizing: border-box;
+}
+
+.side-panel.collapsed { width: 72px; padding: 18px 8px; border-radius: 40px; }
+.side-panel.collapsed .nav,
+.side-panel.collapsed .side-username,
+.side-panel.collapsed .auth-block { opacity: 0; pointer-events: none; display: none; }
+.side-panel.collapsed .avatar { width: 56px; height: 56px; font-size: 18px; border-width: 4px; }
+
+.side-panel .nav { margin-top: 8px; display: flex; gap: 1%; width: 100%; align-items: center; }
+.side-panel .nav a { color: rgba(255, 255, 255, 1); text-decoration: none; font-size: 20px; width: 100%; text-align: center; padding: 6px 8px; }
+.side-panel.collapsed .nav { opacity: 0; transform: translateX(8px); pointer-events: none; height: 1px; }
+
+.side-toggle {
+  margin-top: auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-light);
+  outline: none;
+}
+
+.sidebar-decor-footer { margin-top: auto; padding-top: 15px; width: 100%; display: flex; justify-content: center; }
+.decor-hamburger { width: 28px; display: flex; flex-direction: column; gap: 4px; opacity: 0.4; }
+.decor-hamburger span { display: block; width: 100%; height: 2px; background: white; border-radius: 1px; }
+
+/* Пользователь сайдбара */
+.side-user-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 10px; }
+.side-username { font-size: 18px; font-weight: 500; color: var(--text-light); letter-spacing: 0.5px; }
+
+/* АДАПТИВНОСТЬ BASE */
+@media (max-width: 1200px) {
+  .side-panel { width: 260px; right: 20px; }
+}
+@media (max-width: 768px) {
+  .side-panel { width: 240px; right: 10px; padding: 20px 15px; }
+  .side-panel .nav a { font-size: 16px; }
+  .container-hero { padding-right: 15px; } /* чтобы на телефоне контент не заезжал под свернутый сайдбар */
+}
+@media (max-width: 480px) {
+  .side-panel { width: 200px; right: 5px; }
+}

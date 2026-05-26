@@ -1,0 +1,122 @@
+/* =========================================
+   HOME.CSS
+   Стили главной страницы (Герой-блок,
+   информационные карточки, фоны).
+========================================= */
+
+.background_home {
+    width: 100%;
+    min-height: 100svh;
+    background-image: url('../img/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ЛЕВАЯ КАРТОЧКА (О сайте) */
+.info-card {
+  position: absolute;
+  top: 6%;
+  left: 3.5%;
+  width: 100%;
+  max-width: 380px; /* Гибкая ширина вместо жестких % */
+  background: rgba(57, 88, 117, 0.3);
+  padding: 28px 32px;
+  border-radius: var(--radius-lg);
+  color: var(--text-light);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 10px 30px rgba(2, 6, 10, 0.45);
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.info-card h2 {
+  font-size: 32px;
+  margin: 0 0 15px 0;
+  letter-spacing: 0.6px;
+  font-weight: 600;
+}
+
+.info-card p {
+  margin: 0 0 15px 0;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+/* НИЖНЯЯ КАРТОЧКА (Заметка) */
+.info-card-low {
+  position: absolute;
+  left: 3.5%;
+  bottom: 18%;
+  width: 100%;
+  max-width: 260px;
+  background: rgba(57, 88, 117, 0.3);
+  padding: 15px 18px;
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
+  color: var(--muted);
+  font-size: 13px;
+  box-shadow: 0 8px 18px rgba(2, 6, 10, 0.35);
+  box-sizing: border-box;
+}
+
+/* БОЛЬШИЕ КНОПКИ ВНИЗУ */
+.bottom-actions {
+  position: absolute;
+  left: 4%;
+  bottom: 4%;
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+  z-index: 3;
+}
+
+/* ПОДПИСЬ АВТОРА ФОТО */
+.photo-credit {
+  position: absolute;
+  right: 25px;
+  bottom: 40px;
+  z-index: 10;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: right;
+  transition: opacity .3s ease;
+}
+
+.photo-credit:hover {
+  opacity: 1;
+  color: white;
+}
+
+/* АДАПТИВНОСТЬ HOME */
+@media (max-width: 992px) {
+  .info-card h2 { font-size: 28px; }
+  .info-card p { font-size: 14px; }
+}
+
+@media (max-width: 768px) {
+  .info-card {
+    width: 90%;
+    max-width: 100%;
+    left: 5%;
+    top: 10%;
+    padding: 20px;
+    position: relative; /* На мобилках лучше чтобы они шли потоком, если нужно */
+  }
+
+  .info-card-low {
+    display: none; /* Скрываем менее важную информацию на мобильных */
+  }
+
+  .bottom-actions {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+  }
+}

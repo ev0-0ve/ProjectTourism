@@ -458,4 +458,21 @@ cancelButtons.forEach(button => {
 
 });
 
+document.getElementById('noteImageInput').addEventListener('change', function(event) {
+    const input = event.target;
+    const previewContainer = document.getElementById('imagePreviewContainer');
+    const previewImage = document.getElementById('imagePreview');
+
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            previewImage.src = e.target.result;
+            previewContainer.style.display = 'block'; // Показываем контейнер с фото
+        }
+
+        reader.readAsDataURL(input.files[0]); // Читаем файл как URL
+    }
+});
+
 });

@@ -7,23 +7,20 @@
 {% block content %}
 
 <div class="page custom-scroll">
-
     <h1 class="text-center mb-4">Путеводитель</h1>
-
     <!-- ПОИСК -->
     <div class="guide-top-bar">
-
         <input
             type="text"
             placeholder="Введите название для поиска"
             class="guide-search"
-            id="guideSearch"
-        >
+            id="guideSearch">
 
         <button class="guide-filter-btn" id="filterBtn">
-            ☰
+            <svg width="24" height="24" viewBox="0 0 75 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M68.75 9.375H6.25L31.25 38.9375V59.375L43.75 65.625V38.9375L68.75 9.375Z" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
         </button>
-
     </div>
 
     <!-- ФИЛЬТР -->
@@ -51,19 +48,14 @@
 
     <!-- СЕТКА -->
     <div class="guide-grid">
-
         {% for place in places %}
-
         <div class="guide-card" data-category="{{ place.category }}">
 
             <!-- КАРТИНКА -->
             <div class="guide-image-wrapper">
-
                 <img src="{{ place.image.url }}" class="guide-image">
-
                 <!-- КНОПКИ ПРИ НАВЕДЕНИИ -->
                 <div class="guide-hover-actions">
-
                     <a href="{% url 'add_favorite' place.id %}"
                         class="btn-more guide-icon-btn">
                         <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,9 +69,7 @@
                           <path d="M30 27.5V42.5M22.5 35H37.5M55 47.5C55 48.8261 54.4732 50.0978 53.5355 51.0355C52.5979 51.9732 51.3261 52.5 50 52.5H10C8.67392 52.5 7.40215 51.9732 6.46447 51.0355C5.52678 50.0978 5 48.8261 5 47.5V12.5C5 11.1739 5.52678 9.90215 6.46447 8.96447C7.40215 8.02678 8.67392 7.5 10 7.5H22.5L27.5 15H50C51.3261 15 52.5979 15.5268 53.5355 16.4645C54.4732 17.4021 55 18.6739 55 20V47.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </a>
-
                 </div>
-
             </div>
 
             <!-- НАЗВАНИЕ -->
@@ -89,7 +79,6 @@
 
             <!-- РАСКРЫТИЕ -->
             <div class="guide-expanded">
-
                 <!-- КНОПКИ ВНИЗУ -->
                 <div class="guide-detail-actions">
 
@@ -106,29 +95,18 @@
                           <path d="M30 27.5V42.5M22.5 35H37.5M55 47.5C55 48.8261 54.4732 50.0978 53.5355 51.0355C52.5979 51.9732 51.3261 52.5 50 52.5H10C8.67392 52.5 7.40215 51.9732 6.46447 51.0355C5.52678 50.0978 5 48.8261 5 47.5V12.5C5 11.1739 5.52678 9.90215 6.46447 8.96447C7.40215 8.02678 8.67392 7.5 10 7.5H22.5L27.5 15H50C51.3261 15 52.5979 15.5268 53.5355 16.4645C54.4732 17.4021 55 18.6739 55 20V47.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </a>
-
                 </div>
-
                 <div class="guide-info">
 
                     <p>{{ place.price }}</p>
-
                     <p>{{ place.address }}</p>
-
                     <p>{{ place.work_time }}</p>
-
                     <p>{{ place.short_description }}</p>
 
                 </div>
-
             </div>
-
         </div>
-
         {% endfor %}
-
     </div>
-
 </div>
-
 {% endblock %}

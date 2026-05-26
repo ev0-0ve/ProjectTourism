@@ -2,15 +2,9 @@
 {% load static %}
 
 {% block title %}Мой профиль{% endblock %}
-{% block body_class %}no-scroll{% endblock %}
+<!--{% block body_class %}no-scroll{% endblock %}-->
 
 {% block content %}
-<style>
-.edit-mode { display: none; }
-.view-mode { display: block; }
-#email-message { font-size: 14px; margin-top: 5px; display: block; }
-</style>
-
 <div class="features">
     <h1 class="guide-title mb-4">Профиль</h1>
 
@@ -21,41 +15,43 @@
                 {% csrf_token %}
                 <input type="hidden" name="update_profile" value="1">
 
-                <div class="avatar" style="width: 150px; height: 150px; font-size: 50px; overflow: hidden; border-radius: 50%;">
-                    {% if user.profile.avatar %}
-                        <img src="{{ user.profile.avatar.url }}" style="width:100%; height:100%; object-fit:cover;">
-                    {% else %}
-                        {{ user.username|slice:":2"|upper }}
-                    {% endif %}
-                </div>
-
-                <label class="auth-link edit-mode" style="cursor: pointer; margin-top: 10px;">
-                    Изменить фото
-                    <input type="file" name="avatar" style="display: none;">
-                </label>
-
-                <div style="width: 100%; margin-top: 20px;">
-                    <div class="view-mode">
-                        <p><strong>Логин:</strong> {{ user.username }}</p>
-                        <p><strong>Email:</strong> {{ user.email }}</p>
-                        <p><strong>Телефон:</strong> {{ user.profile.phone|default:"Не указан" }}</p>
+                <div class="profile-content-wrapper">
+                    <div class="avatar" style="width: 150px; height: 150px; font-size: 50px; overflow: hidden; border-radius: 50%;">
+                        {% if user.profile.avatar %}
+                            <img src="{{ user.profile.avatar.url }}" style="width:100%; height:100%; object-fit:cover;">
+                        {% else %}
+                            {{ user.username|slice:":2"|upper }}
+                        {% endif %}
                     </div>
 
-                    <div class="edit-mode">
-                        <input type="text" name="username" value="{{ user.username }}" class="form-control mb-2" placeholder="Логин">
+                    <label class="auth-link edit-mode" style="cursor: pointer; margin-top: 10px;">
+                        Изменить фото
+                        <input type="file" name="avatar" style="display: none;">
+                    </label>
 
-                        <input type="email" id="email-input" name="email" value="{{ user.email }}" class="form-control mb-2" placeholder="Email">
-                        <span id="email-message"></span>
+                    <div style="width: 100%; margin-top: 20px;">
+                        <div class="view-mode">
+                            <p><strong>Логин:</strong> {{ user.username }}</p>
+                            <p><strong>Email:</strong> {{ user.email }}</p>
+                            <p><strong>Телефон:</strong> {{ user.profile.phone|default:"Не указан" }}</p>
+                        </div>
 
-                        <input type="text" name="phone" value="{{ user.profile.phone|default:'' }}" class="form-control mb-2" placeholder="Телефон">
-                        <input type="password" name="old_password" class="form-control mb-2" placeholder="Старый пароль">
-                        <input type="password" name="new_password" class="form-control mb-2" placeholder="Новый пароль">
-                        <button type="submit" class="btn-large btn-sm w-100">Сохранить</button>
-                        <button type="button" onclick="toggleEdit(false)" class="btn btn-sm w-100 text-white">Отмена</button>
+                        <div class="edit-mode auth-form-container">
+                            <input type="text" name="username" value="{{ user.username }}" class="form-profile-control mb-2" placeholder="Логин">
+
+                            <input type="email" id="email-input" name="email" value="{{ user.email }}" class="form-profile-control mb-2" placeholder="Email">
+                            <span id="email-message"></span>
+
+                            <input type="text" name="phone" value="{{ user.profile.phone|default:'' }}" class="form-profile-control mb-2" placeholder="Телефон">
+                            <input type="password" name="old_password" class="form-profile-control mb-2" placeholder="Старый пароль">
+                            <input type="password" name="new_password" class="form-profile-control mb-2" placeholder="Новый пароль">
+                            <button type="submit" class="btn-large btn-sm w-100">Сохранить</button>
+                            <button type="button" onclick="toggleEdit(false)" class="btn btn-sm w-100 text-white">Отмена</button>
+                        </div>
                     </div>
-                </div>
 
-                <a href="javascript:void(0)" onclick="toggleEdit(true)" class="btn-side view-mode" style="background: var(--accent-rgba); margin-top: 20px; text-decoration: none; text-align: center;">Редактировать данные</a>
+                    <a href="javascript:void(0)" onclick="toggleEdit(true)" class="btn-side view-mode" style="background: var(--accent-rgba); margin-top: 20px; text-decoration: none; text-align: center;">Редактировать данные</a>
+                </div>
             </form>
             <form method="post" action="{% url 'logout' %}" class="view-mode" style="width: 100%; margin-top: 10px;">
                 {% csrf_token %}
@@ -70,22 +66,19 @@
             <div class="notes-tab-header">Заметки</div>
 
             <div class="add-note-section">
-                <button
-                    type="button"
-                    class="add-note-btn-style"
-                    id="openNoteFormBtn"
-                >
-                    <span class="plus-icon">+</span>
-                    Добавить заметку
-                </button>
+                <div class="tour-top">
+                    <button class="tour-add-btn"
+                        id="openNoteFormBtn">
+                        <svg width="30" height="30" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M18.5 1V36M1 18.5H36" stroke="#FFFBFB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="tour-add-text"> Добавить заметку </div>
+                </div>
 
-                <form
-                    method="post"
-                    action="{% url 'profile' %}"
-                    enctype="multipart/form-data"
+                <form method="post" action="{% url 'profile' %}" enctype="multipart/form-data"
                     class="note-create-form"
-                    id="noteCreateForm"
-                >
+                    id="noteCreateForm">
                     {% csrf_token %}
                     <input type="hidden" name="add_note" value="1">
 
@@ -94,34 +87,28 @@
                     </div>
 
                     <div class="note-card-custom create-note-card">
-
                         <div class="note-card-header">
-
                             <input
                                 type="text"
                                 name="title"
                                 class="create-note-title"
-                                placeholder="Название заметки"
-                            >
+                                placeholder="Название заметки">
 
                             <button
                                 type="button"
                                 class="delete-note-btn"
-                                id="closeNoteFormBtn"
-                            >
+                                id="closeNoteFormBtn">
                                 ✕
                             </button>
-
                         </div>
 
                         <textarea
                             name="text"
                             class="create-note-text"
-                            placeholder="Введите текст заметки..."
-                        ></textarea>
+                            placeholder="Введите текст заметки..."></textarea>
 
                         <label class="note-upload-image">
-                            <input type="file" name="image" hidden>
+                            <input type="file" name="image" id="noteImageInput" hidden>
                             <span>+ Добавить изображение</span>
                         </label>
 
@@ -129,6 +116,9 @@
                             Сохранить заметку
                         </button>
 
+                        <div id="imagePreviewContainer" style="display: none; margin-top: 10px;">
+                            <img id="imagePreview" src="#" alt="Предпросмотр" style="max-width: 100%; border-radius: 12px; height: auto;">
+                        </div>
                     </div>
                 </form>
             </div>
@@ -145,9 +135,7 @@
                                     <textarea
                                         class="note-edit-title"
                                         data-note-id="{{ note.id }}"
-                                        rows="1"
-                                    >{{ note.title }}</textarea>
-
+                                        rows="1">{{ note.title }}</textarea>
                                 </div>
 
                                 <button
@@ -166,13 +154,10 @@
                             {% endif %}
 
                             <div class="note-content">
-
                                 <textarea
                                     class="note-edit-text"
                                     data-note-id="{{ note.id }}"
-                                    rows="5"
-                                >{{ note.text }}</textarea>
-
+                                    rows="5">{{ note.text }}</textarea>
                             </div>
                         </div>
                     </div>
