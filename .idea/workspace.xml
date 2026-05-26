@@ -9,6 +9,8 @@
       <change afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/guide-favorites-events.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/home.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/tours.css" afterDir="false" />
+    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="1.5. Поправлены стили по Figma страницы Собери тур, сделаны редактирование и удаление тура, удаление заметок есть (? поправить остальные страницы, распределить css и js, починить заметки и остальной функционал допилить)">
+      <change beforePath="$PROJECT_DIR$/.idea/Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/favorites/templates/favorites/favorites.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/favorites/templates/favorites/favorites.html" afterDir="false" />
