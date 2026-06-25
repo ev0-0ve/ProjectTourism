@@ -5,7 +5,6 @@ from .models import Tour, TourPlace
 from guide.models import GuidePlace
 from favorites.models import Favorite
 
-
 @login_required
 def tours_page(request):
 
@@ -171,3 +170,22 @@ def delete_tour(request, tour_id):
         request.session['selected_tour'] = None
 
     return redirect('tours')
+
+def similar_tours(request):
+    return render(
+        request,
+        'tours/similar_tours.html'
+    )
+
+def flight_search(request):
+    return render(
+        request,
+        'tours/flight_search.html'
+    )
+
+
+def hotel_booking(request):
+    return render(
+        request,
+        'tours/hotel_booking.html'
+    )
