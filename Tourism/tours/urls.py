@@ -15,6 +15,24 @@ urlpatterns = [
     ),
 
     path(
+        'similar-tours/',
+        views.similar_tours,
+        name='similar_tours'
+    ),
+
+    path(
+        'flight-search/',
+        views.flight_search,
+        name='flight_search'
+    ),
+
+    path(
+        'hotel-booking/',
+        views.hotel_booking,
+        name='hotel_booking'
+    ),
+
+    path(
         'select/<int:tour_id>/',
         views.select_tour,
         name='select_tour'

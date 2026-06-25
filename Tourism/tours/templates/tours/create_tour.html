@@ -222,25 +222,29 @@
 
                 <div class="tour-top-actions">
                     <div class="tour-top">
-                        <button class="route-side-button">
-                            +
-                        </button>
-                        <div class="tour-add-info"> Добавить информацию <br> о перелёте </div>
+                        <a href="{% url 'hotel_booking' %}" class="tour-route-link">
+                            <button class="route-side-button">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M12 5V19M5 12H19" stroke="#FFFBFB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                        </a>
+                        <div class="tour-add-info"> Забронировать отель </div>
                     </div>
 
                     <div class="tour-top">
-                        <button class="route-side-button">
-                            <svg width="32" height="35" viewBox="0 0 32 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M10.7998 34.1331V17.4665H20.7998V34.1331M0.799805 12.4665L15.7998 0.799805L30.7998 12.4665V30.7998C30.7998 31.6839 30.4486 32.5317 29.8235 33.1568C29.1984 33.7819 28.3505 34.1331 27.4665 34.1331H4.13314C3.24908 34.1331 2.40124 33.7819 1.77612 33.1568C1.15099 32.5317 0.799805 31.6839 0.799805 30.7998V12.4665Z" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                        <div class="tour-add-info"> Добавить информацию <br> о проживании </div>
+                        <a href="{% url 'flight_search' %}" class="tour-route-link">
+                            <button class="route-side-button">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M12 5V19M5 12H19" stroke="#FFFBFB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                        </a>
+                        <div class="tour-add-info"> Купить авиабилет </div>
                     </div>
-
-
                 </div>
 
-                <ol class="tour-route-list">
+                <ol type="1">
 
                     {% if selected_tour %}
 
@@ -265,6 +269,19 @@
                 </ol>
 
             </div>
+
+                <div class="similar-tour-btn-wrapper">
+
+                    <a
+                        href="{% url 'similar_tours' %}"
+                        class="tour-add-page">
+
+                        Найти похожий тур
+
+                    </a>
+
+
+                </div>
 
         </div>
 

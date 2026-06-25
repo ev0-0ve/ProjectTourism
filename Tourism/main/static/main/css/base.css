@@ -27,10 +27,10 @@ html, body {
 body {
   margin: 0;
   font-family: 'MyMono', monospace;
-  color: var(--text-light);
+  color: black;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #0b1116;
+  background: #eee;
 }
 
 a {
@@ -55,7 +55,7 @@ body.no-scroll {
   position: relative;
   min-height: 100svh; /* Адаптивно для мобилок */
   width: 100%;
-  background-color: #536370;
+  background-color: #eee;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -225,6 +225,11 @@ body.no-scroll {
         padding-bottom: 24px !important;
     }
 
+    h1 {
+        font-size: 24px;
+        text-decoration: #000;
+    }
+
     .side-wrapper {
 
     position: fixed;
@@ -250,7 +255,7 @@ body.no-scroll {
         flex-direction:column;
         gap:8px;
 
-        width: 75px;
+        width: 73px;
     height: 43px;
 
     border-radius: 777px;
@@ -307,7 +312,7 @@ body.no-scroll {
         min-height: 320px;
 
         padding: 20px;
-        border-radius: 100px;
+        border-radius: 35px;
 
         transform: translateY(-20px);
         opacity: 0;
