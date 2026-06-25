@@ -161,6 +161,10 @@
 .note-edit-title, .note-edit-text {
     width: 100%; background: transparent; border: none; outline: none;
     resize: none; color: white; display: block; box-sizing: border-box;
+
+    margin-top: 0;
+
+    padding-top: 8px;
 }
 .note-edit-title { font-size: 20px; font-weight: 600; }
 .note-edit-text { min-height: 50px; line-height: 1.5; }

@@ -58,7 +58,9 @@
 
 .favorite-mini-card { position: relative; overflow: hidden; border-radius: 22px; background: rgba(255,255,255,0.07); }
 .favorite-mini-card img { width: 100%; height: 190px; object-fit: cover; display: block; }
-.favorite-mini-title { padding: 16px; color: white; }
+.favorite-mini-title { color: white; margin-top: 0;
+
+    padding-top: 8px;}
 
 /* КАРТОЧКИ ТУРОВ */
 .tour-cards-grid {

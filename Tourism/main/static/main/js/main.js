@@ -29,7 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const sideToggle = document.querySelector('.side-toggle');
     const sideWrapper = document.querySelector('.side-wrapper');
 
-    if (sideToggle && sidePanel) {
+    if (
+        sideToggle &&
+        sidePanel &&
+        window.innerWidth > 768
+    ) {
         const isHome = document.body.classList.contains('home-page');
 
         if (!isHome) {
@@ -41,6 +45,46 @@ document.addEventListener('DOMContentLoaded', function() {
             sidePanel.classList.toggle('collapsed');
             sideWrapper.classList.toggle('collapsed');
         });
+    }
+
+    const mobileMenuBtn =
+        document.getElementById('mobileMenuBtn');
+
+    if (
+        mobileMenuBtn &&
+        sidePanel &&
+        sideWrapper
+    ) {
+
+        mobileMenuBtn.addEventListener('click', function(e){
+
+            e.stopPropagation();
+
+            sidePanel.classList.toggle('mobile-open');
+
+            sideWrapper.classList.toggle('mobile-open');
+
+            document.body.classList.toggle('no-scroll');
+
+        });
+
+        document.addEventListener('click', function(e){
+
+            if (
+                window.innerWidth <= 768 &&
+                !e.target.closest('.side-panel') &&
+                !e.target.closest('#mobileMenuBtn')
+            ) {
+
+                sidePanel.classList.remove('mobile-open');
+
+                sideWrapper.classList.remove('mobile-open');
+
+                document.body.classList.remove('no-scroll');
+            }
+
+        });
+
     }
 
     // --- AJAX: Проверка Email ---
@@ -159,84 +203,6 @@ document.addEventListener('DOMContentLoaded', function() {
             xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
             xhr.send();
-        });
-    });
-
-    // --- Путеводитель / События / Избранное: Раскрытие карточек ---
-    const guideCards = document.querySelectorAll('.guide-card');
-
-    guideCards.forEach(card => {
-        card.addEventListener('click', function(e) {
-            // Если кликнули на крестик, любую кнопку или ссылку внутри карточки — не переключаем класс active
-            if (
-                e.target.closest('.guide-icon-btn') ||
-                e.target.closest('.guide-icon-btn-low') ||
-                e.target.closest('a') ||
-                e.target.closest('button')
-            ) {
-                return;
-            }
-
-            guideCards.forEach(c => {
-                if (c !== this) {
-                    c.classList.remove('active');
-                }
-            });
-
-            this.classList.toggle('active');
-        });
-    });
-
-    // --- Путеводитель: Фильтр Popup ---
-    const filterBtn = document.getElementById('filterBtn');
-    const filterPopup = document.getElementById('filterPopup');
-
-    if (filterBtn && filterPopup) {
-        filterBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            filterPopup.classList.toggle('active');
-        });
-
-        document.addEventListener('click', function(e) {
-            if (!filterPopup.contains(e.target)) {
-                filterPopup.classList.remove('active');
-            }
-        });
-    }
-
-    // --- Путеводитель: Поиск по карточкам ---
-    const searchInput = document.getElementById('guideSearch');
-
-    if (searchInput) {
-        searchInput.addEventListener('input', function () {
-            const value = this.value.toLowerCase();
-            guideCards.forEach(card => {
-                const title = card.querySelector('.guide-card-title')
-                    .textContent
-                    .toLowerCase();
-
-                if (title.includes(value)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    }
-
-    // --- Путеводитель: Фильтрация по категориям ---
-    const categoryInputs = document.querySelectorAll('input[name="category"]');
-
-    categoryInputs.forEach(input => {
-        input.addEventListener('change', function () {
-            const category = this.value;
-            guideCards.forEach(card => {
-                if (card.dataset.category === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
         });
     });
 
@@ -362,117 +328,258 @@ document.addEventListener('DOMContentLoaded', function() {
 
     }
 
-// ======================================
-// МЕНЮ ТУРОВ
-// ======================================
+    // === 2. ДВА ПОПАПА И ВКЛАДКИ ===
+    const btnObjects = document.getElementById('searchObjectsBtn');
+    const btnTours = document.getElementById('searchToursBtn');
+    const contentObjects = document.getElementById('objects-content');
+    const contentTours = document.getElementById('tours-content');
 
-const menuBtn = document.getElementById('tourMenuButton');
-const dropdown = document.getElementById('tourDropdown');
+    const popupObjects = document.getElementById('filterPopupObjects');
+    const popupTours = document.getElementById('filterPopupTours');
 
-if(menuBtn && dropdown){
+    // Клик по вкладке или её воронке
+    if (btnObjects && btnTours) {
+        btnObjects.addEventListener('click', function(e) {
+            if (e.target.closest('.funnel-icon')) {
+                e.stopPropagation();
+                popupObjects.classList.toggle('active');
+                if(popupTours) popupTours.classList.remove('active');
+                return;
+            }
+            this.classList.add('active');
+            btnTours.classList.remove('active');
+            contentObjects.style.display = 'block';
+            contentTours.style.display = 'none';
+            if(popupTours) popupTours.classList.remove('active');
+        });
 
-    menuBtn.addEventListener('click', function(e){
+        btnTours.addEventListener('click', function(e) {
+            if (e.target.closest('.funnel-icon')) {
+                e.stopPropagation();
+                popupTours.classList.toggle('active');
+                if(popupObjects) popupObjects.classList.remove('active');
+                return;
+            }
+            this.classList.add('active');
+            btnObjects.classList.remove('active');
+            contentObjects.style.display = 'none';
+            contentTours.style.display = 'block';
+            if(popupObjects) popupObjects.classList.remove('active');
+        });
+    }
 
-        e.stopPropagation();
+    // Закрытие попапов при клике мимо них
+    document.addEventListener('click', function(e) {
+        if (popupObjects && popupObjects.classList.contains('active')) {
+            if (!popupObjects.contains(e.target) && !e.target.closest('#searchObjectsBtn')) {
+                popupObjects.classList.remove('active');
+            }
+        }
+        if (popupTours && popupTours.classList.contains('active')) {
+            if (!popupTours.contains(e.target) && !e.target.closest('#searchToursBtn')) {
+                popupTours.classList.remove('active');
+            }
+        }
+    });
 
-        dropdown.classList.toggle('active');
+    // Блокируем закрытие при клике внутри попапа
+    if(popupObjects) popupObjects.addEventListener('click', e => e.stopPropagation());
+    if(popupTours) popupTours.addEventListener('click', e => e.stopPropagation());
 
-        const favoritesDropdown = document.getElementById('favoritesDropdown');
 
-        if(favoritesDropdown){
+    // === 3. УМНАЯ ФИЛЬТРАЦИЯ СТОИМОСТИ И КАТЕГОРИЙ (Объекты) ===
+
+    // Функция: вытаскивает реальную цену из сложной строки (игнорирует года и детский возраст)
+    function parseRealPrice(textString) {
+        if (!textString) return 0;
+        const numbers = textString.match(/\d+/g);
+        if (!numbers) return 0;
+
+        for (let num of numbers) {
+            let val = parseInt(num, 10);
+            // Если число больше 50 (это не возраст 5-17 лет) и не равно текущему году (2026)
+            if (val > 50 && val < 2000) return val;
+            if (val > 2050) return val;
+        }
+        // Если ничего не подошло, берем первое число
+        return parseInt(numbers[0], 10);
+    }
+
+    const priceFromObj = document.getElementById('priceFromObj');
+    const priceToObj = document.getElementById('priceToObj');
+    const categoryRadiosObj = document.querySelectorAll('input[name="categoryObj"]');
+    const resetObjBtn = document.getElementById('resetFilterObjBtn');
+    const objectCards = document.querySelectorAll('#guideGridObjects .guide-card');
+
+    function filterObjects() {
+        const minPrice = parseInt(priceFromObj.value) || 0;
+        const maxPrice = parseInt(priceToObj.value) || Infinity;
+
+        let selectedCategory = 'all';
+        categoryRadiosObj.forEach(radio => {
+            if (radio.checked) selectedCategory = radio.value;
+        });
+
+        objectCards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            const rawPriceText = card.getAttribute('data-price');
+            const cardPrice = parseRealPrice(rawPriceText);
+
+            const matchesCategory = (selectedCategory === 'all' || cardCategory === selectedCategory);
+            const matchesPrice = (cardPrice >= minPrice && cardPrice <= maxPrice);
+
+            if (matchesCategory && matchesPrice) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // Слушатели фильтров
+    if(priceFromObj) priceFromObj.addEventListener('input', filterObjects);
+    if(priceToObj) priceToObj.addEventListener('input', filterObjects);
+    categoryRadiosObj.forEach(radio => radio.addEventListener('change', filterObjects));
+
+    // Сброс фильтров
+    if (resetObjBtn) {
+        resetObjBtn.addEventListener('click', () => {
+            if(priceFromObj) priceFromObj.value = '';
+            if(priceToObj) priceToObj.value = '';
+            document.querySelector('input[name="categoryObj"][value="all"]').checked = true;
+            filterObjects();
+            popupObjects.classList.remove('active');
+        });
+    }
+
+    // === 4. РАСКРЫТИЕ КАРТОЧКИ ===
+    const allCards = document.querySelectorAll('.guide-card');
+    allCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            // Если кликнули на SVG кнопки (добавить в тур/избранное) - не раскрываем
+            if (e.target.closest('.guide-icon-btn') || e.target.closest('.guide-icon-btn-low')) {
+                return;
+            }
+            // Закрываем остальные
+            allCards.forEach(c => {
+                if(c !== this) c.classList.remove('active');
+            });
+            // Переключаем текущую
+            this.classList.toggle('active');
+        });
+    });
+
+    // ======================================
+    // МЕНЮ ТУРОВ
+    // ======================================
+
+    const menuBtn = document.getElementById('tourMenuButton');
+    const dropdown = document.getElementById('tourDropdown');
+
+    if(menuBtn && dropdown){
+
+        menuBtn.addEventListener('click', function(e){
+
+            e.stopPropagation();
+
+            dropdown.classList.toggle('active');
+
+            const favoritesDropdown = document.getElementById('favoritesDropdown');
+
+            if(favoritesDropdown){
+                favoritesDropdown.classList.remove('active');
+            }
+
+        });
+
+    }
+
+    // ======================================
+    // ИЗБРАННОЕ
+    // ======================================
+
+    const favoritesBtn = document.getElementById('favoritesOpenBtn');
+    const favoritesDropdown = document.getElementById('favoritesDropdown');
+
+    if(favoritesBtn && favoritesDropdown){
+
+        favoritesBtn.addEventListener('click', function(e){
+
+            e.stopPropagation();
+
+            favoritesDropdown.classList.toggle('active');
+
+            if(dropdown){
+                dropdown.classList.remove('active');
+            }
+
+        });
+
+    }
+
+    // ======================================
+    // ЗАКРЫТИЕ DROPDOWN ПРИ КЛИКЕ ВНЕ
+    // ======================================
+
+    document.addEventListener('click', function(e){
+
+        if(dropdown && !e.target.closest('.tour-dropdown-wrapper')){
+            dropdown.classList.remove('active');
+        }
+
+        if(favoritesDropdown && !e.target.closest('.favorites-wrapper')){
             favoritesDropdown.classList.remove('active');
         }
 
     });
 
-}
+    // ======================================
+    // РЕДАКТИРОВАНИЕ ТУРА
+    // ======================================
 
-// ======================================
-// ИЗБРАННОЕ
-// ======================================
+    const editButtons = document.querySelectorAll('.edit-tour-btn');
 
-const favoritesBtn = document.getElementById('favoritesOpenBtn');
-const favoritesDropdown = document.getElementById('favoritesDropdown');
+    editButtons.forEach(button => {
 
-if(favoritesBtn && favoritesDropdown){
+        button.addEventListener('click', function(){
 
-    favoritesBtn.addEventListener('click', function(e){
+            const row = this.closest('.tour-dropdown-row');
 
-        e.stopPropagation();
+            row.classList.add('editing');
 
-        favoritesDropdown.classList.toggle('active');
+        });
 
-        if(dropdown){
-            dropdown.classList.remove('active');
+    });
+
+    const cancelButtons = document.querySelectorAll('.cancel-tour-btn');
+
+    cancelButtons.forEach(button => {
+
+        button.addEventListener('click', function(){
+
+            const row = this.closest('.tour-dropdown-row');
+
+            row.classList.remove('editing');
+
+        });
+
+    });
+
+    document.getElementById('noteImageInput').addEventListener('change', function(event) {
+        const input = event.target;
+        const previewContainer = document.getElementById('imagePreviewContainer');
+        const previewImage = document.getElementById('imagePreview');
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+                previewContainer.style.display = 'block'; // Показываем контейнер с фото
+            }
+
+            reader.readAsDataURL(input.files[0]); // Читаем файл как URL
         }
-
     });
-
-}
-
-// ======================================
-// ЗАКРЫТИЕ DROPDOWN ПРИ КЛИКЕ ВНЕ
-// ======================================
-
-document.addEventListener('click', function(e){
-
-    if(dropdown && !e.target.closest('.tour-dropdown-wrapper')){
-        dropdown.classList.remove('active');
-    }
-
-    if(favoritesDropdown && !e.target.closest('.favorites-wrapper')){
-        favoritesDropdown.classList.remove('active');
-    }
-
-});
-
-// ======================================
-// РЕДАКТИРОВАНИЕ ТУРА
-// ======================================
-
-const editButtons = document.querySelectorAll('.edit-tour-btn');
-
-editButtons.forEach(button => {
-
-    button.addEventListener('click', function(){
-
-        const row = this.closest('.tour-dropdown-row');
-
-        row.classList.add('editing');
-
-    });
-
-});
-
-const cancelButtons = document.querySelectorAll('.cancel-tour-btn');
-
-cancelButtons.forEach(button => {
-
-    button.addEventListener('click', function(){
-
-        const row = this.closest('.tour-dropdown-row');
-
-        row.classList.remove('editing');
-
-    });
-
-});
-
-document.getElementById('noteImageInput').addEventListener('change', function(event) {
-    const input = event.target;
-    const previewContainer = document.getElementById('imagePreviewContainer');
-    const previewImage = document.getElementById('imagePreview');
-
-    if (input.files && input.files[0]) {
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            previewImage.src = e.target.result;
-            previewContainer.style.display = 'block'; // Показываем контейнер с фото
-        }
-
-        reader.readAsDataURL(input.files[0]); // Читаем файл как URL
-    }
-});
 
 });
