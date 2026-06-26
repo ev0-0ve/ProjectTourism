@@ -289,6 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
             [56.0153, 92.8932],
             11
         );
+        map.attributionControl.setPrefix('');
 
         L.tileLayer(
             'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -327,87 +328,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
     }
-
-    const similarBtn = document.getElementById('similarOpenBtn');
-    const similarDropdown = document.getElementById('similarDropdown');
-    const similarOverlay = document.getElementById('similarOverlay');
-
-    function toggleSimilarDropdown(e) {
-        e.stopPropagation();
-        const isMobile = window.innerWidth <= 768;
-
-        // Закрываем другие дропдауны
-        const tourDropdown = document.getElementById('tourDropdown');
-        const favoritesDropdown = document.getElementById('favoritesDropdown');
-
-        if (tourDropdown && tourDropdown.classList.contains('active')) {
-            tourDropdown.classList.remove('active');
-        }
-        if (favoritesDropdown && favoritesDropdown.classList.contains('active')) {
-            favoritesDropdown.classList.remove('active');
-        }
-
-        // Переключаем наш дропдаун
-        similarDropdown.classList.toggle('active');
-
-        if (isMobile) {
-            if (similarOverlay) {
-                similarOverlay.classList.toggle('active');
-            }
-            if (similarDropdown.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
-        }
-    }
-
-    if (similarBtn) {
-        similarBtn.addEventListener('click', toggleSimilarDropdown);
-    }
-
-    // Закрытие по клику на оверлей (мобилка)
-    if (similarOverlay) {
-        similarOverlay.addEventListener('click', function() {
-            similarDropdown.classList.remove('active');
-            similarOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    }
-
-    // Закрытие по Escape
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && similarDropdown && similarDropdown.classList.contains('active')) {
-            similarDropdown.classList.remove('active');
-            if (similarOverlay) {
-                similarOverlay.classList.remove('active');
-            }
-            document.body.style.overflow = '';
-        }
-    });
-
-    // Закрытие при клике вне дропдауна на десктопе
-    document.addEventListener('click', function(e) {
-        if (window.innerWidth > 768) {
-            const wrapper = document.querySelector('.similar-wrapper');
-            if (wrapper && !wrapper.contains(e.target)) {
-                if (similarDropdown) {
-                    similarDropdown.classList.remove('active');
-                }
-            }
-        }
-    });
-
-    // При изменении размера окна
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && similarDropdown && similarDropdown.classList.contains('active')) {
-            similarDropdown.classList.remove('active');
-            if (similarOverlay) {
-                similarOverlay.classList.remove('active');
-            }
-            document.body.style.overflow = '';
-        }
-    });
 
     // === 2. ДВА ПОПАПА И ВКЛАДКИ ===
     const btnObjects = document.getElementById('searchObjectsBtn');

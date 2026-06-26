@@ -7,7 +7,7 @@ html, body {
 }
 
 .features { max-width: 1400px; margin: 0 auto; padding: 0 15px; }
-.features h1 { font-size: 40px; margin-bottom: 40px; color: white; }
+.features h1 { font-size: 40px; margin-bottom: 40px; color: black; }
 
 .favorites-title { font-size: 56px; margin-bottom: 35px; font-weight: 500; color: white; }
 
@@ -208,7 +208,10 @@ html, body {
 
   /* Раскрытая информация (встраиваем в поток, чтобы не обрезалась снизу) */
   .guide-expanded {
-      position: static; border-radius: 0 0 16px 16px; padding: 12px; box-shadow: none; margin-top: 0;
+      border-radius: 0 0 16px 16px;
+      padding: 12px;
+      box-shadow: none;
+      margin-top: 0;
   }
   .guide-info { max-height: 160px; font-size: 12px; }
   .guide-info p { font-size: 12px; }

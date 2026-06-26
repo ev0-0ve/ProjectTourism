@@ -12,49 +12,6 @@
   overflow: hidden;
 }
 
-/* ЛЕВАЯ ЧАСТЬ (Данные) */
-.profile-info-side {
-  flex: 0 0 320px;
-  max-width: 100%;
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  padding: 30px;
-  border-radius: var(--radius-lg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-    justify-content: center;
-  gap: 20px;
-  box-sizing: border-box;
-}
-
-.form-profile-control {
-    display: block;
-    width: 100%;
-    height: 38px; /* Задаем фиксированную высоту как в регистрации */
-    padding: 8px 12px;
-    font-size: 13px; /* Размер как в остальных формах */
-    font-weight: 400;
-    line-height: 1.5;
-    max-width: 100%;
-
-    text-align: center;
-
-    background: rgba(82, 98, 114, 0.5); /* Фон как в полях авторизации */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    color: #ffffff;
-
-    outline: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    box-sizing: border-box;
-
-    /* Плавный переход */
-    transition: background 0.3s ease;
-}
-
 .profile-content-wrapper {
     display: flex;
     flex-direction: column;
@@ -95,6 +52,16 @@
     align-items: center; /* Центрирует внутренние элементы */
     text-align: center;
 }
+.profile-info-side .view-mode p {
+        font-size: 14px;
+        margin-bottom: 6px;
+        color: rgba(255, 255, 255, 0.9);
+}
+
+.profile-info-side .view-mode p strong {
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 400;
+}
 
 #email-message {
     font-size: 14px;
@@ -112,19 +79,6 @@
 .note-label { font-size: 18px; margin-bottom: 8px; margin-left: 5px; }
 
 /* СЕТКА ЗАМЕТОК */
-.notes-grid {
-    display: grid;
-    gap: 24px;
-    align-items: start;
-    padding-right: 10px;
-    padding-top: 20px;
-    padding-bottom: 30px;
-    overflow-y: auto;
-    max-height: 75vh;
-    min-height: 0;
-    /* Grid адаптивность (не ломается на мобильных) */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
 
 .note-item-wrapper { width: 100%; }
 
@@ -158,12 +112,181 @@
 .add-img-btn { display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer; }
 
 /* РЕДАКТИРОВАНИЕ ЗАМЕТОК */
+.note-edit-title { font-size: 20px; font-weight: 600; }
+.note-edit-text { min-height: 50px; line-height: 1.5; }
+.note-edit-title:hover, .note-edit-text:hover { background: rgba(255,255,255,0.03); }
+
+/* ФОРМА СОЗДАНИЯ ЗАМЕТКИ */
+.note-create-form { display: none; margin-top: 20px; }
+.note-create-form.active { display: block; animation: fadeIn .25s ease; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.create-note-card { gap: 20px; }
+.create-note-title {
+    width: 100%; background: transparent; border: none; outline: none;
+    color: black; font-size: 24px; font-weight: 600; box-sizing: border-box;
+}
+.create-note-title::placeholder {
+    color: rgba(255,255,255,0.45);
+}
+
+.note-upload-image:hover { background: rgba(255,255,255,0.12); }
+
+/* =========================================
+   PROFILE.CSS
+   Страница профиля, форма редактирования,
+   и логика гридов с заметками.
+========================================= */
+
+.profile-layout {
+  display: flex;
+  gap: 40px;
+  min-height: calc(100svh - 120px);
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+/* ЛЕВАЯ ЧАСТЬ (Данные) */
+.profile-info-side {
+  flex: 0 0 320px;
+  max-width: 100%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.form-profile-control {
+    display: block;
+    width: 100%;
+    height: 38px;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 100%;
+    text-align: center;
+    background: rgba(82, 98, 114, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #000000;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+    transition: background 0.3s ease;
+}
+
+.profile-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 15px;
+}
+
+/* ПРАВАЯ ЧАСТЬ (Заметки) */
+.profile-notes-side {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-bottom: 20px;
+    min-width: 0;
+}
+
+.profile-notes-side::-webkit-scrollbar { width: 6px; }
+.profile-notes-side::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 10px; }
+.profile-notes-side::-webkit-scrollbar-thumb { background: rgba(120, 95, 140, 0.5); border-radius: 10px; }
+
+/* Тексты заголовков */
+.profile-title-main { font-size: 48px; margin-bottom: 10px; font-weight: 400; }
+.notes-tab-header { font-size: 24px; display: inline-block; margin-bottom: 10px; padding-bottom: 5px; }
+
+
+#email-message {
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* ЗАМЕТКИ: Иконки и лэйблы */
+.plus-icon {
+    background: #5D5A75; width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px; font-size: 24px;
+}
+.plus-icon.small { width: 24px; height: 24px; font-size: 18px; }
+.note-label { font-size: 18px; margin-bottom: 8px; margin-left: 5px; }
+
+/* СЕТКА ЗАМЕТОК */
+.notes-grid {
+    display: grid;
+    gap: 24px;
+    align-items: start;
+    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    overflow-y: auto;
+    max-height: 75vh;
+    min-height: 0;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.note-item-wrapper { width: 100%; }
+
+.note-card-custom {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(18px);
+    border-radius: 28px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    transition: 0.2s ease;
+}
+.note-card-custom:hover { transform: translateY(-2px); background: rgba(255,255,255,0.11); }
+
+.note-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.note-card-top { display: flex; align-items: flex-start; gap: 14px; }
+
+.note-image-container {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.note-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.note-content { flex: 1; min-width: 0; }
+
+.note-actions { display: flex; gap: 10px; margin-top: 20px; }
+.add-img-btn { display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer; }
+
+/* РЕДАКТИРОВАНИЕ ЗАМЕТОК */
 .note-edit-title, .note-edit-text {
     width: 100%; background: transparent; border: none; outline: none;
-    resize: none; color: white; display: block; box-sizing: border-box;
-
+    resize: none; color: black; display: block; box-sizing: border-box;
     margin-top: 0;
-
     padding-top: 8px;
 }
 .note-edit-title { font-size: 20px; font-weight: 600; }
@@ -181,11 +304,9 @@
 .create-note-card { gap: 20px; }
 .create-note-title {
     width: 100%; background: transparent; border: none; outline: none;
-    color: white; font-size: 24px; font-weight: 600; box-sizing: border-box;
+    color: black; font-size: 24px; font-weight: 600; box-sizing: border-box;
 }
-.create-note-title::placeholder {
-    color: rgba(255,255,255,0.45);
-}
+.create-note-title::placeholder { color: rgba(0, 0, 0, 0.45); }
 
 .create-note-text {
     width: 100%;
@@ -194,17 +315,288 @@
     border: none;
     outline: none;
     resize: vertical;
-    color: white;
+    color: black;
     font-size: 16px;
     line-height: 1.6;
     box-sizing: border-box;
 }
-.create-note-text::placeholder { color: rgba(255,255,255,0.45); }
+.create-note-text::placeholder { color: rgba(0,0,0,0.45); }
 .note-upload-image {
     width: fit-content; padding: 12px 18px; border-radius: 16px;
-    background: rgba(255,255,255,0.06); cursor: pointer; transition: .2s ease;
+    background: rgba(119, 105, 144, 0.92); cursor: pointer; transition: .2s ease;
 }
-.note-upload-image:hover { background: rgba(255,255,255,0.12); }
+.note-upload-image:hover { background: rgba(119, 105, 144, 0.92); }
+
+.tour-add-text {
+    color: #6A6785;
+}
+
+/* =========================================
+   АДАПТИВНОСТЬ ПРОФИЛЯ - 768px
+   ПО МАКЕТУ
+========================================= */
+
+@media (max-width: 768px) {
+    .profile-layout {
+        flex-direction: column;
+        gap: 24px;
+        min-height: auto;
+        overflow: visible;
+        height: auto;
+    }
+
+    /* ---------- ЛЕВАЯ ЧАСТЬ ---------- */
+    .profile-info-side {
+        flex: none;
+        width: 100%;
+        padding: 24px 20px;
+        border-radius: 24px;
+        gap: 16px;
+        order: 2; /* По макету: данные под заметками */
+    }
+
+    .profile-content-wrapper {
+        width: 100%;
+        gap: 12px;
+    }
+
+    .profile-info-side .avatar {
+        width: 100px !important;
+        height: 100px !important;
+        font-size: 36px !important;
+    }
+
+    /* Имя пользователя - как на макете */
+    .profile-info-side .view-mode p {
+        font-size: 14px;
+        margin-bottom: 6px;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .profile-info-side .view-mode p strong {
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 400;
+    }
+
+    /* ---------- ПРАВАЯ ЧАСТЬ (Заметки) ---------- */
+    .profile-notes-side {
+        order: 1;
+        overflow: visible;
+        padding-bottom: 0;
+        width: 100%;
+    }
+
+    .notes-tab-header {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    /* Кнопка "Добавить заметку" */
+    .add-note-section .tour-top {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .add-note-section .tour-add-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        font-size: 22px;
+        flex-shrink: 0;
+    }
+
+    .add-note-section .tour-add-btn svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .add-note-section .tour-add-text {
+        font-size: 18px;
+        color: #6A6785;
+        white-space: nowrap;
+    }
+
+    /* Форма создания заметки */
+    .note-create-form {
+        margin-top: 12px;
+    }
+
+    .create-note-card {
+        padding: 16px;
+        border-radius: 20px;
+    }
+
+    .create-note-title {
+        font-size: 18px;
+    }
+
+    .create-note-text {
+        font-size: 14px;
+        min-height: 80px;
+    }
+
+    .note-upload-image {
+        padding: 10px 14px;
+        font-size: 14px;
+        color: #eeeeee;
+    }
+
+    .save-note-btn {
+        height: 48px;
+        font-size: 16px;
+        border-radius: 14px;
+    }
+
+    /* ---------- СЕТКА ЗАМЕТОК ---------- */
+    .notes-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding-right: 0;
+        padding-top: 16px;
+        padding-bottom: 20px;
+        max-height: none;
+        overflow: visible;
+    }
+
+    .note-item-wrapper {
+        width: 100%;
+    }
+
+    .note-label {
+        font-size: 14px;
+        margin-bottom: 6px;
+        margin-left: 0;
+    }
+
+    .note-card-custom {
+        padding: 16px;
+        border-radius: 20px;
+        gap: 14px;
+    }
+
+    .note-card-top {
+        gap: 10px;
+    }
+
+    .note-card-header {
+        gap: 10px;
+    }
+
+    .note-edit-title {
+        font-size: 16px;
+        padding-top: 4px;
+    }
+
+    .note-edit-text {
+        font-size: 14px;
+        min-height: 40px;
+    }
+
+    .note-image-container {
+        height: 160px;
+        border-radius: 14px;
+    }
+
+    .delete-note-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        flex-shrink: 0;
+    }
+
+    .delete-note-btn svg {
+        width: 16px;
+        height: 18px;
+    }
+
+    /* ---------- КНОПКА "Редактировать данные" ---------- */
+    .btn-side.view-mode {
+        font-size: 14px;
+        padding: 10px 16px;
+        border-radius: 12px;
+        margin-top: 12px;
+    }
+
+    /* ---------- КНОПКА "Выйти" ---------- */
+    .profile-info-side .btn-side {
+        font-size: 14px;
+        padding: 10px 16px;
+        border-radius: 12px;
+        margin-top: 4px;
+    }
+
+    /* ---------- РЕЖИМ РЕДАКТИРОВАНИЯ ---------- */
+    .edit-mode.auth-form-container {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .edit-mode.auth-form-container .form-profile-control {
+        height: 38px;
+        font-size: 13px;
+        padding: 6px 12px;
+    }
+
+    .edit-mode.auth-form-container .btn-large {
+        min-width: auto;
+        width: 100%;
+        font-size: 15px;
+        padding: 10px;
+        height: 44px;
+    }
+
+    .edit-mode.auth-form-container .btn {
+        font-size: 14px;
+        padding: 8px;
+        height: 38px;
+    }
+
+    /* ---------- ЗАГОЛОВОК СТРАНИЦЫ ---------- */
+    .features h1.text-center {
+        font-size: 28px;
+        margin-bottom: 20px !important;
+        text-align: center;
+    }
+}
+
+/* Дополнительно для маленьких экранов */
+@media (max-width: 480px) {
+    .profile-info-side {
+        padding: 18px 14px;
+    }
+
+    .profile-info-side .avatar {
+        width: 80px !important;
+        height: 80px !important;
+        font-size: 28px !important;
+    }
+
+    .add-note-section .tour-add-text {
+        font-size: 16px;
+    }
+
+    .note-card-custom {
+        padding: 14px;
+    }
+
+    .note-edit-title {
+        font-size: 15px;
+    }
+
+    .note-edit-text {
+        font-size: 13px;
+    }
+
+    .note-image-container {
+        height: 130px;
+    }
+
+    .features h1.text-center {
+        font-size: 24px;
+    }
+}
 
 /* АДАПТИВНОСТЬ PROFILE */
 @media (max-width: 992px) {

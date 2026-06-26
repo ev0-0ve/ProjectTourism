@@ -7,25 +7,16 @@
     <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="2.1. Адаптивность (страница Собери тур по макету: нет попапа, переход на страницу новую) (медиа 768px)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/favorites/templates/favorites/favorites.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/favorites/templates/favorites/favorites.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/guide/templates/guide/guide.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/guide/templates/guide/guide.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/guide-favorites-events.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/guide-favorites-events.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/profile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/tours.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/tours.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/ui-kit.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/ui-kit.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/img/flight-bg-PK.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/img/flight-bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/img/hotel-bg-PK.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/img/hotel-bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/img/similar-tours-placeholder-PK.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/img/similar-tours-placeholder.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/tours/templates/tours/create_tour.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/tours/templates/tours/create_tour.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/tours/templates/tours/flight_search.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/tours/templates/tours/hotel_booking.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/tours/templates/tours/similar_tours.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/tours/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/tours/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/tours/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/tours/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -364,7 +355,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779647442952</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="2.1. Адаптивность (страница Собери тур по макету: нет попапа, переход на страницу новую) (медиа 768px)">
+      <option name="closed" value="true" />
+      <created>1782411731025</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1782411731025</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

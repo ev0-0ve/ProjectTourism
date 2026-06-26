@@ -124,7 +124,7 @@
 
 .delete-note-btn {
     width: 42px; height: 42px; flex-shrink: 0; border: none; border-radius: 14px;
-    background: rgba(255,255,255,0.08); color: white; cursor: pointer; transition: 0.2s;
+    background: rgba(219,68,85,0.3); color: black; cursor: pointer; transition: 0.2s;
 }
 .delete-note-btn:hover { background: rgba(219,68,85,0.3); transform: scale(1.05); }
 
