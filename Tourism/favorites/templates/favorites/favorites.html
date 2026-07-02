@@ -5,56 +5,64 @@
 {% block body_class %}no-scroll{% endblock %}
 
 {% block content %}
-<div class="page custom-scroll">
-    <h1 class="text-center mb-4">Избранное</h1>
+<div class="page has-actions">
+    <h1 class="text-center mb-4" style="color: black; font-size: 48px;">Избранное</h1>
     {% if favorites %}
-    <div class="guide-grid">
+    <div class="favorites-grid">
         {% for item in favorites %}
-        <div class="guide-card">
+        <div class="guide-card" data-id="{{ item.guide.id }}">
             <div class="guide-image-wrapper">
-                <img src="{{ item.guide.image.url }}" class="guide-image">
-
+                <img src="{{ item.guide.image.url }}" class="guide-image" alt="{{ item.guide.title }}">
+                <div class="guide-nav-arrows">
+                    <div class="guide-nav-arrow">&lt;</div>
+                    <div class="guide-nav-arrow">&gt;</div>
+                </div>
                 <div class="guide-hover-actions">
-                    <a href="{% url 'remove_favorite' item.guide.id %}" class="btn-more guide-icon-btn">
-                        <svg width="75" height="75" viewBox="0 0 75 75" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M56.25 18.75L18.75 56.25M18.75 18.75L56.25 56.25" stroke="#FFFCFC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                    <a href="{% url 'remove_favorite' item.guide.id %}" class="guide-icon-btn" title="Удалить">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                     </a>
-                    <a href="{% url 'add_to_tour' item.guide.id %}" class="btn-more guide-icon-btn">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M30 27.5V42.5M22.5 35H37.5M55 47.5C55 48.8261 54.4732 50.0978 53.5355 51.0355C52.5979 51.9732 51.3261 52.5 50 52.5H10C8.67392 52.5 7.40215 51.9732 6.46447 51.0355C5.52678 50.0978 5 48.8261 5 47.5V12.5C5 11.1739 5.52678 9.90215 6.46447 8.96447C7.40215 8.02678 8.67392 7.5 10 7.5H22.5L27.5 15H50C51.3261 15 52.5979 15.5268 53.5355 16.4645C54.4732 17.4021 55 18.6739 55 20V47.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <a href="{% url 'add_to_tour' item.guide.id %}" class="guide-icon-btn" title="В тур">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 10V17M8.5 13.5H15.5M22 19C22 19.5304 21.7893 20.0391 21.4142 20.4142C21.0391 20.7893 20.5304 21 20 21H4C3.46957 21 2.96086 20.7893 2.58579 20.4142C2.21071 20.0391 2 19.5304 2 19V5C2 4.46957 2.21071 3.96086 2.58579 3.58579C2.96086 3.21071 3.46957 3 4 3H9L11 6H20C20.5304 6 21.0391 6.21071 21.4142 6.58579C21.7893 6.96086 22 7.46957 22 8V19Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                     </a>
                 </div>
             </div>
 
-            <div class="guide-card-title">
-                {{ item.guide.title }}
+            <!-- ===== ЗАГОЛОВОК ===== -->
+            <div class="guide-card-title">{{ item.guide.title }}</div>
+
+            <!-- ===== КНОПКИ ВМЕСТО ЗАГОЛОВКА ===== -->
+            <div class="guide-card-actions">
+                <a href="{% url 'remove_favorite' item.guide.id %}" class="guide-icon-btn" title="Удалить">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </a>
+                <a href="{% url 'add_to_tour' item.guide.id %}" class="guide-icon-btn" title="В тур">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 10V17M8.5 13.5H15.5M22 19C22 19.5304 21.7893 20.0391 21.4142 20.4142C21.0391 20.7893 20.5304 21 20 21H4C3.46957 21 2.96086 20.7893 2.58579 20.4142C2.21071 20.0391 2 19.5304 2 19V5C2 4.46957 2.21071 3.96086 2.58579 3.58579C2.96086 3.21071 3.46957 3 4 3H9L11 6H20C20.5304 6 21.0391 6.21071 21.4142 6.58579C21.7893 6.96086 22 7.46957 22 8V19Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </a>
             </div>
 
+            <!-- ===== РАСКРЫТАЯ ЧАСТЬ С ИНФОРМАЦИЕЙ ===== -->
             <div class="guide-expanded">
-                <!--
-                <div class="guide-detail-actions">
-                    <a href="{% url 'remove_favorite' item.guide.id %}" class="btn-more guide-icon-btn-low">
-                        ✕
-                    </a>
-                </div>
-                -->
-
                 <div class="guide-info">
-                    <p>{{ item.guide.price }}</p>
-                    <p>{{ item.guide.address }}</p>
-                    <p>{{ item.guide.work_time }}</p>
-                    <p>{{ item.guide.short_description }}</p>
+                    <p><strong>Название</strong><br>{{ item.guide.title }}</p>
+                    <p><strong>Стоимость</strong><br>{{ item.guide.price|default:"Не указана" }}</p>
+                    <p><strong>Адрес</strong><br>{{ item.guide.address|default:"Не указан" }}</p>
+                    <p><strong>Часы работы</strong><br>{{ item.guide.work_time|default:"Не указаны" }}</p>
+                    <p><strong>Краткая справка</strong><br>{{ item.guide.short_description|default:"Нет описания" }}</p>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
     {% else %}
-    <div class="empty-favorites">
-        У вас пока нет избранного
-    </div>
+    <div class="empty-favorites">У вас пока нет избранного</div>
     {% endif %}
 </div>
 {% endblock %}

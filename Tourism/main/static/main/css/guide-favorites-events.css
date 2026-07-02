@@ -2,8 +2,21 @@
    ГЛОБАЛЬНЫЙ СКРОЛЛ
 ========================================= */
 html, body {
-    overflow-y: auto !important;
-    height: auto !important;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+}
+
+/* Только для мобилок — разрешаем скролл страницы */
+@media (max-width: 768px) {
+    html, body {
+        overflow-y: auto !important;
+        height: auto !important;
+    }
+    .page {
+        overflow-y: visible !important;
+        height: auto !important;
+    }
 }
 
 .features { max-width: 1400px; margin: 0 auto; padding: 0 15px; }
@@ -19,7 +32,28 @@ html, body {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto 30px auto;
-    z-index: 1000; /* ВАЖНО: держит попап выше карточек */
+    z-index: 1000;
+}
+
+.search-input-wrapper {
+    width: 100%;
+}
+
+.search-field {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.01);
+    border: none;
+    border-radius: 10px;
+    padding: 8px 10px;
+    color: white;
+    outline: none;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+
+.search-field::placeholder {
+    color: white;
+    text-align: center;
 }
 
 .search-tabs {
@@ -27,6 +61,7 @@ html, body {
     gap: 15px;
     margin-bottom: 20px;
 }
+
 .search-tab-btn {
     flex: 1;
     display: flex;
@@ -40,8 +75,10 @@ html, body {
     cursor: pointer;
     transition: 0.3s;
 }
+
 .search-tab-btn.active { background: #6D6A85; color: white; }
 .search-tab-btn:hover, .search-tab-btn.active { box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+
 .funnel-icon { width: 24px; height: 24px; opacity: 0.9; cursor: pointer; }
 .funnel-icon:hover { transform: scale(1.1); }
 
@@ -58,10 +95,11 @@ html, body {
     backdrop-filter: blur(20px);
     border-radius: 28px;
     padding: 24px;
-    z-index: 1100; /* Поверх всего */
+    z-index: 1100;
     box-shadow: 0 15px 40px rgba(0,0,0,0.6);
     border: 1px solid rgba(255,255,255,0.1);
 }
+
 .guide-filter-popup.active { display: block; }
 #filterPopupObjects { left: 0; }
 #filterPopupTours { right: 0; }
@@ -71,20 +109,25 @@ html, body {
 
 .price-inputs { display: flex; align-items: center; gap: 12px; }
 .price-label { font-size: 14px; color: white; }
+
 .price-field {
     width: 80px; height: 32px; background: rgba(255,255,255,0.2);
     border: none; border-radius: 12px; color: white; padding: 0 12px; outline: none; text-align: center;
 }
 
 .filter-options-list { display: flex; flex-direction: column; gap: 14px; max-height: 250px; overflow-y: auto; padding-right: 5px; }
+
 .filter-radio-option { display: flex; align-items: center; gap: 12px; cursor: pointer; font-size: 15px; color: white; }
 .filter-radio-option input[type="radio"] { display: none; }
+
 .custom-radio { width: 24px; height: 24px; background: transparent; border-radius: 50%; border: 2px solid white; flex-shrink: 0; position: relative; }
+
 .filter-radio-option input[type="radio"]:checked + .custom-radio::after {
     content: ""; position: absolute; top: 4px; left: 4px; width: 12px; height: 12px; background: white; border-radius: 50%;
 }
 
 .filter-reset-wrapper { margin-top: 10px; }
+
 .btn-reset-filter { width: 100%; height: 42px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 14px; color: white; font-size: 15px; cursor: pointer; transition: 0.2s; }
 .btn-reset-filter:hover { background: rgba(255, 255, 255, 0.2); }
 
@@ -93,127 +136,501 @@ html, body {
 ========================================= */
 .events-grid, .guide-grid, .favorites-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
     padding-bottom: 40px;
+    padding-right: 15px;
     position: relative;
-    z-index: 10;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
 }
 
+/* СКРОЛЛ для грида */
+.events-grid::-webkit-scrollbar,
+.guide-grid::-webkit-scrollbar,
+.favorites-grid::-webkit-scrollbar {
+    width: 6px;
+}
+
+.events-grid::-webkit-scrollbar-track,
+.guide-grid::-webkit-scrollbar-track,
+.favorites-grid::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.05);
+    border-radius: 10px;
+}
+
+.events-grid::-webkit-scrollbar-thumb,
+.guide-grid::-webkit-scrollbar-thumb,
+.favorites-grid::-webkit-scrollbar-thumb {
+    background: rgba(120,95,140,0.4);
+    border-radius: 10px;
+}
+
+
+/* --- САМА КАРТОЧКА --- */
 .guide-card {
-    position: relative; background: rgba(255, 255, 255, 0.12);
-    border-radius: 24px; cursor: pointer; backdrop-filter: blur(10px);
-    transition: transform 0.2s ease, z-index 0s step-end;
+    position: relative;
+    background: #eeeeee;
+    border-radius: 24px 24px 0 0;
+    cursor: pointer;
+    overflow: visible !important;
+    padding: 20px 20px 15px 20px;
+    box-sizing: border-box;
+    min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 1;
+    border: 1px solid transparent;
+    transition: box-shadow 0.3s ease, background 0.3s ease;
 }
-.guide-card.active { z-index: 99; transition: none; }
-.guide-card:hover { transform: translateY(-5px); z-index: 20; }
 
-.guide-image-wrapper { position: relative; }
-.guide-image { width: 100%; height: 230px; object-fit: cover; border-radius: 24px 24px 0 0; }
+/* --- КОГДА КАРТОЧКА РАСКРЫТА --- */
+.guide-card.active {
+    z-index: 999 !important;
+    background: rgba(0, 19, 36, 0.5) !important;
+    backdrop-filter: blur(20px) !important;
+    min-height: 240px;
+    border-radius: 24px 24px 0 0;
+}
+
+/* --- КАРТИНКА --- */
+.guide-image-wrapper {
+    width: 100%;
+    height: 140px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    position: relative;
+    transition: height 0.2s ease;
+    flex-shrink: 0;
+}
+
+.guide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- НАЗВАНИЕ --- */
 .guide-card-title {
-
-    padding: 15px;
-    font-size: 24px;
+    margin-top: 15px;
+    font-size: 16px;
     color: black;
     text-align: center;
     font-weight: 500;
+    width: 100%;
 }
 
-.guide-hover-actions { position: absolute; top: 15px; right: 15px; display: flex; flex-direction: column; gap: 10px; opacity: 0; transform: translateX(10px); transition: .2s ease; z-index: 50; }
-.guide-card:hover .guide-hover-actions { opacity: 1; transform: translateX(0); }
+/* --- КНОПКИ В УГЛУ --- */
+.guide-hover-actions {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 60;
+    opacity: 0;
+    transition: .2s ease;
+}
 
-/* Раскрывающаяся шторка снизу карточки */
+.guide-card:hover .guide-hover-actions {
+    opacity: 1;
+}
+
+.guide-card.active .guide-hover-actions {
+    display: none !important;
+}
+
+.guide-icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border: none;
+    border-radius: 14px;
+    background: rgba(140, 140, 160, 0.85) !important;
+    backdrop-filter: blur(4px);
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease;
+    text-decoration: none;
+}
+
+.guide-icon-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: white;
+    stroke-width: 2;
+    fill: none;
+}
+
+.guide-icon-btn:hover {
+    background: rgba(120, 95, 140, 0.95);
+    transform: scale(1.05);
+}
+
+/* --- РАСКРЫТАЯ ПЛАШКА (ВЫХОДИТ ЗА ПРЕДЕЛЫ КАРТОЧКИ) --- */
 .guide-expanded {
-    position: absolute; top: 95%; left: 0; width: 100%; z-index: 100;
-    background: rgba(0, 19, 36, 0.7);
-    backdrop-filter: blur(15px);
-    border-radius: 0 0 24px 24px; padding: 20px; display: none;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); box-sizing: border-box;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 20px 20px 25px 20px;
+    box-sizing: border-box;
+    background: rgba(0, 19, 36, 0.5);
+    backdrop-filter: blur(20px);
+    border-radius: 0 0 24px 24px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-top: none;
+    z-index: 1000;
+    animation: fadeIn 0.25s ease;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
 }
-.guide-card.active .guide-expanded { display: block; }
-.guide-detail-actions { display: flex; gap: 10px; margin-bottom: 15px; }
 
-/* Внутренний скролл для длинного текста в карточке */
+.guide-card.active .guide-expanded {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- СТРЕЛОЧКИ --- */
+.guide-card.active .guide-nav-arrows {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    right: 20px;
+    z-index: 70;
+    pointer-events: none;
+}
+
+.guide-nav-arrow {
+    pointer-events: auto;
+    background: rgba(0,0,0,0.3);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.guide-nav-arrow:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.guide-nav-arrows { display: none; }
+
+/* --- ТЕКСТ ВНУТРИ --- */
 .guide-info {
-    max-height: 180px;
     overflow-y: auto;
-    padding-right: 10px;
+    max-height: 150px;
+    padding-right: 5px;
 }
-.guide-info p { margin-bottom: 8px; font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.4; }
-.guide-info::-webkit-scrollbar { width: 4px; }
-.guide-info::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 4px; }
 
-.empty-favorites { background: rgba(255,255,255,0.08); border-radius: 24px; padding: 50px; text-align: center; font-size: 30px; color: rgba(255,255,255,0.8); backdrop-filter: blur(10px); }
+.guide-info p {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.4;
+}
+
+.guide-info p strong {
+    color: rgba(255,255,255,0.6);
+    font-weight: 400;
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+.guide-info::-webkit-scrollbar { width: 4px; }
+.guide-info::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+
+.empty-favorites { background: rgba(200,200,200,0.4); border-radius: 24px; padding: 50px; text-align: center; font-size: 24px; color: #555; }
 
 /* =========================================
-   АДАПТИВНОСТЬ (МОБИЛЬНЫЕ И ПЛАНШЕТЫ)
+   ДЛЯ СТРАНИЦ С КНОПКАМИ (Путеводитель, Избранное)
 ========================================= */
+.page.has-actions .guide-card.active .guide-card-title {
+    display: none !important;
+}
+
+/* =========================================
+   ДЛЯ СТРАНИЦ БЕЗ КНОПОК (События)
+========================================= */
+.page:not(.has-actions) .guide-card.active .guide-card-title {
+    color: white !important;
+    display: block !important;
+}
+
+
+/* =========================================
+   КНОПКИ ВМЕСТО ЗАГОЛОВКА (для has-actions)
+========================================= */
+
+/* По умолчанию кнопки скрыты */
+.guide-card-actions {
+    display: none;
+    gap: 12px;
+    margin-top: 15px;
+    justify-content: flex-start; /* Сдвигаем влево */
+    padding-left: 5px;
+    width: 100%;
+}
+
+/* При раскрытии карточки — скрываем заголовок и показываем кнопки */
+.page.has-actions .guide-card.active .guide-card-title {
+    display: none !important;
+}
+
+.page.has-actions .guide-card.active .guide-card-actions {
+    display: flex !important;
+}
+
+/* =========================================
+   АДАПТИВНОСТЬ
+========================================= */
+
+@media (max-width: 1200px) {
+    .events-grid, .guide-grid, .favorites-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    }
+}
+
 @media (max-width: 992px) {
-  .events-grid, .guide-grid, .favorites-grid { gap: 30px; }
+    .events-grid, .guide-grid, .favorites-grid {
+        gap: 20px;
+    }
 }
 
 @media (max-width: 768px) {
-  /* Принудительный нативный скролл */
-  .page, html, body { overflow-y: visible !important; height: auto !important; }
+    /* Отключаем скролл внутри грида на мобилках */
+    .events-grid, .guide-grid, .favorites-grid {
+        max-height: none !important;
+        overflow-y: visible !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        padding-right: 0;
+        padding-bottom: 20px;
+    }
 
-  /* ВКЛАДКИ РЯДОМ ДРУГ С ДРУГОМ */
-  .search-tabs { flex-direction: row; gap: 8px; margin-bottom: 15px;}
-  .search-tab-btn { padding: 12px 10px; border-radius: 16px; }
-  .tab-text { font-size: 12px; line-height: 1.2; }
-  .funnel-icon { width: 20px; height: 20px; }
+    /* Верхняя панель */
+    .search-tabs {
+        flex-direction: row;
+        gap: 8px;
+        margin-bottom: 15px;
+    }
 
+    .search-tab-btn {
+        padding: 12px 10px;
+        border-radius: 16px;
+    }
 
-  .guide-filter-popup {
+    .funnel-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .search-field {
+        font-size: 13px !important;
+        padding: 6px;
+    }
+
+    /* Попап фильтров */
+    .guide-filter-popup {
         position: fixed !important;
-
         top: 50% !important;
         left: 50% !important;
-        right: auto !important;
-
         transform: translate(-50%, -50%) !important;
-
         width: calc(100vw - 32px) !important;
         max-width: 320px !important;
-
         padding: 16px !important;
-
         border-radius: 20px !important;
-
         max-height: 75vh !important;
         overflow-y: auto !important;
-
         z-index: 99999 !important;
     }
 
-    #filterPopupObjects,
-    #filterPopupTours {
+    #filterPopupObjects, #filterPopupTours {
         left: 50% !important;
         right: auto !important;
     }
 
-  /* СЕТКА: СТРОГО 2 КОЛОНКИ ДЛЯ ТЕЛЕФОНА */
-  .events-grid, .guide-grid, .favorites-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
-      gap: 10px;
-  }
+    /* Базовая карточка */
+    .guide-card {
+        min-height: 180px;
+        border-radius: 16px 16px 0 0;
+        padding: 10px;
+    }
 
-  /* КАРТОЧКИ: уменьшаем для мобильных */
-  .guide-image { height: 130px; border-radius: 16px 16px 0 0; }
-  .guide-card { border-radius: 16px; }
-  .guide-card-title { font-size: 13px; padding: 10px 5px; line-height: 1.3;}
+    .guide-image-wrapper {
+        height: 110px;
+        border-radius: 12px;
+    }
 
-  /* Иконки действий внутри картинки */
-  .guide-hover-actions { top: 8px; right: 8px; gap: 5px; }
-  .guide-icon-btn svg { width: 34px !important; height: 34px !important; }
+    .guide-card-title {
+        font-size: 13px;
+        margin-top: 8px;
+        padding: 0 5px;
+        line-height: 1.2;
+    }
 
-  /* Раскрытая информация (встраиваем в поток, чтобы не обрезалась снизу) */
-  .guide-expanded {
-      border-radius: 0 0 16px 16px;
-      padding: 12px;
-      box-shadow: none;
-      margin-top: 0;
-  }
-  .guide-info { max-height: 160px; font-size: 12px; }
-  .guide-info p { font-size: 12px; }
-  .guide-card.active { z-index: 50; }
+    /* ====== КНОПКИ В УГЛУ (только для has-actions) ====== */
+    .page.has-actions .guide-hover-actions {
+        display: flex !important;
+        position: absolute;
+        top: 10px; /* Отступ от верхнего края карточки */
+        justify-content: space-between; /* Разносим по углам */
+        margin-top: 0 !important;
+        z-index: 100;
+    }
+
+    .page.has-actions .guide-icon-btn {
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 10px !important;
+        background: rgba(140, 140, 160, 0.85) !important;
+    }
+
+    .page.has-actions .guide-icon-btn svg {
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    /* ====== РАСКРЫТАЯ КАРТОЧКА ====== */
+    .guide-card.active {
+        z-index: 999 !important;
+        background: rgba(0, 19, 36, 0.5) !important;
+        backdrop-filter: blur(20px) !important;
+        padding: 10px 10px 8px 10px;
+        border-radius: 16px 16px 0 0;
+        min-height: 160px;
+    }
+
+    .guide-card.active .guide-image-wrapper {
+        height: 120px;
+    }
+
+    .guide-card.active .guide-hover-actions {
+        display: none !important;
+    }
+
+    .guide-card.active .guide-nav-arrows {
+        top: 12px;
+        left: 8px;
+        right: 8px;
+    }
+
+    /* ====== НАЗВАНИЕ ПРИ РАСКРЫТИИ ====== */
+    /* Для страниц с кнопками — скрываем */
+    .page.has-actions .guide-card.active .guide-card-title {
+        display: none !important;
+    }
+
+    /* Для страниц без кнопок — делаем белым */
+    .page:not(.has-actions) .guide-card.active .guide-card-title {
+        color: white !important;
+        display: block !important;
+    }
+
+    /* ====== РАСКРЫТАЯ ПЛАШКА ====== */
+    .guide-expanded {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 15px 15px 20px 15px;
+        border-radius: 0 0 16px 16px;
+        background: rgba(0, 19, 36, 0.5);
+        backdrop-filter: blur(20px);
+        z-index: 1000;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    }
+
+    .guide-info {
+        max-height: 120px;
+    }
+
+    .guide-info p {
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+
+    .guide-info p strong {
+        font-size: 10px;
+    }
+
+    .page.has-actions .guide-card.active .guide-card-actions {
+        display: flex !important;
+        top: 10px; /* Отступ от верхнего края карточки */
+        justify-content: space-between; /* Разносим по углам */
+        margin-top: 0 !important;
+        z-index: 100;
+    }
+
+}
+
+@media (max-width: 420px) {
+    .guide-card {
+        min-height: 140px;
+        padding: 8px;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .guide-image-wrapper {
+        height: 90px;
+        border-radius: 10px;
+    }
+
+    .guide-card-title {
+        font-size: 11px;
+        margin-top: 6px;
+    }
+
+    .page.has-actions .guide-icon-btn {
+        width: 28px !important;
+        height: 28px !important;
+        border-radius: 8px !important;
+    }
+
+    .page.has-actions .guide-icon-btn svg {
+        width: 14px !important;
+        height: 14px !important;
+    }
+
+    .guide-card.active {
+        padding: 8px;
+        min-height: 130px;
+    }
+
+    .guide-card.active .guide-image-wrapper {
+        height: 100px;
+    }
+
+    .guide-expanded {
+        padding: 12px 12px 16px 12px;
+    }
+
+    .guide-info p {
+        font-size: 11px;
+    }
 }

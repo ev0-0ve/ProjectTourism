@@ -453,21 +453,67 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // === 4. РАСКРЫТИЕ КАРТОЧКИ ===
-    const allCards = document.querySelectorAll('.guide-card');
-    allCards.forEach(card => {
-        card.addEventListener('click', function(e) {
-            // Если кликнули на SVG кнопки (добавить в тур/избранное) - не раскрываем
-            if (e.target.closest('.guide-icon-btn') || e.target.closest('.guide-icon-btn-low')) {
-                return;
-            }
-            // Закрываем остальные
-            allCards.forEach(c => {
-                if(c !== this) c.classList.remove('active');
-            });
-            // Переключаем текущую
-            this.classList.toggle('active');
+    // === 4. РАСКРЫТИЕ КАРТОЧЕК ===
+    function initCardToggle(containerSelector) {
+        const container = document.querySelector(containerSelector);
+        if (!container) return;
+
+        const cards = container.querySelectorAll('.guide-card');
+
+        cards.forEach(card => {
+            // Убираем все старые обработчики
+            card.removeEventListener('click', card._clickHandler);
+
+            // Создаем новый обработчик
+            card._clickHandler = function(e) {
+                // Не раскрываем при клике на кнопки и стрелки
+                if (e.target.closest('.guide-icon-btn') || e.target.closest('.guide-nav-arrow')) {
+                    return;
+                }
+
+                // Закрываем все остальные карточки в этом же контейнере
+                cards.forEach(c => {
+                    if (c !== this) {
+                        c.classList.remove('active');
+                    }
+                });
+
+                // Переключаем текущую
+                this.classList.toggle('active');
+            };
+
+            card.addEventListener('click', card._clickHandler);
         });
+    }
+
+    // Инициализация для каждой страницы (ВНЕ document.addEventListener)
+    // Для Путеводителя
+    const guideGrid = document.getElementById('guideGridObjects');
+    if (guideGrid) {
+        initCardToggle('#guideGridObjects');
+    }
+
+    // Для Избранного
+    const favoritesGrid = document.querySelector('.favorites-grid');
+    if (favoritesGrid) {
+        initCardToggle('.favorites-grid');
+    }
+
+    // Для Событий (если нет guideGridObjects, но есть guide-grid)
+    if (!document.getElementById('guideGridObjects')) {
+        const eventsGrid = document.querySelector('.guide-grid');
+        if (eventsGrid) {
+            initCardToggle('.guide-grid');
+        }
+    }
+
+    // Закрытие карточек при клике вне их
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.guide-card')) {
+            document.querySelectorAll('.guide-card.active').forEach(c => {
+                c.classList.remove('active');
+            });
+        }
     });
 
     // ======================================

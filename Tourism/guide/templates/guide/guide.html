@@ -5,20 +5,24 @@
 {% block body_class %}{% endblock %}
 
 {% block content %}
-<div class="page">
+<div class="page has-actions">
     <h1 class="text-center mb-4">Путеводитель</h1>
 
     <div class="guide-top-bar">
         <div class="search-tabs">
             <button class="search-tab-btn active" id="searchObjectsBtn">
-                <span class="tab-text">Искать среди объектов</span>
+                <div class="search-input-wrapper">
+                    <input type="text" class="search-field" id="searchObjectsInput" placeholder="Искать среди объектов">
+                </div>
                 <svg class="funnel-icon" id="filterToggleObjects" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
                 </svg>
             </button>
-
+        
             <button class="search-tab-btn" id="searchToursBtn">
-                <span class="tab-text">Искать среди готовых туров</span>
+                <div class="search-input-wrapper">
+                    <input type="text" class="search-field" id="searchToursInput" placeholder="Искать среди готовых туров">
+                </div>
                 <svg class="funnel-icon" id="filterToggleTours" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
                 </svg>
@@ -108,31 +112,50 @@
             {% for place in places %}
             <div class="guide-card" data-category="{{ place.category }}" data-price="{{ place.price|default:'0' }}">
                 <div class="guide-image-wrapper">
-                    <img src="{{ place.image.url }}" class="guide-image">
+                    <img src="{{ place.image.url }}" class="guide-image" alt="{{ place.title }}">
+                    <div class="guide-nav-arrows">
+                        <div class="guide-nav-arrow">&lt;</div>
+                        <div class="guide-nav-arrow">&gt;</div>
+                    </div>
                     <div class="guide-hover-actions">
-                        <a href="{% url 'add_favorite' place.id %}" class="btn-more guide-icon-btn">
-                            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M63.3334 70L40.0001 53.3333L16.6667 70V16.6667C16.6667 14.8986 17.3691 13.2029 18.6194 11.9526C19.8696 10.7024 21.5653 10 23.3334 10H56.6667C58.4349 10 60.1305 10.7024 61.3808 11.9526C62.631 13.2029 63.3334 14.8986 63.3334 16.6667V70Z" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        <a href="{% url 'add_favorite' place.id %}" class="guide-icon-btn" title="В избранное">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 21L12 16L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                         </a>
-                        <a href="{% url 'add_to_tour' place.id %}" class="btn-more guide-icon-btn">
-                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M30 27.5V42.5M22.5 35H37.5M55 47.5C55 48.8261 54.4732 50.0978 53.5355 51.0355C52.5979 51.9732 51.3261 52.5 50 52.5H10C8.67392 52.5 7.40215 51.9732 6.46447 51.0355C5.52678 50.0978 5 48.8261 5 47.5V12.5C5 11.1739 5.52678 9.90215 6.46447 8.96447C7.40215 8.02678 8.67392 7.5 10 7.5H22.5L27.5 15H50C51.3261 15 52.5979 15.5268 53.5355 16.4645C54.4732 17.4021 55 18.6739 55 20V47.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <a href="{% url 'add_to_tour' place.id %}" class="guide-icon-btn" title="В тур">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 10V17M8.5 13.5H15.5M22 19C22 19.5304 21.7893 20.0391 21.4142 20.4142C21.0391 20.7893 20.5304 21 20 21H4C3.46957 21 2.96086 20.7893 2.58579 20.4142C2.21071 20.0391 2 19.5304 2 19V5C2 4.46957 2.21071 3.96086 2.58579 3.58579C2.96086 3.21071 3.46957 3 4 3H9L11 6H20C20.5304 6 21.0391 6.21071 21.4142 6.58579C21.7893 6.96086 22 7.46957 22 8V19Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                         </a>
                     </div>
                 </div>
 
-                <div class="guide-card-title">
-                    {{ place.title }}
+                <!-- ===== ЭТО ЗАГОЛОВОК — ВИДЕН ВСЕГДА, НО ПРИ РАСКРЫТИИ СКРЫВАЕТСЯ ===== -->
+                <div class="guide-card-title">{{ place.title }}</div>
+
+                <!-- ===== ЭТО КНОПКИ ВМЕСТО ЗАГОЛОВКА — ПОКАЗЫВАЮТСЯ ПРИ РАСКРЫТИИ ===== -->
+                <div class="guide-card-actions">
+                    <a href="{% url 'add_favorite' place.id %}" class="guide-icon-btn" title="В избранное">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 21L12 16L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <a href="{% url 'add_to_tour' place.id %}" class="guide-icon-btn" title="В тур">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 10V17M8.5 13.5H15.5M22 19C22 19.5304 21.7893 20.0391 21.4142 20.4142C21.0391 20.7893 20.5304 21 20 21H4C3.46957 21 2.96086 20.7893 2.58579 20.4142C2.21071 20.0391 2 19.5304 2 19V5C2 4.46957 2.21071 3.96086 2.58579 3.58579C2.96086 3.21071 3.46957 3 4 3H9L11 6H20C20.5304 6 21.0391 6.21071 21.4142 6.58579C21.7893 6.96086 22 7.46957 22 8V19Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
                 </div>
 
+                <!-- ===== РАСКРЫТАЯ ЧАСТЬ С ИНФОРМАЦИЕЙ ===== -->
                 <div class="guide-expanded">
-                    <div class="guide-info custom-scroll">
-                        <p><strong>Стоимость:</strong> {{ place.price }}</p>
-                        <p><strong>Адрес:</strong> {{ place.address }}</p>
-                        <p><strong>Часы работы:</strong> {{ place.work_time }}</p>
-                        <p>{{ place.short_description }}</p>
+                    <div class="guide-info">
+                        <p><strong>Название</strong><br>{{ place.title }}</p>
+                        <p><strong>Стоимость</strong><br>{{ place.price|default:"Не указана" }}</p>
+                        <p><strong>Адрес</strong><br>{{ place.address|default:"Не указан" }}</p>
+                        <p><strong>Часы работы</strong><br>{{ place.work_time|default:"Не указаны" }}</p>
+                        <p><strong>Описание</strong><br>{{ place.short_description|default:"Нет описания" }}</p>
                     </div>
                 </div>
             </div>
@@ -148,4 +171,42 @@
     </div>
 
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Поиск
+    const searchObjectsInput = document.getElementById('searchObjectsInput');
+    function filterObjects() {
+        const query = searchObjectsInput.value.toLowerCase().trim();
+        const cards = document.querySelectorAll('#guideGridObjects .guide-card');
+        cards.forEach(card => {
+            const title = card.querySelector('.guide-card-title').innerText.toLowerCase();
+            card.style.display = title.includes(query) ? 'block' : 'none';
+        });
+    }
+    searchObjectsInput.addEventListener('input', filterObjects);
+
+    // Вкладки
+    const btnObjects = document.getElementById('searchObjectsBtn');
+    const btnTours = document.getElementById('searchToursBtn');
+    const contentObjects = document.getElementById('objects-content');
+    const contentTours = document.getElementById('tours-content');
+
+    btnObjects.addEventListener('click', function(e) {
+        if (e.target.closest('.funnel-icon')) return;
+        this.classList.add('active');
+        btnTours.classList.remove('active');
+        contentObjects.style.display = 'block';
+        contentTours.style.display = 'none';
+        searchObjectsInput.value = '';
+        filterObjects();
+    });
+    btnTours.addEventListener('click', function(e) {
+        if (e.target.closest('.funnel-icon')) return;
+        this.classList.add('active');
+        btnObjects.classList.remove('active');
+        contentObjects.style.display = 'none';
+        contentTours.style.display = 'block';
+    });
+});
+</script>
 {% endblock %}

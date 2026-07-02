@@ -4,19 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="2.1. Адаптивность (страница Собери тур по макету: нет попапа, переход на страницу новую) (медиа 768px)">
+    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="2.1. Адаптивность (страница Профиль по макету: готова карта, нет поиска, нет попапа, переход на страницу новую) (медиа 768px)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/favorites/templates/favorites/favorites.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/favorites/templates/favorites/favorites.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/guide/templates/guide/guide.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/guide/templates/guide/guide.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/base.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/guide-favorites-events.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/guide-favorites-events.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/tours.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/tours.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/ui-kit.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/ui-kit.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/tours/templates/tours/create_tour.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/tours/templates/tours/create_tour.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -363,7 +359,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782411731025</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="2.1. Адаптивность (страница Профиль по макету: готова карта, нет поиска, нет попапа, переход на страницу новую) (медиа 768px)">
+      <option name="closed" value="true" />
+      <created>1782453604368</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1782453604368</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -404,6 +408,7 @@
     <MESSAGE value="1.5. Поправлены стили по Figma страницы Собери тур, заметки в Профиле, (? поправить остальные страницы, распределить css и js)" />
     <MESSAGE value="Revert &quot;2.1. Адаптивность (страница Собери тур по макету: нет попапа, переход на страницу новую) (медиа 768px)&quot;&#10;&#10;This reverts commit 88e6e696f9a68b152c84dfec37f55165a86263de." />
     <MESSAGE value="2.1. Адаптивность (страница Собери тур по макету: нет попапа, переход на страницу новую) (медиа 768px)" />
-    <option name="LAST_COMMIT_MESSAGE" value="2.1. Адаптивность (страница Собери тур по макету: нет попапа, переход на страницу новую) (медиа 768px)" />
+    <MESSAGE value="2.1. Адаптивность (страница Профиль по макету: готова карта, нет поиска, нет попапа, переход на страницу новую) (медиа 768px)" />
+    <option name="LAST_COMMIT_MESSAGE" value="2.1. Адаптивность (страница Профиль по макету: готова карта, нет поиска, нет попапа, переход на страницу новую) (медиа 768px)" />
   </component>
 </project>
