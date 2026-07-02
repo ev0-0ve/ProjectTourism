@@ -77,7 +77,6 @@ html, body {
 }
 
 .search-tab-btn.active { background: #6D6A85; color: white; }
-.search-tab-btn:hover, .search-tab-btn.active { box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
 
 .funnel-icon { width: 24px; height: 24px; opacity: 0.9; cursor: pointer; }
 .funnel-icon:hover { transform: scale(1.1); }
@@ -189,7 +188,7 @@ html, body {
 /* --- КОГДА КАРТОЧКА РАСКРЫТА --- */
 .guide-card.active {
     z-index: 999 !important;
-    background: rgba(0, 19, 36, 0.5) !important;
+    background: rgba(0, 19, 36, 0.8) !important;
     backdrop-filter: blur(20px) !important;
     min-height: 240px;
     border-radius: 24px 24px 0 0;
@@ -285,14 +284,13 @@ html, body {
     width: 100%;
     padding: 20px 20px 25px 20px;
     box-sizing: border-box;
-    background: rgba(0, 19, 36, 0.5);
     backdrop-filter: blur(20px);
+    background: rgba(0, 19, 36, 0.8);
     border-radius: 0 0 24px 24px;
     border: 1px solid rgba(255,255,255,0.1);
     border-top: none;
     z-index: 1000;
     animation: fadeIn 0.25s ease;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
 }
 
 .guide-card.active .guide-expanded {
@@ -319,7 +317,6 @@ html, body {
 
 .guide-nav-arrow {
     pointer-events: auto;
-    background: rgba(0,0,0,0.3);
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -434,6 +431,7 @@ html, body {
     }
 
     /* Верхняя панель */
+/* Вкладки */
     .search-tabs {
         flex-direction: row;
         gap: 8px;
@@ -441,18 +439,68 @@ html, body {
     }
 
     .search-tab-btn {
-        padding: 12px 10px;
-        border-radius: 16px;
+        padding: 8px 12px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        position: relative;
     }
 
-    .funnel-icon {
-        width: 20px;
-        height: 20px;
+    .search-input-wrapper {
+        flex-grow: 1; /* Растягивает поле ввода */
+        display: flex;
+        align-items: center;
+        position: relative; /* Важно для 2-строчного плейсхолдера */
     }
 
     .search-field {
         font-size: 13px !important;
-        padding: 6px;
+        padding: 0;
+        width: 100%;
+        background: transparent;
+        text-align: left !important;
+    }
+
+    /* Прячем оригинальный 1-строчный плейсхолдер на мобилках */
+    .search-field::placeholder {
+        color: transparent !important;
+    }
+
+    /* Рисуем наш 2-строчный плейсхолдер через псевдоэлемент */
+    .search-input-wrapper::before {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        color: rgba(255, 255, 255, 0.7); /* Цвет как у плейсхолдера */
+        font-size: 11px;
+        line-height: 1.2;
+        text-align: left;
+        white-space: pre-wrap; /* Включаем переносы строк */
+        pointer-events: none; /* Чтобы клики проходили сквозь него в инпут */
+        transition: opacity 0.2s ease;
+    }
+
+    /* Задаем текст. Символ \A — это перенос на новую строку в CSS */
+    #searchObjectsBtn .search-input-wrapper::before {
+        content: "Искать среди\Aобъектов";
+    }
+
+    #searchToursBtn .search-input-wrapper::before {
+        content: "Искать среди\Aготовых туров";
+    }
+
+    /* МАГИЯ: Скрываем наш плейсхолдер, если поле в фокусе или в нём есть текст */
+    .search-input-wrapper:has(.search-field:focus)::before,
+    .search-input-wrapper:has(.search-field:not(:placeholder-shown))::before {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .funnel-icon {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
     }
 
     /* Попап фильтров */
@@ -497,18 +545,24 @@ html, body {
     /* ====== КНОПКИ В УГЛУ (только для has-actions) ====== */
     .page.has-actions .guide-hover-actions {
         display: flex !important;
+        opacity: 1 !important; /* Делаем всегда видимыми на мобилке */
         position: absolute;
-        top: 10px; /* Отступ от верхнего края карточки */
-        justify-content: space-between; /* Разносим по углам */
+        top: 8px;
+        left: 8px;   /* Привязка к левому краю */
+        right: 8px;  /* Привязка к правому краю */
+        flex-direction: row;
+        justify-content: space-between; /* Расталкиваем кнопки по углам */
         margin-top: 0 !important;
         z-index: 100;
+        pointer-events: none; /* Пропускаем клики сквозь пустую область между кнопками */
     }
 
     .page.has-actions .guide-icon-btn {
-        width: 36px !important;
-        height: 36px !important;
-        border-radius: 10px !important;
-        background: rgba(140, 140, 160, 0.85) !important;
+        pointer-events: auto; /* Включаем клики обратно для самих кнопок */
+        border-radius: 21px !important;
+        width: 35px !important;
+        height: 35px !important;
+        background: rgba(109, 106, 133, 0.85) !important;
     }
 
     .page.has-actions .guide-icon-btn svg {
@@ -519,7 +573,7 @@ html, body {
     /* ====== РАСКРЫТАЯ КАРТОЧКА ====== */
     .guide-card.active {
         z-index: 999 !important;
-        background: rgba(0, 19, 36, 0.5) !important;
+        background: rgba(0, 19, 36, 0.8) !important;
         backdrop-filter: blur(20px) !important;
         padding: 10px 10px 8px 10px;
         border-radius: 16px 16px 0 0;
@@ -560,10 +614,9 @@ html, body {
         width: 100%;
         padding: 15px 15px 20px 15px;
         border-radius: 0 0 16px 16px;
-        background: rgba(0, 19, 36, 0.5);
+        background: rgba(0, 19, 36, 0.8);
         backdrop-filter: blur(20px);
         z-index: 1000;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.4);
     }
 
     .guide-info {
@@ -604,17 +657,6 @@ html, body {
     .guide-card-title {
         font-size: 11px;
         margin-top: 6px;
-    }
-
-    .page.has-actions .guide-icon-btn {
-        width: 28px !important;
-        height: 28px !important;
-        border-radius: 8px !important;
-    }
-
-    .page.has-actions .guide-icon-btn svg {
-        width: 14px !important;
-        height: 14px !important;
     }
 
     .guide-card.active {

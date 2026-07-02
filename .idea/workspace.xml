@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="2.1. Адаптивность (страница Профиль по макету: готова карта, нет поиска, нет попапа, переход на страницу новую) (медиа 768px)">
+    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="2.3. Добавления поиска (не совсем корректный для мобилок), поправить кнопки в адаптиве">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/favorites/templates/favorites/favorites.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/favorites/templates/favorites/favorites.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/guide/templates/guide/guide.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/guide/templates/guide/guide.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/base.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/guide-favorites-events.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/guide-favorites-events.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/ui-kit.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/ui-kit.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/js/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -367,7 +361,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782453604368</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="2.3. Добавления поиска (не совсем корректный для мобилок), поправить кнопки в адаптиве">
+      <option name="closed" value="true" />
+      <created>1782976823885</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1782976823885</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -409,6 +411,7 @@
     <MESSAGE value="Revert &quot;2.1. Адаптивность (страница Собери тур по макету: нет попапа, переход на страницу новую) (медиа 768px)&quot;&#10;&#10;This reverts commit 88e6e696f9a68b152c84dfec37f55165a86263de." />
     <MESSAGE value="2.1. Адаптивность (страница Собери тур по макету: нет попапа, переход на страницу новую) (медиа 768px)" />
     <MESSAGE value="2.1. Адаптивность (страница Профиль по макету: готова карта, нет поиска, нет попапа, переход на страницу новую) (медиа 768px)" />
-    <option name="LAST_COMMIT_MESSAGE" value="2.1. Адаптивность (страница Профиль по макету: готова карта, нет поиска, нет попапа, переход на страницу новую) (медиа 768px)" />
+    <MESSAGE value="2.3. Добавления поиска (не совсем корректный для мобилок), поправить кнопки в адаптиве" />
+    <option name="LAST_COMMIT_MESSAGE" value="2.3. Добавления поиска (не совсем корректный для мобилок), поправить кнопки в адаптиве" />
   </component>
 </project>
