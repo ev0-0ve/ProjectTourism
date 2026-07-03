@@ -196,12 +196,6 @@
 ========================================= */
 
 @media (max-width: 768px) {
-
-    .page {
-        padding-inline: 16px;
-        padding-top: 16px;
-    }
-
     .tour-layout {
         display: flex;
         flex-direction: column;

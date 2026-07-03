@@ -143,10 +143,7 @@ body.no-scroll {
     overflow: hidden;
 }
 
-.logo-short { display: none; }
-.side-wrapper.collapsed .sidebar-logo { width: 72px; height: 72px; border-radius: 50%; }
-.side-wrapper.collapsed .logo-full { display: none; }
-.side-wrapper.collapsed .logo-short { display: block; }
+
 
 .side-panel {
   position: relative;
@@ -168,16 +165,10 @@ body.no-scroll {
   box-shadow: 0 12px 34px rgba(3, 6, 12, 0.5);
   box-sizing: border-box;
 }
-
-.side-panel.collapsed { width: 72px; padding: 18px 8px; border-radius: 40px; }
-.side-panel.collapsed .nav,
-.side-panel.collapsed .side-username,
-.side-panel.collapsed .auth-block { opacity: 0; pointer-events: none; display: none; }
-.side-panel.collapsed .avatar { width: 56px; height: 56px; font-size: 18px; border-width: 4px; }
-
+/* Базовые элементы, которые должны быть доступны всегда */
 .side-panel .nav { margin-top: 8px; display: flex; gap: 1%; width: 100%; align-items: center; }
 .side-panel .nav a { color: rgba(255, 255, 255, 1); text-decoration: none; font-size: 20px; width: 100%; text-align: center; padding: 6px 8px; }
-.side-panel.collapsed .nav { opacity: 0; transform: translateX(8px); pointer-events: none; height: 1px; }
+.logo-short { display: none; }
 
 .side-toggle {
   margin-top: auto;
@@ -195,6 +186,21 @@ body.no-scroll {
 }
 
 .sidebar-decor-footer { margin-top: auto; padding-top: 15px; width: 100%; display: flex; justify-content: center; }
+
+/* === ИЗОЛЯЦИЯ: Стили свернутой панели ТОЛЬКО для ПК === */
+@media (min-width: 769px) {
+  .side-panel.collapsed { width: 72px; padding: 18px 8px; border-radius: 40px; }
+  .side-panel.collapsed .nav,
+  .side-panel.collapsed .side-username,
+  .side-panel.collapsed .auth-block { opacity: 0; pointer-events: none; display: none; }
+  .side-panel.collapsed .avatar { width: 56px; height: 56px; font-size: 18px; border-width: 4px; }
+  .side-panel.collapsed .nav { opacity: 0; transform: translateX(8px); pointer-events: none; height: 1px; }
+
+  .side-wrapper.collapsed .sidebar-logo { width: 72px; height: 72px; border-radius: 50%; }
+  .side-wrapper.collapsed .logo-full { display: none; }
+  .side-wrapper.collapsed .logo-short { display: block; }
+}
+
 .decor-hamburger { width: 28px; display: flex; flex-direction: column; gap: 4px; opacity: 0.4; }
 .decor-hamburger span { display: block; width: 100%; height: 2px; background: white; border-radius: 1px; }
 
@@ -320,6 +326,8 @@ body.no-scroll {
 
         box-sizing: border-box;
     }
+
+    .side-wrapper.collapsed .sidebar-logo { width: 73px; height: 43px; border-radius: 777px; }
 
     .side-panel.mobile-open {
         opacity: 1;
