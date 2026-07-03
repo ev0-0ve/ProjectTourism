@@ -76,7 +76,7 @@
             {% else %}
             <div class="auth-block">
                 {% block auth_content %}
-                <h2 class="auth-title">Ваш Туризм</h2>
+                <h2 class="auth-title">Добро пожаловать!</h2>
                 <hr style="width: 80%; border-color: rgba(255,255,255,0.1); margin: 0 auto 40px auto;">
                 <nav class="nav">
                     <a href="{% url 'login' %}" class="auth-link">Войти</a>
@@ -101,6 +101,22 @@
             </button>
         </aside>
     </aside>
+</div>
+
+<!-- Toast-уведомление для неавторизованных -->
+<div class="toast-notification" id="authToast">
+    <div class="toast-content">
+        <div class="toast-icon">🔒</div>
+        <div class="toast-message">
+            <h4>Требуется авторизация</h4>
+            <p>Войдите или зарегистрируйтесь, чтобы продолжить</p>
+        </div>
+        <div class="toast-actions">
+            <a href="{% url 'login' %}" class="toast-btn toast-btn-primary">Войти</a>
+            <a href="{% url 'register' %}" class="toast-btn toast-btn-secondary">Регистрация</a>
+        </div>
+        <button class="toast-close" id="closeAuthToast">✕</button>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

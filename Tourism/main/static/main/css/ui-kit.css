@@ -43,12 +43,11 @@
   font-size: 20px; font-weight: 500; color: var(--text-light);
   background: rgba(109, 96, 138, 0.74); border: none; border-radius: 22px;
   text-decoration: none; backdrop-filter: blur(15px);
-  box-shadow: 0 8px 18px rgba(10, 12, 16, 0.45);
   transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
   cursor: pointer;
   box-sizing: border-box;
 }
-.btn-large:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(6, 8, 12, 0.55); background: rgba(109, 96, 138, 0.74); }
+.btn-large:hover { transform: translateY(-4px); }
 
 .btn-side {
   display: inline-flex; align-items: center; justify-content: center;
@@ -215,7 +214,7 @@
     box-sizing: border-box;
     transition: .2s ease;
 }
-.guide-search:focus { background: rgba(16, 28, 36, 0.85); box-shadow: 0 0 0 2px rgba(120,95,140,0.4), 0 10px 30px rgba(0,0,0,0.35); }
+.guide-search:focus { background: rgba(16, 28, 36, 0.85); }
 
 .tour-rename-input {
     flex: 1; height: 48px; border: none; outline: none; border-radius: 16px;
@@ -244,7 +243,6 @@
 .search-tab-btn:hover, .search-tab-btn.active {
     background: #6a6785;
     color: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 /* АДАПТИВНОСТЬ UI-KIT */

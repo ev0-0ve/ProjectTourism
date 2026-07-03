@@ -118,6 +118,38 @@
                         <div class="guide-nav-arrow">&gt;</div>
                     </div>
                     <div class="guide-hover-actions">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'add_favorite' place.id %}" class="guide-icon-btn" title="В избранное">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 21L12 16L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </a>
+                            <a href="{% url 'add_to_tour' place.id %}" class="guide-icon-btn" title="В тур">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 10V17M8.5 13.5H15.5M22 19C22 19.5304 21.7893 20.0391 21.4142 20.4142C21.0391 20.7893 20.5304 21 20 21H4C3.46957 21 2.96086 20.7893 2.58579 20.4142C2.21071 20.0391 2 19.5304 2 19V5C2 4.46957 2.21071 3.96086 2.58579 3.58579C2.96086 3.21071 3.46957 3 4 3H9L11 6H20C20.5304 6 21.0391 6.21071 21.4142 6.58579C21.7893 6.96086 22 7.46957 22 8V19Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </a>
+                        {% else %}
+                            <a href="javascript:void(0)" onclick="showAuthToast(); return false;" class="guide-icon-btn" title="Войдите, чтобы добавить в избранное">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 21L12 16L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </a>
+                            <a href="javascript:void(0)" onclick="showAuthToast(); return false;" class="guide-icon-btn" title="Войдите, чтобы добавить в тур">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 10V17M8.5 13.5H15.5M22 19C22 19.5304 21.7893 20.0391 21.4142 20.4142C21.0391 20.7893 20.5304 21 20 21H4C3.46957 21 2.96086 20.7893 2.58579 20.4142C2.21071 20.0391 2 19.5304 2 19V5C2 4.46957 2.21071 3.96086 2.58579 3.58579C2.96086 3.21071 3.46957 3 4 3H9L11 6H20C20.5304 6 21.0391 6.21071 21.4142 6.58579C21.7893 6.96086 22 7.46957 22 8V19Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- ===== ЭТО ЗАГОЛОВОК — ВИДЕН ВСЕГДА, НО ПРИ РАСКРЫТИИ СКРЫВАЕТСЯ ===== -->
+                <div class="guide-card-title">{{ place.title }}</div>
+
+                <!-- ===== ЭТО КНОПКИ ВМЕСТО ЗАГОЛОВКА — ПОКАЗЫВАЮТСЯ ПРИ РАСКРЫТИИ ===== -->
+                <div class="guide-card-actions">
+                    {% if user.is_authenticated %}
                         <a href="{% url 'add_favorite' place.id %}" class="guide-icon-btn" title="В избранное">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M19 21L12 16L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
@@ -128,24 +160,18 @@
                                 <path d="M12 10V17M8.5 13.5H15.5M22 19C22 19.5304 21.7893 20.0391 21.4142 20.4142C21.0391 20.7893 20.5304 21 20 21H4C3.46957 21 2.96086 20.7893 2.58579 20.4142C2.21071 20.0391 2 19.5304 2 19V5C2 4.46957 2.21071 3.96086 2.58579 3.58579C2.96086 3.21071 3.46957 3 4 3H9L11 6H20C20.5304 6 21.0391 6.21071 21.4142 6.58579C21.7893 6.96086 22 7.46957 22 8V19Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                         </a>
-                    </div>
-                </div>
-
-                <!-- ===== ЭТО ЗАГОЛОВОК — ВИДЕН ВСЕГДА, НО ПРИ РАСКРЫТИИ СКРЫВАЕТСЯ ===== -->
-                <div class="guide-card-title">{{ place.title }}</div>
-
-                <!-- ===== ЭТО КНОПКИ ВМЕСТО ЗАГОЛОВКА — ПОКАЗЫВАЮТСЯ ПРИ РАСКРЫТИИ ===== -->
-                <div class="guide-card-actions">
-                    <a href="{% url 'add_favorite' place.id %}" class="guide-icon-btn" title="В избранное">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 21L12 16L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </a>
-                    <a href="{% url 'add_to_tour' place.id %}" class="guide-icon-btn" title="В тур">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 10V17M8.5 13.5H15.5M22 19C22 19.5304 21.7893 20.0391 21.4142 20.4142C21.0391 20.7893 20.5304 21 20 21H4C3.46957 21 2.96086 20.7893 2.58579 20.4142C2.21071 20.0391 2 19.5304 2 19V5C2 4.46957 2.21071 3.96086 2.58579 3.58579C2.96086 3.21071 3.46957 3 4 3H9L11 6H20C20.5304 6 21.0391 6.21071 21.4142 6.58579C21.7893 6.96086 22 7.46957 22 8V19Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </a>
+                    {% else %}
+                        <a href="javascript:void(0)" onclick="showAuthToast(); return false;" class="guide-icon-btn" title="Войдите, чтобы добавить в избранное">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 21L12 16L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </a>
+                        <a href="javascript:void(0)" onclick="showAuthToast(); return false;" class="guide-icon-btn" title="Войдите, чтобы добавить в тур">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 10V17M8.5 13.5H15.5M22 19C22 19.5304 21.7893 20.0391 21.4142 20.4142C21.0391 20.7893 20.5304 21 20 21H4C3.46957 21 2.96086 20.7893 2.58579 20.4142C2.21071 20.0391 2 19.5304 2 19V5C2 4.46957 2.21071 3.96086 2.58579 3.58579C2.96086 3.21071 3.46957 3 4 3H9L11 6H20C20.5304 6 21.0391 6.21071 21.4142 6.58579C21.7893 6.96086 22 7.46957 22 8V19Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </a>
+                    {% endif %}
                 </div>
 
                 <!-- ===== РАСКРЫТАЯ ЧАСТЬ С ИНФОРМАЦИЕЙ ===== -->

@@ -25,7 +25,6 @@
   border-radius: var(--radius-lg);
   color: var(--text-light);
   backdrop-filter: blur(5px);
-  box-shadow: 0 10px 30px rgba(2, 6, 10, 0.45);
   line-height: 1.5;
   box-sizing: border-box;
 }
@@ -56,7 +55,6 @@
   backdrop-filter: blur(5px);
   color: var(--muted);
   font-size: 13px;
-  box-shadow: 0 8px 18px rgba(2, 6, 10, 0.35);
   box-sizing: border-box;
 }
 

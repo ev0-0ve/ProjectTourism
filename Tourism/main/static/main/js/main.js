@@ -6,6 +6,33 @@ function toggleEdit(show) {
     editElems.forEach(el => el.style.setProperty('display', show ? 'block' : 'none', 'important'));
 }
 
+// ============================================
+// TOAST / УВЕДОМЛЕНИЕ ДЛЯ НЕАВТОРИЗОВАННЫХ (ГЛОБАЛЬНЫЕ ФУНКЦИИ)
+// ============================================
+
+// Функция для показа уведомления
+window.showAuthToast = function() {
+    const toast = document.getElementById('authToast');
+    if (toast) {
+        toast.classList.add('active');
+
+        // Автоматическое скрытие через 8 секунд
+        clearTimeout(toast._hideTimeout);
+        toast._hideTimeout = setTimeout(function() {
+            window.hideAuthToast();
+        }, 8000);
+    }
+};
+
+// Функция для скрытия уведомления
+window.hideAuthToast = function() {
+    const toast = document.getElementById('authToast');
+    if (toast) {
+        toast.classList.remove('active');
+        clearTimeout(toast._hideTimeout);
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function() {
 
     // --- Вспомогательная функция: Получение CSRF токена ---
@@ -612,21 +639,45 @@ document.addEventListener('DOMContentLoaded', function() {
 
     });
 
-    document.getElementById('noteImageInput').addEventListener('change', function(event) {
-        const input = event.target;
-        const previewContainer = document.getElementById('imagePreviewContainer');
-        const previewImage = document.getElementById('imagePreview');
+    const noteImageInput = document.getElementById('noteImageInput');
+    if (noteImageInput) {
+        noteImageInput.addEventListener('change', function(event) {
+            const input = event.target;
+            const previewContainer = document.getElementById('imagePreviewContainer');
+            const previewImage = document.getElementById('imagePreview');
 
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
 
-            reader.onload = function(e) {
-                previewImage.src = e.target.result;
-                previewContainer.style.display = 'block'; // Показываем контейнер с фото
+                reader.onload = function(e) {
+                    if (previewImage) {
+                        previewImage.src = e.target.result;
+                    }
+                    if (previewContainer) {
+                        previewContainer.style.display = 'block';
+                    }
+                }
+
+                reader.readAsDataURL(input.files[0]);
             }
+        });
+    }
 
-            reader.readAsDataURL(input.files[0]); // Читаем файл как URL
-        }
-    });
+    // ============================================
+    // TOAST / УВЕДОМЛЕНИЕ ДЛЯ НЕАВТОРИЗОВАННЫХ
+    // ============================================
 
+    // Закрытие по крестику
+    const closeCrossBtn = document.getElementById('closeAuthToast');
+    if (closeCrossBtn) {
+        closeCrossBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            // ПРЯМОЕ СКРЫТИЕ БЕЗ ВЫЗОВА ФУНКЦИИ
+            const toast = document.getElementById('authToast');
+            if (toast) {
+                toast.classList.remove('active');
+                clearTimeout(toast._hideTimeout);
+            }
+        });
+    }
 });

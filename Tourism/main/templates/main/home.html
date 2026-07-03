@@ -20,7 +20,11 @@
     <div class="bottom-actions">
         <a href="{% url 'guide' %}" class="btn-large">Путеводитель</a>
         <a href="{% url 'events_home' %}" class="btn-large">События</a>
-        <a href="{% url 'create_tour' %}" class="btn-large">Собери тур</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'create_tour' %}" class="btn-large">Собери тур</a>
+        {% else %}
+            <a href="javascript:void(0)" onclick="showAuthToast(); return false;" class="btn-large">Собери тур</a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
