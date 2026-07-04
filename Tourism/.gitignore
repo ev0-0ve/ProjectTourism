@@ -11,12 +11,6 @@ venv/
 .idea/
 .vscode/
 
-# Database
-db.sqlite3
-
-# Environment
-.env
-
 # Django
 staticfiles/
 
