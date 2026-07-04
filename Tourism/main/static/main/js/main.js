@@ -60,10 +60,15 @@ document.addEventListener('DOMContentLoaded', function() {
         sideToggle &&
         sidePanel &&
         window.innerWidth > 768
-    ) {
+    )
+    {
+        // Страницы, где панель должна быть открыта (НЕ свернута)
         const isHome = document.body.classList.contains('home-page');
+        const isAuthPage = document.body.classList.contains('auth-page');
 
-        if (!isHome) {
+        const shouldBeOpen = isHome || isAuthPage;
+
+        if (!shouldBeOpen) {
             sidePanel.classList.add('collapsed');
             sideWrapper.classList.add('collapsed');
         }

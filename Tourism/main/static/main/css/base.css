@@ -33,10 +33,6 @@ a {
     text-decoration: none;
 }
 
-body.no-scroll {
-    overflow: hidden;
-}
-
 /* =========================================
    ОБЩИЙ Layout и Wrappers
 ========================================= */
@@ -340,6 +336,32 @@ body.no-scroll {
     background: rgba(255, 255, 255, 0.05);
 }
 
+body.auth-page .hero {
+    width: 100%;
+    min-height: 100svh;
+    background-image: url('../img/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ПОДПИСЬ АВТОРА ФОТО */
+.photo-credit {
+  position: absolute;
+  right: 25px;
+  bottom: 40px;
+  z-index: 10;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: right;
+  transition: opacity .3s ease;
+}
+
+.photo-credit:hover {
+  opacity: 1;
+  color: white;
+}
+
 /* АДАПТИВНОСТЬ BASE */
 
 @media (max-width: 768px) {
@@ -349,6 +371,10 @@ body.no-scroll {
     padding-left: 16px !important;
     padding-right: 16px !important;
         padding-bottom: 24px !important;
+    }
+
+    a {
+        text-decoration: none;
     }
 
     h1 {
@@ -431,7 +457,7 @@ body.no-scroll {
         left: auto;
         right: 0;
 
-        width: 85vw;
+        width: 91vw;
         max-width: 155px;
 
         height: auto;
@@ -522,9 +548,56 @@ body.no-scroll {
         padding: 6px 14px;
         font-size: 12px;
     }
+
+    body.auth-page .hero {
+        background-size: auto 100%; /* По высоте, ширина подстраивается */
+        background-position: 73% 0;
+    }
 }
-@media (max-width: 480px) {
-  .side-panel { width: 200px; right: 5px; }
+
+/* ============================================
+СТРЕЛКА НАЗАД ДЛЯ СТРАНИЦ ВХОДА/РЕГИСТРАЦИИ
+============================================ */
+
+.back-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    margin-bottom: 12px;
+    padding: 4px 0;
+}
+
+.back-arrow svg {
+    width: 20px;
+    height: 20px;
+    stroke: rgba(255, 255, 255, 0.7);
+    transition: stroke 0.3s ease, transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.back-arrow:hover {
+    color: white;
+}
+
+.back-arrow:hover svg {
+    stroke: white;
+    transform: translateX(-3px);
+}
+
+.back-arrow {
+    font-size: 13px;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.back-arrow svg {
+    width: 18px;
+    height: 18px;
 }
 
 /* =========================================
@@ -539,7 +612,14 @@ body.no-scroll {
     overflow-y: auto;
 }
 
-/* На мобилках — скролл всей страницы */
+.events-grid,
+.guide-grid,
+.favorites-grid {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+/* ОТКЛЮЧЕНИЕ СКРОЛЛА - ТОЛЬКО ДЛЯ МОБИЛОК (ДО 768px) */
 @media (max-width: 768px) {
     .events-grid,
     .guide-grid,
@@ -551,5 +631,25 @@ body.no-scroll {
     html, body, .page {
         overflow-y: auto !important;
         height: auto !important;
+    }
+
+    body.auth-page .side-panel {
+        max-width: 340px;
+    }
+
+    /* Для мобилок: отключаем скролл на auth-page и home-page */
+    body.no-scroll.auth-page,
+    body.no-scroll.auth-page .hero,
+    body.no-scroll.auth-page .container-hero,
+    body.no-scroll.auth-page .page,
+    body.no-scroll.home-page,
+    body.no-scroll.home-page .hero,
+    body.no-scroll.home-page .container-hero,
+    body.no-scroll.home-page .page {
+        overflow: hidden !important;
+        height: 100svh !important;
+        max-height: 100svh !important;
+        min-height: 100svh !important;
+        overflow-y: hidden !important;
     }
 }

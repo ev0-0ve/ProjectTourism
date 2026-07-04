@@ -32,10 +32,10 @@
         {% block content %}{% endblock %}
     </div>
 
-    {% if request.resolver_match.url_name == 'home' %}
-    <div class="photo-credit">
-        Фото: Сергей Токарев | @tokarevs
-    </div>
+    {% if request.resolver_match.url_name == 'home' or request.resolver_match.url_name == 'login' or request.resolver_match.url_name == 'register' %}
+        <div class="photo-credit">
+            Фото: Сергей Токарев | @tokarevs
+        </div>
     {% endif %}
 
     <!-- Правая панель (везде одинаковая) -->

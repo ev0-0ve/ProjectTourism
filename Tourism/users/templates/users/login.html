@@ -2,23 +2,29 @@
 {% load static %}
 
 {% block title %}Вход{% endblock %}
+{% block body_class %}no-scroll auth-page{% endblock %}
 
 {% block content %}
+<h1 class="text-center mb-4">Личный кабинет</h1>
 <div class="info-card">
-    <a href="{% url 'home' %}" class="back-arrow" title="На главную">←</a>
-    <h2>Личный кабинет</h2>
+    <a href="{% url 'home' %}" class="back-arrow" title="На главную">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Назад
+    </a>
     <p>Авторизуйтесь, чтобы получить доступ к своим маршрутам и заметкам.</p>
 </div>
 {% endblock %}
 
 {% block auth_content %}
-    <h2 class="auth-title">ВХОД</h2>
-    <form method="post" class="nav" style="gap: 15px;">
-        {% csrf_token %}
-        <input type="text" name="username" placeholder="Логин" class="btn-large" style="min-width: 100%; font-size: 16px; padding: 8px;">
-        <input type="password" name="password" placeholder="Пароль" class="btn-large" style="min-width: 100%; font-size: 16px; padding: 8px;">
+<h2 class="auth-title">ВХОД</h2>
+<form method="post" class="nav" style="gap: 15px;">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Логин" class="btn-large" style="min-width: 100%; font-size: 16px; padding: 8px;">
+    <input type="password" name="password" placeholder="Пароль" class="btn-large" style="min-width: 100%; font-size: 16px; padding: 8px;">
 
-        <button type="submit" class="btn-large" style="background: rgba(120, 95, 140, 0.9); margin-top: 10px;">Войти</button>
-        <a href="{% url 'register' %}" class="auth-link" style="width: 100%; text-align: center; margin-top: 2px; font-size: 13px;">Еще нет аккаунта?</a>
-    </form>
+    <button type="submit" class="btn-large" style="background: rgba(120, 95, 140, 0.9); margin-top: 10px;">Войти</button>
+    <a href="{% url 'register' %}" class="auth-link" style="width: 100%; text-align: center; margin-top: 2px; font-size: 13px;">Еще нет аккаунта?</a>
+</form>
 {% endblock %}

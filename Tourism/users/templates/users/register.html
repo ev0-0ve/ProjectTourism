@@ -2,59 +2,59 @@
 {% load static %}
 
 {% block title %}Регистрация{% endblock %}
+{% block body_class %}no-scroll auth-page{% endblock %}
 
 {% block content %}
+<h1 class="text-center mb-4">Создание профиля</h1>
 <div class="info-card">
-    <a href="{% url 'home' %}" class="back-arrow" title="На главную">←</a>
-    <h2>Создание профиля</h2>
+    <a href="{% url 'home' %}" class="back-arrow" title="На главную">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Назад
+    </a>
     <p>Присоединяйтесь к нашему сообществу исследователей Красноярска!</p>
 </div>
 {% endblock %}
 
 {% block auth_content %}
-    <h2 class="auth-title" style="font-size: 26px; font-weight: 400; margin-bottom: 15px; letter-spacing: 0.5px;">Ваш Туризм</h2>
+<h2 class="auth-title">РЕГИСТРАЦИЯ</h2>
 
-    <form method="post" enctype="multipart/form-data" class="auth-form-container" id="registerForm">
-        {% csrf_token %}
+<form method="post" enctype="multipart/form-data" class="auth-form-container" id="registerForm">
+    {% csrf_token %}
 
-        <!-- Интерактивная зона для аватара -->
-        <div class="avatar-upload-zone" id="avatarUploadZone" title="Нажмите, чтобы загрузить аватар">
-            <span class="plus-sign" id="plusSign">+</span>
-            <img id="avatarPreview" style="display: none;" alt="Аватар">
-        </div>
+    <div class="avatar-upload-zone" id="avatarUploadZone" title="Нажмите, чтобы загрузить аватар">
+        <span class="plus-sign" id="plusSign">+</span>
+        <img id="avatarPreview" style="display: none;" alt="Аватар">
+    </div>
 
-        {% for field in form %}
-            {% if field.field.widget.input_type == "file" %}
-                <!-- Скрываем стандартное Django-поле, открываем по клику на плюс -->
-                <div style="display: none;">
+    {% for field in form %}
+        {% if field.field.widget.input_type == "file" %}
+            <div style="display: none;">
+                {{ field }}
+            </div>
+        {% elif field.field.widget.input_type == "checkbox" %}
+            <div class="auth-checkbox-group">
+                <label>
+                    {{ field }}
+                    <span>{{ field.label }}</span>
+                </label>
+            </div>
+        {% else %}
+            <div class="auth-field-group">
+                <div style="width: 100%;">
                     {{ field }}
                 </div>
-            {% elif field.field.widget.input_type == "checkbox" %}
-                <!-- Чекбокс согласия с вложенной структурой label -> input -->
-                <div class="auth-checkbox-group">
-                    <label>
-                        {{ field }}
-                        <span>{{ field.label }}</span>
-                    </label>
-                </div>
-            {% else %}
-                <div class="auth-field-group">
-                    <div style="width: 100%;">
-                        {{ field }}
+                {% if field.errors %}
+                    <div style="color: #ff6b6b; font-size: 11px; line-height: 1.2; margin-top: 4px;">
+                        {{ field.errors }}
                     </div>
-                    {% if field.errors %}
-                        <div style="color: #ff6b6b; font-size: 11px; line-height: 1.2; margin-top: 4px;">
-                            {{ field.errors }}
-                        </div>
-                    {% endif %}
-                </div>
-            {% endif %}
-        {% endfor %}
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endfor %}
 
-        <!-- Кнопка отправки -->
-        <button type="submit" class="auth-submit-btn">Создать</button>
-
-        <!-- Ссылка войти -->
-        <a href="{% url 'login' %}" class="auth-link" style="width: 100%; text-align: center; margin-top: 5px; font-size: 13px; opacity: 0.7;">Войти</a>
-    </form>
+    <button type="submit" class="auth-submit-btn">Создать</button>
+    <a href="{% url 'login' %}" class="auth-link" style="width: 100%; text-align: center; margin-top: 5px; font-size: 13px; opacity: 0.7;">Войти</a>
+</form>
 {% endblock %}
