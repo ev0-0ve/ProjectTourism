@@ -9,7 +9,6 @@
     flex-direction: column;
     gap: 16px;
     padding-bottom: 40px;
-    overflow: hidden;
 }
 
 /* =========================================
@@ -67,7 +66,6 @@
 }
 
 .tour-map-block {
-    overflow: hidden;
     height: 220px;
     width: 100%;
     border-radius: 20px;
@@ -245,7 +243,6 @@
 
 .favorite-mini-card {
     position: relative;
-    overflow: hidden;
     border-radius: 14px;
     background: rgba(255,255,255,0.07);
 }
@@ -421,7 +418,6 @@
 
 .tour-card {
     position: relative;
-    overflow: hidden;
     border-radius: 16px;
     background: rgba(255,255,255,0.07);
     height: 160px;
@@ -869,7 +865,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
     position: relative;
     border: 1px solid rgba(0,0,0,0.04);
 }
@@ -945,43 +940,7 @@
     .placeholder-content p {
         font-size: 16px;
     }
-}
 
-@media (max-width: 420px) {
-    .similar-tour-page {
-        padding: 16px 12px 20px 12px;
-    }
-
-    .similar-title {
-        font-size: 20px;
-        margin-bottom: 16px;
-    }
-
-    .similar-tour-placeholder {
-        min-height: 40vh;
-        border-radius: 14px;
-    }
-
-    .placeholder-content {
-        padding: 20px 16px;
-    }
-
-    .placeholder-icon {
-        font-size: 28px;
-        margin-bottom: 12px;
-    }
-
-    .placeholder-content h2 {
-        font-size: 18px;
-        margin-bottom: 10px;
-    }
-
-    .placeholder-content p {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 768px) {
     .container-hero {
         padding-top: 0px !important;
         padding-left: 1px !important;
