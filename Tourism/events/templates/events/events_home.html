@@ -25,9 +25,23 @@
 
             <div class="guide-expanded">
                 <div class="guide-info">
-                    <p style="font-weight: bold; margin-bottom: 5px;">📅 Дата: {{ event.date|date:"d.m.Y" }}</p>
-                    <p style="font-weight: bold; margin-bottom: 15px;">📍 Место: {{ event.location }}</p>
-                    <p>{{ event.description|linebreaksbr }}</p>
+                    <p><strong>Дата</strong><br>
+                        {% if event.date_end %}
+                            {{ event.date_start|date:"d.m.Y" }} – {{ event.date_end|date:"d.m.Y" }}
+                        {% else %}
+                            {{ event.date_start|date:"d.m.Y" }}
+                        {% endif %}
+                    </p>
+                    <p><strong>Место</strong><br>{{ event.location }}</p>
+                    {% if event.description %}
+                    <p><strong>О событии</strong><br>{{ event.description|linebreaksbr }}</p>
+                    {% endif %}
+                    {% if event.price %}
+                    <p><strong>Вход</strong><br>{{ event.price }}</p>
+                    {% endif %}
+                    {% if event.source_link %}
+                    <p><a href="{{ event.source_link }}" target="_blank" rel="noopener" class="guide-link"><strong>Подробнее по ссылке</strong></a></p>
+                    {% endif %}
                 </div>
             </div>
 

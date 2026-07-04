@@ -49,7 +49,7 @@
                         <span class="option-text">Все категории</span>
                     </label>
                     <label class="filter-radio-option">
-                        <input type="radio" name="categoryObj" value="centers">
+                        <input type="radio" name="categoryObj" value="visit">
                         <span class="custom-radio"></span>
                         <span class="option-text">Визит-центры</span>
                     </label>
@@ -96,7 +96,7 @@
                         <span class="option-text">Все категории</span>
                     </label>
                     <label class="filter-radio-option">
-                        <input type="radio" name="categoryObj" value="centers">
+                        <input type="radio" name="categoryObj" value="visit">
                         <span class="custom-radio"></span>
                         <span class="option-text">Визит-центры</span>
                     </label>
@@ -130,10 +130,10 @@
             <div class="guide-card" data-category="{{ place.category }}" data-price="{{ place.price|default:'0' }}">
                 <div class="guide-image-wrapper">
                     <img src="{{ place.image.url }}" class="guide-image" alt="{{ place.title }}">
-                    <div class="guide-nav-arrows">
+                    <!--<div class="guide-nav-arrows">
                         <div class="guide-nav-arrow">&lt;</div>
                         <div class="guide-nav-arrow">&gt;</div>
-                    </div>
+                    </div>-->
                     <div class="guide-hover-actions">
                         {% if user.is_authenticated %}
                             <a href="{% url 'add_favorite' place.id %}" class="guide-icon-btn" title="В избранное">
@@ -197,11 +197,7 @@
                         <p><strong>Название</strong><br>{{ place.title }}</p>
 
                         {% if place.phone %}
-                        <p><strong>Телефон</strong><br><a href="tel:{{ place.phone|cut:' '|cut:'('|cut:')'|cut:'-' }}" class="guide-phone-link">{{ place.phone }}</a></p>
-                        {% endif %}
-
-                        {% if place.website %}
-                        <p><strong>Сайт</strong><br><a href="{{ place.website }}" target="_blank" rel="noopener" class="guide-website-link">{{ place.website }}</a></p>
+                        <p><strong>Телефон</strong><br><a href="tel:{{ place.phone|cut:' '|cut:'('|cut:')'|cut:'-' }}" class="guide-link">{{ place.phone }}</a></p>
                         {% endif %}
 
                         {% if place.price %}
@@ -217,6 +213,10 @@
                         {% endif %}
 
                         <p><strong>Описание</strong><br>{{ place.short_description|linebreaksbr|default:"Нет описания" }}</p>
+
+                        {% if place.website %}
+                        <p><strong>Сайт</strong><br><a href="{{ place.website }}" target="_blank" rel="noopener" class="guide-link">{{ place.website }}</a></p>
+                        {% endif %}
                     </div>
                 </div>
             </div>

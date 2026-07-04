@@ -13,10 +13,10 @@
         <div class="guide-card" data-id="{{ item.guide.id }}">
             <div class="guide-image-wrapper">
                 <img src="{{ item.guide.image.url }}" class="guide-image" alt="{{ item.guide.title }}">
-                <div class="guide-nav-arrows">
+                <!--<div class="guide-nav-arrows">
                     <div class="guide-nav-arrow">&lt;</div>
                     <div class="guide-nav-arrow">&gt;</div>
-                </div>
+                </div>-->
                 <div class="guide-hover-actions">
                     <a href="{% url 'remove_favorite' item.guide.id %}" class="guide-icon-btn" title="Удалить">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -52,10 +52,28 @@
             <div class="guide-expanded">
                 <div class="guide-info">
                     <p><strong>Название</strong><br>{{ item.guide.title }}</p>
-                    <p><strong>Стоимость</strong><br>{{ item.guide.price|default:"Не указана" }}</p>
-                    <p><strong>Адрес</strong><br>{{ item.guide.address|default:"Не указан" }}</p>
-                    <p><strong>Часы работы</strong><br>{{ item.guide.work_time|default:"Не указаны" }}</p>
-                    <p><strong>Краткая справка</strong><br>{{ item.guide.short_description|default:"Нет описания" }}</p>
+
+                    {% if item.guide.phone %}
+                    <p><strong>Телефон</strong><br><a href="tel:{{ item.guide.phone|cut:' '|cut:'('|cut:')'|cut:'-' }}" class="guide-link">{{ item.guide.phone }}</a></p>
+                    {% endif %}
+
+                    {% if item.guide.price %}
+                    <p><strong>Стоимость</strong><br>{{ item.guide.price }}</p>
+                    {% endif %}
+
+                    {% if item.guide.address %}
+                    <p><strong>Адрес</strong><br>{{ item.guide.address }}</p>
+                    {% endif %}
+
+                    {% if item.guide.work_time %}
+                    <p><strong>Часы работы</strong><br>{{ item.guide.work_time }}</p>
+                    {% endif %}
+
+                    <p><strong>Описание</strong><br>{{ item.guide.short_description|linebreaksbr|default:"Нет описания" }}</p>
+
+                    {% if item.guide.website %}
+                    <p><strong>Сайт</strong><br><a href="{{ item.guide.website }}" target="_blank" rel="noopener" class="guide-link">{{ item.guide.website }}</a></p>
+                    {% endif %}
                 </div>
             </div>
         </div>

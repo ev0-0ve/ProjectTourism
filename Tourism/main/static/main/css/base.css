@@ -29,8 +29,8 @@ html, body {
   background: #f8f8f8;
 }
 
-a {
-    text-decoration: none;
+.a {
+    text-decoration: #6A6785;
 }
 
 /* =========================================
@@ -52,7 +52,6 @@ a {
   background-size: cover;
   background-repeat: no-repeat;
   display: block;
-  overflow: hidden;
   padding-bottom: 24px;
   box-sizing: border-box;
 }
@@ -136,7 +135,6 @@ a {
     font-size: 24px;
     font-weight: 500;
     transition: width .35s ease, border-radius .35s ease, padding .35s ease;
-    overflow: hidden;
 }
 
 
@@ -391,8 +389,8 @@ body.home-page.hotel-page {
         padding-bottom: 24px !important;
     }
 
-    a {
-        text-decoration: none;
+    .a {
+        text-decoration: #6A6785;
     }
 
     h1 {
@@ -622,21 +620,6 @@ body.home-page.hotel-page {
    ИСПРАВЛЕНИЕ СКРОЛЛОВ
 ========================================= */
 
-/* На ПК — скролл внутри грида */
-.events-grid,
-.guide-grid,
-.favorites-grid {
-    max-height: calc(100vh - 200px);
-    overflow-y: auto;
-}
-
-.events-grid,
-.guide-grid,
-.favorites-grid {
-    max-height: calc(100vh - 200px);
-    overflow-y: auto;
-}
-
 /* ОТКЛЮЧЕНИЕ СКРОЛЛА - ТОЛЬКО ДЛЯ МОБИЛОК (ДО 768px) */
 @media (max-width: 768px) {
     .events-grid,
@@ -665,7 +648,6 @@ body.home-page.hotel-page {
     body.no-scroll.home-page .container-hero,
     body.no-scroll.home-page .page {
         overflow: hidden !important;
-        height: 100svh !important;
         max-height: 100svh !important;
         min-height: 100svh !important;
         overflow-y: hidden !important;

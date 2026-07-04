@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="2.8. Первая релизная версия сайта готова (Исправлены стили страниц-заглушек Купить авиабилеты и забронировать отель, а также только для мобилок страница Собери тур по макету Figma)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/guide/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/guide/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/guide/templates/guide/guide.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/guide/templates/guide/guide.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/guide-favorites-events.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/guide-favorites-events.css" afterDir="false" />
+    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="2.9. Подготовка к релизу">
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/tours.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/tours.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/img/flight-bg.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/img/flight-bg.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/tours/templates/tours/flight_search.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/tours/templates/tours/flight_search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/tours/templates/tours/hotel_booking.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/tours/templates/tours/hotel_booking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/tours/templates/tours/similar_tours.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/tours/templates/tours/similar_tours.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +22,7 @@
   <component name="Git.Settings">
     <branch-grouping />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="MIXED" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -57,38 +47,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
-    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Users/tcf12/PycharmProjects/ProjectTourism/Tourism/main/static/main/img",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/tcf12/PycharmProjects/ProjectTourism/Tourism/main/static/main/css&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\main\static\main\css" />
       <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\main\static\main\img" />
       <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\tours\templates\tours" />
-      <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\main\static\main\css" />
       <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\favorites" />
       <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\tours" />
     </key>
@@ -418,7 +408,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783134571399</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="2.9. Подготовка к релизу">
+      <option name="closed" value="true" />
+      <created>1783136906593</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1783136906593</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,7 +434,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1.1.4. Сдана практическая 1 по КСП, тсраница регистрации через форму без добавления бд" />
     <MESSAGE value="1.1.4. Практическая 1 по КСП, добавление страницы профиля и формы с записью и выводом данных без БД" />
     <MESSAGE value="1.1.5. Добавлено новое приложение для страницы &quot;События&quot;, переключение между страницыми, добавление записей через панель админа в адресной строке сайта" />
     <MESSAGE value="1.1.6. Добавлено новое приложение для регистрации пользователя, добавление записей через панель админа и на сайте (нужно исправить представление и вход не для админа)" />
@@ -461,6 +458,7 @@
     <MESSAGE value="2.6. Добавлено модальное окно для незарегистрированных пользователей" />
     <MESSAGE value="2.7. Исправлены стили страниц Вход и Регистрация с Главной страницей" />
     <MESSAGE value="2.8. Первая релизная версия сайта готова (Исправлены стили страниц-заглушек Купить авиабилеты и забронировать отель, а также только для мобилок страница Собери тур по макету Figma)" />
-    <option name="LAST_COMMIT_MESSAGE" value="2.8. Первая релизная версия сайта готова (Исправлены стили страниц-заглушек Купить авиабилеты и забронировать отель, а также только для мобилок страница Собери тур по макету Figma)" />
+    <MESSAGE value="2.9. Подготовка к релизу" />
+    <option name="LAST_COMMIT_MESSAGE" value="2.9. Подготовка к релизу" />
   </component>
 </project>
