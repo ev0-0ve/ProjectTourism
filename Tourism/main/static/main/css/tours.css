@@ -1,174 +1,489 @@
 /* =========================================
-   TOURS.CSS
-   Страница создания маршрута.
-   Сплит-скрин, карта, drag-n-drop (логика), дропдауны.
+   TOURS.CSS - СОБЕРИ ТУР ПО МАКЕТУ
 ========================================= */
 
-.tour-page { width: 100%; height: 100%; }
-
-.tour-layout {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Гибкие колонки */
-    gap: 30px;
-    min-height: calc(100svh - 120px);
+.tour-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 40px;
+    overflow: hidden;
 }
 
 /* =========================================
-   LEFT SIDE
+   ОБЩИЕ ЭЛЕМЕНТЫ
 ========================================= */
-.tour-left { display: flex; flex-direction: column; overflow: hidden; }
-
-.tour-top-actions { display: flex; align-items: center; gap: 36px; margin-bottom: 26px; flex-wrap: wrap; }
-.tour-top { display: flex; align-items: center; gap: 18px; }
-.tour-add-text { color: #6A6785; font-size: 24px; font-weight: 400; white-space: nowrap; }
-.tour-add-info { color: #6A6785; font-size: 17px; line-height: 1.35; }
-
-/* DROPDOWN ТУРОВ */
-.tour-dropdown-wrapper { position: relative; }
-.tour-dropdown {
-    position: absolute; top: 78px; left: 0; width: 100%; min-width: 300px; max-width: 360px;
-    padding: 18px; border-radius: 26px; backdrop-filter: blur(20px);
-    background: rgba(0, 19, 36, 0.5); display: none; z-index: 200; box-sizing: border-box;
+.tour-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
-.tour-dropdown.active { display: block; }
-.tour-dropdown-row { margin-bottom: 14px; }
 
-.tour-view-mode { display: flex; align-items: center; gap: 10px; }
-.tour-edit-mode { display: none; align-items: center; gap: 10px; }
+.tour-add-text {
+    color: #6A6785;
+    font-size: 14px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+/* КНОПКИ - УМЕНЬШЕНЫ */
+.tour-menu-btn,
+.tour-add-btn,
+.route-side-button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(119, 105, 144, 0.92);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+    flex-shrink: 0;
+}
+
+.tour-menu-btn:hover,
+.tour-add-btn:hover,
+.route-side-button:hover {
+    transform: scale(1.05);
+    background: #8B76A7;
+}
+
+.tour-menu-btn svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* =========================================
+   1. КАРТА (на всю ширину)
+========================================= */
+.tour-map-full {
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.tour-map-block {
+    overflow: hidden;
+    height: 220px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+/* =========================================
+   2. ДВЕ КОЛОНКИ - КОМПАКТНО
+========================================= */
+.tour-two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.tour-col-left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tour-col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tour-block {
+    width: 100%;
+}
+
+/* DROPDOWN */
+.tour-dropdown-wrapper { position: relative; }
+
+.tour-dropdown {
+    position: absolute;
+    top: 52px;
+    left: 0;
+    width: 100%;
+    min-width: 240px;
+    max-width: 300px;
+    padding: 12px;
+    border-radius: 18px;
+    backdrop-filter: blur(20px);
+    background: rgba(0, 19, 36, 0.5);
+    display: none;
+    z-index: 200;
+    box-sizing: border-box;
+}
+
+.tour-dropdown.active { display: block; }
+.tour-dropdown-row { margin-bottom: 8px; }
+
+.tour-view-mode {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tour-edit-mode {
+    display: none;
+    align-items: center;
+    gap: 8px;
+}
+
 .tour-dropdown-row.editing .tour-view-mode { display: none; }
 .tour-dropdown-row.editing .tour-edit-mode { display: flex; }
 
 .tour-dropdown-item {
-    flex: 1; padding: 14px 16px; border-radius: 16px; color: white;
-    background: rgba(255,255,255,0.06); transition: 0.2s; text-decoration: none; display: block;
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 10px;
+    color: white;
+    background: rgba(255,255,255,0.06);
+    transition: 0.2s;
+    text-decoration: none;
+    display: block;
+    font-size: 13px;
 }
+
 .tour-dropdown-item:hover { background: rgba(255,255,255,0.1); }
 .tour-dropdown-item.active { background: rgba(120,95,140,0.72); }
 
-.tour-actions { display: flex; gap: 8px; }
+.tour-actions { display: flex; gap: 4px; }
 
-/* ИЗБРАННОЕ В ТУРАХ */
-.favorites-wrapper { position: relative; }
-.favorites-dropdown { display: none; }
-.favorites-dropdown.active { display: block; }
-.favorites-grid-dropdown {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 16px; max-height: 500px; overflow-y: auto; padding-right: 6px;
-}
-
-.favorite-mini-card { position: relative; overflow: hidden; border-radius: 22px; background: rgba(255,255,255,0.07); }
-.favorite-mini-card img { width: 100%; height: 190px; object-fit: cover; display: block; }
-.favorite-mini-title { color: white;
-    margin-top: 0;
-
-    padding: 8px 8px;
-}
-
-/* КАРТОЧКИ ТУРОВ */
-.tour-cards-grid {
-    overflow-y: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 24px;
-    padding-right: 10px;
-    border-radius: 36px;
-}
-.tour-card { position: relative; overflow: hidden; border-radius: 28px; background: rgba(255,255,255,0.07); height: 250px; transition: 0.2s; }
-.tour-card-image { width: 100%; height: 190px; object-fit: cover; display: block; }
-.tour-card-title { padding: 10px; color: black; line-height: 1.3; text-align: center; }
-
-/* =========================================
-   RIGHT SIDE (Карта и Маршрут)
-========================================= */
-.tour-right { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
-.tour-map-block { overflow: hidden; height: 280px; width: 100%; }
-#map { width: 100%; height: 100%; }
-
-.route-block { flex: 1; overflow-y: auto; }
-.route-item { margin-bottom: 12px; }
-.route-place { color: black; font-size: 18px; }
-.route-address { color: rgba(0,0,0,0.6); font-size: 15px; }
-
-/* EMPTY STATES */
-.tour-empty, .tour-empty-small { color: rgba(255,255,255,0.7); font-size: 18px; }
-
-.similar-tour-page {
-    width: 100%;
-    min-height: calc(100vh - 80px);
-}
-
-.similar-tour-placeholder {
-
-    width: 100%;
-    height: 75vh;
-
-    border-radius: 32px;
-
-    background:#eeeeee;
-
-    backdrop-filter: blur(20px);
-
+.tour-small-icon {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.08);
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    overflow: hidden;
-
-    position: relative;
+    cursor: pointer;
+    transition: 0.2s;
+    flex-shrink: 0;
 }
 
-.similar-tour-placeholder::before {
+.tour-small-icon:hover { background: rgba(255,255,255,0.15); }
+.tour-small-icon.delete { background: rgba(219,68,85,0.18); }
+.tour-small-icon.delete:hover { background: rgba(219,68,85,0.34); }
+.tour-small-icon.save { background: rgba(111,180,126,0.18); }
+.tour-small-icon.save:hover { background: rgba(111,180,126,0.34); }
 
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(120,95,140,.25),
-            transparent 70%
-        );
+.tour-small-icon svg {
+    width: 16px;
+    height: 16px;
 }
 
-.placeholder-content {
+.tour-rename-input {
+    flex: 1;
+    height: 32px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    padding: 0 10px;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    font-size: 13px;
+    min-width: 0;
+}
 
-    position: relative;
-
-    z-index: 2;
-
+.tour-create-btn {
+    display: block;
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 10px;
     text-align: center;
-
-    max-width: 600px;
-
-    padding: 40px;
+    background: rgba(120,95,140,0.82);
+    color: white;
+    transition: 0.2s;
+    text-decoration: none;
+    font-size: 13px;
 }
 
-.placeholder-content h2 {
+.tour-create-btn:hover { background: #8B76A7; }
 
-    font-size: 36px;
+/* ИЗБРАННОЕ */
+.favorites-wrapper { position: relative; }
 
-    margin-bottom: 20px;
-}
-
-.placeholder-content p {
-
-    font-size: 20px;
-
-    opacity: .8;
-}
-
-.similar-tour-btn-wrapper {
-
-    display: flex;
-
-    justify-content: center;
-
+.favorites-dropdown {
+    display: none;
+    position: absolute;
+    top: 52px;
+    left: 0;
     width: 100%;
+    min-width: 240px;
+    max-width: 300px;
+    padding: 12px;
+    border-radius: 18px;
+    backdrop-filter: blur(20px);
+    background: rgba(0, 19, 36, 0.5);
+    z-index: 200;
+    box-sizing: border-box;
 }
 
+.favorites-dropdown.active { display: block; }
+
+.favorites-grid-dropdown {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.favorite-mini-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.07);
+}
+
+.favorite-mini-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+}
+
+.favorite-mini-title {
+    color: white;
+    padding: 6px 8px;
+    font-size: 11px;
+    text-align: center;
+}
+
+.favorite-add-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: rgba(120,95,140,0.92);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.favorite-add-btn:hover { background: #9A84B8; }
+
+/* =========================================
+   3. МАРШРУТ (скролл с видимым скроллбаром)
+========================================= */
+.tour-route-full {
+    width: 100%;
+    flex-shrink: 0;
+    max-height: 180px;
+}
+
+.route-block {
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    border-radius: 18px;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+/* ВИДИМЫЙ СКРОЛЛ ДЛЯ МАРШРУТА */
+.route-block::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.route-block::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.08);
+    border-radius: 10px;
+}
+
+.route-block::-webkit-scrollbar-thumb {
+    background: rgba(120,95,140,0.5);
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,0.1);
+}
+
+.route-block::-webkit-scrollbar-thumb:hover {
+    background: rgba(120,95,140,0.7);
+}
+
+.route-block ol {
+    padding-left: 18px;
+    margin: 0;
+    list-style-type: decimal;
+}
+
+.route-item {
+    margin-bottom: 6px;
+    padding-left: 4px;
+}
+
+.route-place {
+    display: block;
+    font-size: 14px;
+    color: black;
+    font-weight: 500;
+}
+
+.route-address {
+    display: block;
+    margin-top: 1px;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================
+   4. НАЙТИ ПОХОЖИЙ ТУР (шире)
+========================================= */
+.tour-similar-full {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.tour-add-page {
+    width: 120%;
+    max-width: 500px;
+    height: 44px;
+    border: none;
+    border-radius: 14px;
+    background: rgba(119,105,144,0.92);
+    color: white;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.tour-add-page:hover {
+    background: #8B76A7;
+    transform: scale(1.02);
+}
+
+/* =========================================
+   5. СЕТКА ОБЪЕКТОВ (скролл с видимым скроллбаром)
+========================================= */
+.tour-cards-full {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+}
+
+.tour-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding-right: 4px;
+    max-height: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* ВИДИМЫЙ СКРОЛЛ ДЛЯ КАРТОЧЕК */
+.tour-cards-grid::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.tour-cards-grid::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.08);
+    border-radius: 10px;
+}
+
+.tour-cards-grid::-webkit-scrollbar-thumb {
+    background: rgba(120,95,140,0.5);
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,0.1);
+}
+
+.tour-cards-grid::-webkit-scrollbar-thumb:hover {
+    background: rgba(120,95,140,0.7);
+}
+
+.tour-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.07);
+    height: 160px;
+    transition: 0.2s;
+}
+
+.tour-card-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+}
+
+.tour-card-title {
+    padding: 6px 8px;
+    color: black;
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.tour-remove-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: rgba(119,105,144,0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+    transition: 0.2s;
+    z-index: 5;
+}
+
+.tour-remove-btn:hover { background: #A38CC3; }
+
+/* =========================================
+   EMPTY STATES
+========================================= */
+.tour-empty {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 16px;
+    text-align: center;
+    padding: 20px;
+    grid-column: 1 / -1;
+}
+
+.tour-empty-small {
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    text-align: center;
+    padding: 12px;
+}
+
+/* =========================================
+   ФОНОВЫЕ СТРАНИЦЫ
+========================================= */
 .background_flight-page {
     width: 100%;
     min-height: 100svh;
@@ -189,422 +504,270 @@
 
 .text-height-title {
     padding-top: 22px;
+    color: white;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
 }
 
 /* =========================================
-   MOBILE 768px
+   АДАПТИВ ДЛЯ МОБИЛОК (768px)
 ========================================= */
-
 @media (max-width: 768px) {
-    .tour-layout {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        min-height: auto;
-        grid-template-columns: 1fr;
+    .tour-page {
+        gap: 12px;
+        padding-bottom: 20px;
+        overflow-y: auto;
     }
-
-    /* -------------------------
-       Заголовок
-    ------------------------- */
 
     h1 {
-        margin-bottom: 20px;
+        font-size: 22px;
+        margin-bottom: 12px;
+        color: black;
+        text-align: center;
     }
 
-    /* -------------------------
-       Верхние кнопки (меню + избранное)
-    ------------------------- */
+    /* КАРТА */
+    .tour-map-block {
+        height: 180px;
+        border-radius: 16px;
+    }
 
-    .tour-top-actions {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-        margin-bottom: 0;
-        order: 1;
+    /* ДВЕ КОЛОНКИ - КОМПАКТНО */
+    .tour-two-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .tour-col-left {
+        gap: 8px;
+    }
+
+    .tour-col-right {
+        gap: 8px;
     }
 
     .tour-top {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        width: 100%;
-    }
-
-    .tour-menu-btn {
-        width: 44px;
-        height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(119, 105, 144, 0.92);
-        border: none;
-        border-radius: 14px;
-        cursor: pointer;
-        flex-shrink: 0;
-        padding: 0;
-    }
-
-    .tour-menu-btn svg {
-        width: 28px;
-        height: 28px;
-    }
-
-    .tour-add-btn {
-        width: 44px;
-        height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(119, 105, 144, 0.92);
-        border: none;
-        border-radius: 14px;
-        cursor: pointer;
-        flex-shrink: 0;
-        font-size: 28px;
-        color: white;
-        padding: 0;
+        gap: 8px;
     }
 
     .tour-add-text {
-        font-size: 18px;
-        color: black;
+        font-size: 12px;
         white-space: normal;
-        line-height: 1.3;
-        font-weight: 400;
+        line-height: 1.2;
     }
 
-    .tour-add-info {
-        font-size: 15px;
-        color: black;
-        line-height: 1.3;
+    .tour-menu-btn,
+    .tour-add-btn,
+    .route-side-button {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
     }
 
-    /* -------------------------
-       Dropdown меню туров
-    ------------------------- */
-
-    .tour-dropdown-wrapper {
-        width: 100%;
+    .tour-menu-btn svg {
+        width: 20px;
+        height: 20px;
     }
 
+    .route-side-button svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* DROPDOWN */
     .tour-dropdown {
         position: absolute;
-        top: calc(100% + 8px);
+        top: 44px;
         left: 0;
         width: 100%;
         max-width: none;
         min-width: auto;
-        padding: 14px;
-        border-radius: 20px;
-        backdrop-filter: blur(20px);
-        background: #6a6785;
-        z-index: 200;
-        box-sizing: border-box;
+        padding: 10px;
+        border-radius: 14px;
+        background: rgba(0, 19, 36, 0.92);
     }
 
     .tour-dropdown-item {
-        padding: 12px 14px;
-        font-size: 15px;
-        border-radius: 14px;
+        padding: 8px 10px;
+        font-size: 12px;
+        border-radius: 8px;
     }
 
     .tour-dropdown-row {
-        margin-bottom: 10px;
+        margin-bottom: 6px;
     }
 
     .tour-create-btn {
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding: 12px;
-        border-radius: 14px;
-        background: #6a6785;
-        color: white;
-        text-decoration: none;
-        font-size: 15px;
-        margin-top: 4px;
-    }
-
-    /* -------------------------
-       Избранное - выпадашка
-    ------------------------- */
-
-    .favorites-wrapper {
-        width: 100%;
+        padding: 8px;
+        font-size: 12px;
+        border-radius: 8px;
     }
 
     .favorites-dropdown {
         position: absolute;
-        top: calc(100% + 8px);
+        top: 44px;
         left: 0;
         width: 100%;
-        padding: 14px;
-        border-radius: 20px;
-        backdrop-filter: blur(20px);
-        background: #6a6785;
-        z-index: 200;
-        box-sizing: border-box;
+        padding: 10px;
+        border-radius: 14px;
+        background: rgba(0, 19, 36, 0.92);
     }
 
     .favorites-grid-dropdown {
-        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        max-height: 400px;
-        overflow-y: auto;
-        padding-right: 4px;
-    }
-
-    .favorite-mini-card {
-        border-radius: 18px;
-        overflow: hidden;
-        background: rgba(255, 255, 255, 0.07);
-        position: relative;
+        gap: 6px;
+        max-height: 200px;
     }
 
     .favorite-mini-card img {
-        width: 100%;
-        height: 120px;
-        object-fit: cover;
-        display: block;
+        height: 80px;
     }
 
     .favorite-mini-title {
-        color: white;
-        font-size: 13px;
-        padding: 8px 10px;
-        text-align: center;
-        line-height: 1.2;
+        font-size: 10px;
+        padding: 4px 6px;
     }
 
     .favorite-add-btn {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(10px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 20px;
-        text-decoration: none;
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        width: 22px;
+        height: 22px;
+        font-size: 14px;
+        top: 4px;
+        right: 4px;
+        border-radius: 6px;
     }
 
-    /* -------------------------
-       Карта
-    ------------------------- */
-
-    .tour-map-block {
-        order: 2;
-        height: 220px;
-        width: 100%;
-        border-radius: 20px;
-        overflow: hidden;
-        margin-top: 4px;
+    /* МАРШРУТ */
+    .tour-route-full {
+        max-height: 150px;
     }
-
-    #map {
-        width: 100%;
-        height: 100%;
-        border-radius: 20px;
-    }
-
-    /* -------------------------
-       Блок маршрута
-    ------------------------- */
 
     .route-block {
-        order: 3;
-        padding: 16px 18px;
-        background: rgba(255, 255, 255, 0.5);
-        backdrop-filter: blur(20px);
-        border-radius: 20px;
-        overflow-y: visible;
+        padding: 10px 12px;
+        border-radius: 14px;
+        max-height: 150px;
     }
 
-    .route-block .tour-top-actions {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-        margin-bottom: 16px;
+    /* ВИДИМЫЙ СКРОЛЛ ДЛЯ МАРШРУТА НА МОБИЛКЕ */
+    .route-block::-webkit-scrollbar {
+        width: 6px;
     }
 
-    .tour-route-link {
-        display: block;
+    .route-block::-webkit-scrollbar-track {
+        background: rgba(0,0,0,0.08);
+        border-radius: 8px;
     }
 
-    .route-side-button {
-        height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        background: rgba(119, 105, 144, 0.92);
-        border: none;
-        border-radius: 12px;
-        cursor: pointer;
-        color: white;
-        font-size: 15px;
-        padding: 0 16px;
-    }
-
-    .route-side-button svg {
-        width: 20px;
-        height: 20px;
-        flex-shrink: 0;
+    .route-block::-webkit-scrollbar-thumb {
+        background: rgba(120,95,140,0.5);
+        border-radius: 8px;
+        border: 1px solid rgba(255,255,255,0.1);
     }
 
     .route-block ol {
-        padding-left: 20px;
-        margin: 0;
-        list-style-type: decimal;
+        padding-left: 14px;
     }
 
     .route-item {
-        margin-bottom: 12px;
-        padding-left: 4px;
+        margin-bottom: 4px;
     }
 
     .route-place {
-        display: block;
-        font-size: 15px;
-        color: black;
-        font-weight: 500;
+        font-size: 13px;
     }
 
     .route-address {
-        display: block;
-        margin-top: 2px;
-        font-size: 13px;
-        color: rgba(0, 0, 0, 0.6);
+        font-size: 11px;
     }
 
-    /* -------------------------
-       Карточки туров
-    ------------------------- */
+    /* НАЙТИ ПОХОЖИЙ */
+    .tour-add-page {
+        height: 40px;
+        font-size: 14px;
+        border-radius: 12px;
+        max-width: 130%;
+    }
 
+    /* КАРТОЧКИ */
     .tour-cards-grid {
-        order: 4;
-        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        overflow: visible;
-        padding-right: 0;
-        max-height: none;
-        margin-top: 4px;
+        gap: 8px;
+        max-height: 250px;
+    }
+
+    /* ВИДИМЫЙ СКРОЛЛ ДЛЯ КАРТОЧЕК НА МОБИЛКЕ */
+    .tour-cards-grid::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .tour-cards-grid::-webkit-scrollbar-track {
+        background: rgba(0,0,0,0.08);
+        border-radius: 8px;
+    }
+
+    .tour-cards-grid::-webkit-scrollbar-thumb {
+        background: rgba(120,95,140,0.5);
+        border-radius: 8px;
+        border: 1px solid rgba(255,255,255,0.1);
     }
 
     .tour-card {
-        height: auto;
-        border-radius: 20px;
-        overflow: hidden;
-        background: rgba(255, 255, 255, 0.5);
-        backdrop-filter: blur(10px);
-        position: relative;
+        height: 130px;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.3);
     }
 
     .tour-card-image {
-        width: 100%;
-        height: 130px;
-        object-fit: cover;
-        display: block;
+        height: 90px;
     }
 
     .tour-card-title {
-        padding: 10px 12px;
-        font-size: 13px;
-        color: black;
-        text-align: center;
-        line-height: 1.3;
-        font-weight: 500;
+        font-size: 11px;
+        padding: 4px 6px;
     }
 
     .tour-remove-btn {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        background: rgba(119, 105, 144, 0.92);
-        backdrop-filter: blur(10px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 16px;
-        text-decoration: none;
-        border: none;
-        cursor: pointer;
+        width: 22px;
+        height: 22px;
+        font-size: 12px;
+        top: 4px;
+        right: 4px;
+        border-radius: 6px;
     }
-
-    /* -------------------------
-       Кнопка "Найти похожий тур"
-    ------------------------- */
-
-    .similar-tour-btn-wrapper {
-        order: 5;
-        width: 100%;
-        margin-top: 4px;
-    }
-
-    .tour-add-page {
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding: 14px 20px;
-        background: rgba(119, 105, 144, 0.92);
-        backdrop-filter: blur(20px);
-        border-radius: 16px;
-        color: white;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: 500;
-        letter-spacing: 0.3px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: 0.2s;
-    }
-
-    .tour-add-page:active {
-        transform: scale(0.97);
-        background: rgba(0, 19, 36, 0.85);
-    }
-
-    /* -------------------------
-       Empty states
-    ------------------------- */
 
     .tour-empty {
-        color: rgba(0, 0, 0, 0.6);
-        font-size: 16px;
-        text-align: center;
-        padding: 30px 20px;
-        grid-column: 1 / -1;
+        font-size: 14px;
+        padding: 16px;
     }
 
     .tour-empty-small {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 15px;
-        text-align: center;
-        padding: 20px;
+        font-size: 12px;
+        padding: 10px;
     }
 
-    /* -------------------------
-       Фоновые страницы
-    ------------------------- */
+    .tour-rename-input {
+        height: 30px;
+        font-size: 12px;
+        padding: 0 8px;
+        border-radius: 8px;
+    }
 
+    .tour-small-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+    }
+
+    .tour-small-icon svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    /* ФОНОВЫЕ СТРАНИЦЫ */
     .background_flight-page {
         background-image: url('../img/flight-bg.jpg');
         background-size: cover;
         background-position: center;
-        background-repeat: no-repeat;
         min-height: 100svh;
     }
 
@@ -612,119 +775,97 @@
         background-image: url("../img/hotel-bg.jpg");
         background-size: cover;
         background-position: center;
-        background-repeat: no-repeat;
         min-height: 100svh;
     }
 
     .text-height-title {
-        padding-top: 18px;
-        font-size: 24px;
+        padding-top: 14px;
+        font-size: 20px;
     }
 
-    /* -------------------------
-       Кастомный скролл
-    ------------------------- */
-
-    .custom-scroll::-webkit-scrollbar {
-        width: 4px;
+    /* ПОХОЖИЙ ТУР */
+    .similar-tour-placeholder {
+        height: 50vh;
+        border-radius: 20px;
     }
 
-    .custom-scroll::-webkit-scrollbar-track {
-        background: transparent;
+    .placeholder-content h2 {
+        font-size: 20px;
     }
 
-    .custom-scroll::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 10px;
-    }
-
-    /* -------------------------
-       Режим редактирования
-    ------------------------- */
-
-    .tour-rename-input {
-        flex: 1;
-        padding: 10px 12px;
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        background: rgba(255, 255, 255, 0.1);
-        color: white;
+    .placeholder-content p {
         font-size: 14px;
-        min-width: 0;
+    }
+}
+
+/* =========================================
+   СТРАНИЦЫ АВИАБИЛЕТЫ И ОТЕЛИ (ЗАГЛУШКИ)
+========================================= */
+
+.flight-page,
+.hotel-page {
+    width: 100%;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px 0 16px;
+    box-sizing: border-box;
+    background: #f5f5f5;
+    overflow-y: auto !important;
+    height: auto !important;
+}
+
+.flight-title,
+.hotel-title {
+    font-size: 28px;
+    font-weight: 500;
+    color: #1a1a2e;
+    margin-bottom: 16px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.flight-image-wrapper,
+.hotel-image-wrapper {
+    width: 100%;
+    flex: 1;
+    min-height: 80vh;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #e8e8e8;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.flight-image,
+.hotel-image {
+    width: 100%;
+    height: 173%;
+    object-fit: cover;
+    display: block;
+}
+
+/* =========================================
+   АДАПТИВ ДЛЯ МОБИЛОК (768px)
+========================================= */
+
+@media (max-width: 768px) {
+    .flight-page,
+    .hotel-page {
+        padding: 12px 12px 0 12px;
+        min-height: 100svh;
+        overflow-y: auto !important;
+        height: auto !important;
     }
 
-    .tour-rename-input::placeholder {
-        color: rgba(255, 255, 255, 0.5);
+    .flight-title,
+    .hotel-title {
+        font-size: 22px;
+        margin-bottom: 12px;
     }
 
-    .tour-rename-input:focus {
-        outline: none;
-        border-color: rgba(255, 255, 255, 0.4);
-    }
-
-    .tour-small-icon {
-        width: 32px;
-        height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: none;
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 10px;
-        cursor: pointer;
-        flex-shrink: 0;
-        padding: 0;
-        color: white;
-        font-size: 16px;
-    }
-
-    .tour-small-icon.save {
-        background: rgba(76, 175, 80, 0.3);
-    }
-
-    .tour-small-icon.cancel-tour-btn {
-        background: rgba(244, 67, 54, 0.2);
-    }
-
-    .tour-view-mode {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .tour-edit-mode {
-        display: none;
-        align-items: center;
-        gap: 8px;
-        width: 100%;
-    }
-
-    .tour-dropdown-row.editing .tour-view-mode {
-        display: none;
-    }
-
-    .tour-dropdown-row.editing .tour-edit-mode {
-        display: flex;
-    }
-
-    .tour-actions {
-        display: flex;
-        gap: 6px;
-        flex-shrink: 0;
-    }
-
-    .tour-actions .tour-small-icon {
-        width: 32px;
-        height: 32px;
-    }
-
-    .tour-actions .tour-small-icon svg {
-        width: 18px;
-        height: 18px;
-    }
-
-    .tour-actions .tour-small-icon.delete svg {
-        width: 20px;
-        height: 20px;
+    .flight-image-wrapper,
+    .hotel-image-wrapper {
+        min-height: 70vh;
+        border-radius: 12px;
     }
 }

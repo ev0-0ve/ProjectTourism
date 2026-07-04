@@ -1,0 +1,1011 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Собери тур{% endblock %}
+{% block body_class %}no-scroll{% endblock %}
+
+{% block content %}
+
+<div class="page">
+    <h1 class="text-center mb-4"> Собери тур </h1>
+    <div class="tour-layout">
+        <!-- ЛЕВАЯ ЧАСТЬ-->
+        <div class="tour-left">
+            <!-- КНОПКИ -->
+            <div class="tour-top-actions">
+                <!-- МЕНЮ ТУРОВ -->
+                <div class="tour-dropdown-wrapper">
+                    <div class="tour-top">
+                        <button class="tour-menu-btn" id="tourMenuButton">
+                            <svg width="32" height="32" viewBox="0 0 47 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M13.2998 0.799805H45.7998M13.2998 15.7998H45.7998M13.2998 30.7998H45.7998M0.799805 0.799805H0.824805M0.799805 15.7998H0.824805M0.799805 30.7998H0.824805" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <div class="tour-add-text"> Выбрать тур </div>
+                    </div>
+
+                    <!-- DROPDOWN -->
+                    <div class="tour-dropdown" id="tourDropdown">
+                        {% for tour in tours %}
+                            <div class="tour-dropdown-row">
+                                <!-- ОБЫЧНЫЙ РЕЖИМ -->
+                                <div class="tour-view-mode">
+                                    <a
+                                        href="{% url 'select_tour' tour.id %}"
+                                        class="tour-dropdown-item
+                                        {% if selected_tour.id == tour.id %}
+                                            active
+                                        {% endif %}">
+                                        {{ tour.title }}
+                                    </a>
+
+                                    <div class="tour-actions">
+                                        <button
+                                            type="button"
+                                            class="tour-small-icon edit-tour-btn">
+                                            <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M13.9248 3.8934H3.71647C2.94292 3.8934 2.20106 4.20069 1.65408 4.74767C1.1071 5.29465 0.799805 6.03652 0.799805 6.81006V27.2267C0.799805 28.0003 1.1071 28.7421 1.65408 29.2891C2.20106 29.8361 2.94292 30.1434 3.71647 30.1434H24.1331C24.9067 30.1434 25.6486 29.8361 26.1955 29.2891C26.7425 28.7421 27.0498 28.0003 27.0498 27.2267V17.0184M24.8623 1.7059C25.4425 1.12574 26.2293 0.799805 27.0498 0.799805C27.8703 0.799805 28.6571 1.12574 29.2373 1.7059C29.8175 2.28606 30.1434 3.07293 30.1434 3.8934C30.1434 4.71387 29.8175 5.50074 29.2373 6.0809L15.3831 19.9351L9.5498 21.3934L11.0081 15.5601L24.8623 1.7059Z" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </button>
+
+                                        <a
+                                            href="{% url 'delete_tour' tour.id %}"
+                                            class="tour-small-icon delete">
+                                            <svg width="28" height="31" viewBox="0 0 28 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M0.799805 6.63314H3.71647M3.71647 6.63314H27.0498M3.71647 6.63314L3.71647 27.0498C3.71647 27.8234 4.02376 28.5652 4.57074 29.1122C5.11772 29.6592 5.85959 29.9665 6.63314 29.9665H21.2165C21.99 29.9665 22.7319 29.6592 23.2789 29.1122C23.8258 28.5652 24.1331 27.8234 24.1331 27.0498V6.63314M8.09147 6.63314V3.71647C8.09147 2.94292 8.39876 2.20106 8.94574 1.65408C9.49272 1.1071 10.2346 0.799805 11.0081 0.799805H16.8415C17.615 0.799805 18.3569 1.1071 18.9039 1.65408C19.4508 2.20106 19.7581 2.94292 19.7581 3.71647V6.63314M11.0081 13.9248V22.6748M16.8415 13.9248V22.6748" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- РЕЖИМ РЕДАКТИРОВАНИЯ -->
+
+                                <form
+                                    method="post"
+                                    action="{% url 'rename_tour' tour.id %}"
+                                    class="tour-edit-mode">
+
+                                    {% csrf_token %}
+
+                                    <input type="text" name="title" value="{{ tour.title }}" class="tour-rename-input">
+
+                                    <button
+                                        type="submit"
+                                        class="tour-small-icon save">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M20 6L9 17L4 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="tour-small-icon cancel-tour-btn">
+                                        ✕
+                                    </button>
+                                </form>
+                            </div>
+
+                        {% empty %}
+
+                            <div class="tour-empty-small">
+                                Туров пока нет
+                            </div>
+
+                        {% endfor %}
+
+                        <a
+                            href="{% url 'create_tour' %}"
+                            class="tour-create-btn">
+                            + Создать новый
+                        </a>
+                    </div>
+                </div>
+
+                <!-- КНОПКА ИЗБРАННОГО -->
+
+                <div class="favorites-wrapper">
+                    <div class="tour-top">
+                        <button
+                            class="tour-add-btn"
+                            id="favoritesOpenBtn">
+                            +
+                        </button>
+                        <div class="tour-add-text">
+                            Добавить из избранного
+                        </div>
+
+                        <div
+                            class="tour-dropdown custom-scroll"
+                            id="favoritesDropdown">
+                            <div class="favorites-grid-dropdown">
+                                {% for favorite in favorites %}
+                                    {% if favorite.guide %}
+                                        <div class="favorite-mini-card">
+                                            {% if favorite.guide.image %}
+                                                <img src="{{ favorite.guide.image.url }}">
+                                            {% endif %}
+
+                                            <div class="favorite-mini-title">
+                                                {{ favorite.guide.title }}
+                                            </div>
+
+                                            <a
+                                                href="{% url 'add_to_tour' favorite.guide.id %}"
+                                                class="favorite-add-btn">
+                                                +
+                                            </a>
+                                        </div>
+                                    {% endif %}
+
+                                {% empty %}
+
+                                    <div class="tour-empty">
+                                        Нет избранных мест
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- КАРТОЧКИ -->
+
+            <div class="tour-cards-grid custom-scroll">
+
+                {% if selected_tour %}
+
+                    {% for item in selected_tour.items.all %}
+
+                        <div class="tour-card">
+
+                            <!-- УДАЛИТЬ -->
+
+                            <a
+                                href="{% url 'remove_from_tour' item.id %}"
+                                class="tour-remove-btn"
+                            >
+                                ✕
+                            </a>
+
+                            <!-- КАРТИНКА -->
+
+                            {% if item.place.image %}
+
+                                <img
+                                    src="{{ item.place.image.url }}"
+                                    class="tour-card-image"
+                                >
+
+                            {% endif %}
+
+                            <!-- НАЗВАНИЕ -->
+
+                            <div class="tour-card-title">
+                                {{ item.place.title }}
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <div class="tour-empty">
+                        Создайте тур
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <!-- =========================================
+             ПРАВАЯ ЧАСТЬ
+        ========================================== -->
+
+        <div class="tour-right">
+
+            <!-- КАРТА -->
+
+            <div class="glass-block tour-map-block">
+
+                <div id="map"></div>
+
+            </div>
+
+            <div class="route-actions">
+                <div class="tour-top">
+                    <a href="{% url 'flight_search' %}" class="tour-route-link">
+                        <button class="route-side-button">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 5V19M5 12H19" stroke="#FFFBFB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </a>
+                    <div class="tour-add-text"> Купить авиабилет </div>
+                </div>
+
+                <div class="tour-top">
+                    <a href="{% url 'hotel_booking' %}" class="tour-route-link">
+                        <button class="route-side-button">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 5V19M5 12H19" stroke="#FFFBFB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </a>
+                    <div class="tour-add-text"> Забронировать отель </div>
+                </div>
+            </div>
+
+            <!-- МАРШРУТ -->
+            <div class="route-block">
+                <ol type="1">
+                    {% if selected_tour %}
+                        {% for item in selected_tour.items.all %}
+                            <li class="route-item">
+                                <span class="route-place">
+                                    {{ item.place.title }}
+                                </span>
+                                <span class="route-address">
+                                    ({{ item.place.address }})
+                                </span>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                </ol>
+            </div>
+
+            <!-- КНОПКА "НАЙТИ ПОХОЖИЙ ТУР" -->
+            <div class="similar-tour-btn-wrapper">
+                <a href="{% url 'similar_tours' %}" class="tour-add-page">
+                    Найти похожий тур
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{{ tour_places|json_script:"tour-data" }}
+
+{% endblock %}
+
+<!--
+
+/* =========================================
+   TOURS.CSS
+========================================= */
+
+.tour-page { width: 100%; height: 100%; }
+
+.tour-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    min-height: calc(100svh - 120px);
+}
+
+/* =========================================
+   ЛЕВАЯ ЧАСТЬ
+========================================= */
+.tour-left {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 20px;
+}
+
+/* Верхние кнопки */
+.tour-top-actions {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+.tour-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.tour-add-text {
+    color: #6A6785;
+    font-size: 18px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+/* Кнопки */
+.tour-menu-btn,
+.tour-add-btn,
+.route-side-button {
+    width: 52px;
+    height: 52px;
+    border: none;
+    border-radius: 16px;
+    background: rgba(119, 105, 144, 0.92);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+    flex-shrink: 0;
+}
+
+.tour-menu-btn:hover,
+.tour-add-btn:hover,
+.route-side-button:hover {
+    transform: scale(1.05);
+    background: #8B76A7;
+}
+
+.tour-menu-btn svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* DROPDOWN */
+.tour-dropdown-wrapper { position: relative; }
+
+.tour-dropdown {
+    position: absolute;
+    top: 66px;
+    left: 0;
+    width: 100%;
+    min-width: 300px;
+    max-width: 360px;
+    padding: 16px;
+    border-radius: 24px;
+    backdrop-filter: blur(20px);
+    background: rgba(0, 19, 36, 0.5);
+    display: none;
+    z-index: 200;
+    box-sizing: border-box;
+}
+
+.tour-dropdown.active { display: block; }
+.tour-dropdown-row { margin-bottom: 12px; }
+
+.tour-view-mode {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tour-edit-mode {
+    display: none;
+    align-items: center;
+    gap: 10px;
+}
+
+.tour-dropdown-row.editing .tour-view-mode { display: none; }
+.tour-dropdown-row.editing .tour-edit-mode { display: flex; }
+
+.tour-dropdown-item {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 14px;
+    color: white;
+    background: rgba(255,255,255,0.06);
+    transition: 0.2s;
+    text-decoration: none;
+    display: block;
+    font-size: 15px;
+}
+
+.tour-dropdown-item:hover { background: rgba(255,255,255,0.1); }
+.tour-dropdown-item.active { background: rgba(120,95,140,0.72); }
+
+.tour-actions { display: flex; gap: 6px; }
+
+.tour-small-icon {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+    flex-shrink: 0;
+}
+
+.tour-small-icon:hover { background: rgba(255,255,255,0.15); }
+.tour-small-icon.delete { background: rgba(219,68,85,0.18); }
+.tour-small-icon.delete:hover { background: rgba(219,68,85,0.34); }
+.tour-small-icon.save { background: rgba(111,180,126,0.18); }
+.tour-small-icon.save:hover { background: rgba(111,180,126,0.34); }
+
+.tour-rename-input {
+    flex: 1;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    padding: 0 14px;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    font-size: 15px;
+    min-width: 0;
+}
+
+.tour-create-btn {
+    display: block;
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 14px;
+    text-align: center;
+    background: rgba(120,95,140,0.82);
+    color: white;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.tour-create-btn:hover { background: #8B76A7; }
+
+/* ИЗБРАННОЕ */
+.favorites-wrapper { position: relative; }
+
+.favorites-dropdown {
+    display: none;
+    position: absolute;
+    top: 66px;
+    left: 0;
+    width: 100%;
+    min-width: 300px;
+    max-width: 360px;
+    padding: 16px;
+    border-radius: 24px;
+    backdrop-filter: blur(20px);
+    background: rgba(0, 19, 36, 0.5);
+    z-index: 200;
+    box-sizing: border-box;
+}
+
+.favorites-dropdown.active { display: block; }
+
+.favorites-grid-dropdown {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.favorite-mini-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.07);
+}
+
+.favorite-mini-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    display: block;
+}
+
+.favorite-mini-title {
+    color: white;
+    padding: 8px 10px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.favorite-add-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    background: rgba(120,95,140,0.92);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.favorite-add-btn:hover { background: #9A84B8; }
+
+/* КАРТОЧКИ ТУРОВ */
+.tour-cards-grid {
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding-right: 8px;
+    flex: 1;
+}
+
+.tour-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.07);
+    height: 200px;
+    transition: 0.2s;
+}
+
+.tour-card-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+}
+
+.tour-card-title {
+    padding: 8px 10px;
+    color: black;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.tour-remove-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: rgba(119,105,144,0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.2s;
+    z-index: 5;
+}
+
+.tour-remove-btn:hover { background: #A38CC3; }
+
+.tour-empty {
+    color: rgba(255,255,255,0.7);
+    font-size: 18px;
+    text-align: center;
+    padding: 30px 20px;
+    grid-column: 1 / -1;
+}
+
+.tour-empty-small {
+    color: rgba(255,255,255,0.7);
+    font-size: 15px;
+    text-align: center;
+    padding: 16px;
+}
+
+/* =========================================
+   ПРАВАЯ ЧАСТЬ
+========================================= */
+.tour-right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+}
+
+/* КАРТА */
+.tour-map-block {
+    overflow: hidden;
+    height: 250px;
+    width: 100%;
+    border-radius: 24px;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+/* КНОПКИ В ПРАВОЙ ЧАСТИ */
+.route-actions {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.route-actions .tour-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.route-actions .tour-add-text {
+    font-size: 18px;
+    color: #6A6785;
+}
+
+.route-side-button {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+}
+
+/* МАРШРУТ */
+.route-block {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+}
+
+.route-block ol {
+    padding-left: 20px;
+    margin: 0;
+    list-style-type: decimal;
+}
+
+.route-item {
+    margin-bottom: 10px;
+    padding-left: 4px;
+}
+
+.route-place {
+    display: block;
+    font-size: 16px;
+    color: black;
+    font-weight: 500;
+}
+
+.route-address {
+    display: block;
+    margin-top: 2px;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* КНОПКА "НАЙТИ ПОХОЖИЙ" */
+.similar-tour-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.tour-add-page {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 16px;
+    background: rgba(119,105,144,0.92);
+    color: white;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.tour-add-page:hover {
+    background: #8B76A7;
+    transform: scale(1.02);
+}
+
+/* =========================================
+   АДАПТИВ ДЛЯ МОБИЛОК (768px)
+========================================= */
+@media (max-width: 768px) {
+    .tour-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        min-height: auto;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 16px;
+        color: white;
+        text-align: center;
+    }
+
+    /* ===== 1. ВЕРХНИЕ КНОПКИ ===== */
+    .tour-top-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        margin-bottom: 0;
+        order: 1;
+    }
+
+    .tour-top {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .tour-menu-btn,
+    .tour-add-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+    }
+
+    .tour-menu-btn svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .tour-add-text {
+        font-size: 16px;
+        color: black;
+        white-space: normal;
+    }
+
+    /* ===== 2. DROPDOWN ===== */
+    .tour-dropdown {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        width: 100%;
+        max-width: none;
+        min-width: auto;
+        padding: 12px;
+        border-radius: 18px;
+        background: rgba(0, 19, 36, 0.92);
+    }
+
+    .tour-dropdown-item {
+        padding: 10px 14px;
+        font-size: 14px;
+        border-radius: 12px;
+    }
+
+    .tour-dropdown-row {
+        margin-bottom: 8px;
+    }
+
+    .tour-create-btn {
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 12px;
+    }
+
+    /* ===== 3. ИЗБРАННОЕ ===== */
+    .favorites-dropdown {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        width: 100%;
+        padding: 12px;
+        border-radius: 18px;
+        background: rgba(0, 19, 36, 0.92);
+    }
+
+    .favorites-grid-dropdown {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        max-height: 300px;
+    }
+
+    .favorite-mini-card img {
+        height: 100px;
+    }
+
+    .favorite-mini-title {
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+
+    .favorite-add-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 18px;
+        top: 6px;
+        right: 6px;
+        border-radius: 8px;
+    }
+
+    /* ===== 4. КАРТА ===== */
+    .tour-map-block {
+        height: 200px;
+        border-radius: 18px;
+        order: 2;
+    }
+
+    /* ===== 5. ПРАВАЯ ЧАСТЬ ===== */
+    .tour-right {
+        order: 3;
+        gap: 12px;
+    }
+
+    .route-actions {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .route-actions .tour-top {
+        gap: 10px;
+    }
+
+    .route-actions .tour-add-text {
+        font-size: 15px;
+        color: black;
+    }
+
+    .route-side-button {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+    }
+
+    .route-side-button svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .route-block {
+        padding: 14px 16px;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.3);
+    }
+
+    .route-block ol {
+        padding-left: 16px;
+    }
+
+    .route-item {
+        margin-bottom: 8px;
+    }
+
+    .route-place {
+        font-size: 14px;
+    }
+
+    .route-address {
+        font-size: 12px;
+    }
+
+    .similar-tour-btn-wrapper {
+        margin-top: 0;
+    }
+
+    .tour-add-page {
+        height: 44px;
+        font-size: 15px;
+        border-radius: 14px;
+    }
+
+    /* ===== 6. КАРТОЧКИ ===== */
+    .tour-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        overflow: visible;
+        padding-right: 0;
+        max-height: none;
+        order: 4;
+        margin-top: 4px;
+    }
+
+    .tour-card {
+        height: auto;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.3);
+    }
+
+    .tour-card-image {
+        height: 110px;
+    }
+
+    .tour-card-title {
+        font-size: 12px;
+        padding: 6px 8px;
+        color: black;
+    }
+
+    .tour-remove-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 14px;
+        top: 6px;
+        right: 6px;
+        border-radius: 8px;
+    }
+
+    .tour-empty {
+        font-size: 15px;
+        padding: 20px;
+    }
+
+    .tour-empty-small {
+        font-size: 13px;
+        padding: 12px;
+    }
+
+    .tour-rename-input {
+        height: 36px;
+        font-size: 13px;
+        padding: 0 10px;
+        border-radius: 10px;
+    }
+
+    .tour-small-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+    }
+
+    .tour-actions .tour-small-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .tour-actions .tour-small-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* ===== 7. СТРАНИЦЫ "ПОХОЖИЙ ТУР" ===== */
+    .similar-tour-placeholder {
+        height: 55vh;
+        border-radius: 24px;
+    }
+
+    .placeholder-content h2 {
+        font-size: 24px;
+    }
+
+    .placeholder-content p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 420px) {
+    .tour-cards-grid {
+        gap: 8px;
+    }
+
+    .tour-card-image {
+        height: 90px;
+    }
+
+    .tour-card-title {
+        font-size: 11px;
+        padding: 4px 6px;
+    }
+
+    .route-actions {
+        gap: 10px;
+    }
+
+    .route-actions .tour-add-text {
+        font-size: 13px;
+    }
+
+    .favorites-grid-dropdown {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .favorite-mini-card img {
+        height: 80px;
+    }
+}
+
+-->

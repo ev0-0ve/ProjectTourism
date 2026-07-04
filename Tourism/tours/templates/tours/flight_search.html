@@ -1,15 +1,14 @@
 {% extends 'main/layout.html' %}
 {% load static %}
 
-{% block title %}
-Купить авиабилет
-{% endblock %}
-{% block body_class %}no-scroll home-page{% endblock %}
+{% block title %}Купить авиабилет{% endblock %}
+{% block body_class %}home-page{% endblock %}
 
 {% block content %}
-
-<div class="background_flight-page">
-    <h1 class="text-center text-height-title">Купить авиабилет</h1>
+<div class="page flight-page">
+    <h1 class="text-center flight-title">Купить авиабилет</h1>
+    <div class="flight-image-wrapper">
+        <img src="{% static 'main/img/flight-bg.jpg' %}" alt="Авиабилеты" class="flight-image">
+    </div>
 </div>
-
 {% endblock %}

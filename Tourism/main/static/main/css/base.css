@@ -362,6 +362,13 @@ body.auth-page .hero {
   color: white;
 }
 
+/* РАЗРЕШАЕМ СКРОЛЛ ДЛЯ СТРАНИЦ АВИА И ОТЕЛЕЙ */
+body.home-page.flight-page,
+body.home-page.hotel-page {
+    overflow-y: auto !important;
+    height: auto !important;
+}
+
 /* АДАПТИВНОСТЬ BASE */
 
 @media (max-width: 768px) {

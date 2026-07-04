@@ -1,15 +1,14 @@
 {% extends 'main/layout.html' %}
 {% load static %}
 
-{% block title %}
-Забронировать отель
-{% endblock %}
-{% block body_class %}no-scroll home-page{% endblock %}
+{% block title %}Забронировать отель{% endblock %}
+{% block body_class %}home-page{% endblock %}
 
 {% block content %}
-
-<div class="background_hotel-page">
-    <h1 class="text-center text-height-title">Забронировать отель</h1>
+<div class="page hotel-page">
+    <h1 class="text-center hotel-title">Забронировать отель</h1>
+    <div class="hotel-image-wrapper">
+        <img src="{% static 'main/img/hotel-bg.jpg' %}" alt="Отели" class="hotel-image">
+    </div>
 </div>
-
 {% endblock %}

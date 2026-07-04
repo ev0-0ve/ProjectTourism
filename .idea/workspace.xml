@@ -4,19 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="2.6. Добавлено модальное окно для незарегистрированных пользователей">
+    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="2.7. Исправлены стили страниц Вход и Регистрация с Главной страницей">
+      <change afterPath="$PROJECT_DIR$/Tourism/tours/templates/tours/create_tour_PK.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/profile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/tours.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/tours.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/templates/main/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/users/templates/users/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/templates/users/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/templates/users/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tourism/users/templates/users/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/users/templates/users/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/tours/templates/tours/create_tour.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/tours/templates/tours/create_tour.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/tours/templates/tours/flight_search.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/tours/templates/tours/flight_search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/tours/templates/tours/hotel_booking.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/tours/templates/tours/hotel_booking.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/tours/templates/tours/similar_tours.html" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/tours/templates/tours/similar_tours.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,40 +54,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
-    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/tcf12/PycharmProjects/ProjectTourism/Tourism/main/static/main/css&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
+    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/tcf12/PycharmProjects/ProjectTourism/Tourism/tours/templates/tours",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\tours\templates\tours" />
       <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\main\static\main\css" />
       <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\main\static\main\img" />
       <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\favorites" />
       <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\tours" />
-      <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\guide" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\tcf12\PycharmProjects\ProjectTourism\Tourism\main\static\main\css" />
@@ -403,7 +399,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783076630863</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="2.7. Исправлены стили страниц Вход и Регистрация с Главной страницей">
+      <option name="closed" value="true" />
+      <created>1783128173018</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1783128173018</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,7 +425,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;Tourism/Tourism/urls.py&#10;#&#9;Tourism/main/urls.py&#10;#&#9;Tourism/main/views.py" />
     <MESSAGE value="1.1.4. Статические файлы. Добавление Bootstrap. Стиль и структура главной страницы" />
     <MESSAGE value="1.1.4. Сдана практическая 1 по КСП, тсраница регистрации через форму без добавления бд" />
     <MESSAGE value="1.1.4. Практическая 1 по КСП, добавление страницы профиля и формы с записью и выводом данных без БД" />
@@ -446,6 +449,7 @@
     <MESSAGE value="2.4. Поправлены стили Путеводителя" />
     <MESSAGE value="2.5. Адаптирована под мобилку страница &quot;О нас&quot;" />
     <MESSAGE value="2.6. Добавлено модальное окно для незарегистрированных пользователей" />
-    <option name="LAST_COMMIT_MESSAGE" value="2.6. Добавлено модальное окно для незарегистрированных пользователей" />
+    <MESSAGE value="2.7. Исправлены стили страниц Вход и Регистрация с Главной страницей" />
+    <option name="LAST_COMMIT_MESSAGE" value="2.7. Исправлены стили страниц Вход и Регистрация с Главной страницей" />
   </component>
 </project>
