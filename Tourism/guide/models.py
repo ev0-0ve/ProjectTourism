@@ -46,6 +46,20 @@ class GuidePlace(models.Model):
         blank=True
     )
 
+    phone = models.CharField(
+        'Телефон',
+        max_length=100,
+        blank=True,
+        help_text='Например: +7 (391) 227-92-04'
+    )
+
+    website = models.URLField(
+        'Сайт',
+        max_length=200,
+        blank=True,
+        help_text='Ссылка на официальный сайт'
+    )
+
     short_description = models.TextField(
         'Краткое описание'
     )

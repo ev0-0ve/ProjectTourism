@@ -54,11 +54,6 @@
                         <span class="option-text">Визит-центры</span>
                     </label>
                     <label class="filter-radio-option">
-                        <input type="radio" name="categoryObj" value="gastronomy">
-                        <span class="custom-radio"></span>
-                        <span class="option-text">Гастрономия</span>
-                    </label>
-                    <label class="filter-radio-option">
                         <input type="radio" name="categoryObj" value="culture">
                         <span class="custom-radio"></span>
                         <span class="option-text">Культура и история</span>
@@ -69,19 +64,9 @@
                         <span class="option-text">Отдых на природе</span>
                     </label>
                     <label class="filter-radio-option">
-                        <input type="radio" name="categoryObj" value="entertainment">
-                        <span class="custom-radio"></span>
-                        <span class="option-text">Развлечения</span>
-                    </label>
-                    <label class="filter-radio-option">
                         <input type="radio" name="categoryObj" value="religion">
                         <span class="custom-radio"></span>
                         <span class="option-text">Религия</span>
-                    </label>
-                    <label class="filter-radio-option">
-                        <input type="radio" name="categoryObj" value="sport">
-                        <span class="custom-radio"></span>
-                        <span class="option-text">Спорт</span>
                     </label>
                 </div>
             </div>
@@ -101,6 +86,38 @@
                     <input type="number" class="price-field" id="priceToTour" placeholder="∞">
                 </div>
             </div>
+
+            <div class="filter-section">
+                <h3 class="filter-section-title">Тематика</h3>
+                <div class="filter-options-list custom-scroll">
+                    <label class="filter-radio-option">
+                        <input type="radio" name="categoryObj" value="all" checked>
+                        <span class="custom-radio"></span>
+                        <span class="option-text">Все категории</span>
+                    </label>
+                    <label class="filter-radio-option">
+                        <input type="radio" name="categoryObj" value="centers">
+                        <span class="custom-radio"></span>
+                        <span class="option-text">Визит-центры</span>
+                    </label>
+                    <label class="filter-radio-option">
+                        <input type="radio" name="categoryObj" value="culture">
+                        <span class="custom-radio"></span>
+                        <span class="option-text">Культура и история</span>
+                    </label>
+                    <label class="filter-radio-option">
+                        <input type="radio" name="categoryObj" value="nature">
+                        <span class="custom-radio"></span>
+                        <span class="option-text">Отдых на природе</span>
+                    </label>
+                    <label class="filter-radio-option">
+                        <input type="radio" name="categoryObj" value="religion">
+                        <span class="custom-radio"></span>
+                        <span class="option-text">Религия</span>
+                    </label>
+                </div>
+            </div>
+
             <div class="filter-reset-wrapper">
                 <button type="button" id="resetFilterTourBtn" class="btn-reset-filter">Сбросить фильтры</button>
             </div>
@@ -178,10 +195,28 @@
                 <div class="guide-expanded">
                     <div class="guide-info">
                         <p><strong>Название</strong><br>{{ place.title }}</p>
-                        <p><strong>Стоимость</strong><br>{{ place.price|default:"Не указана" }}</p>
-                        <p><strong>Адрес</strong><br>{{ place.address|default:"Не указан" }}</p>
-                        <p><strong>Часы работы</strong><br>{{ place.work_time|default:"Не указаны" }}</p>
-                        <p><strong>Описание</strong><br>{{ place.short_description|default:"Нет описания" }}</p>
+
+                        {% if place.phone %}
+                        <p><strong>Телефон</strong><br><a href="tel:{{ place.phone|cut:' '|cut:'('|cut:')'|cut:'-' }}" class="guide-phone-link">{{ place.phone }}</a></p>
+                        {% endif %}
+
+                        {% if place.website %}
+                        <p><strong>Сайт</strong><br><a href="{{ place.website }}" target="_blank" rel="noopener" class="guide-website-link">{{ place.website }}</a></p>
+                        {% endif %}
+
+                        {% if place.price %}
+                        <p><strong>Стоимость</strong><br>{{ place.price }}</p>
+                        {% endif %}
+
+                        {% if place.address %}
+                        <p><strong>Адрес</strong><br>{{ place.address }}</p>
+                        {% endif %}
+
+                        {% if place.work_time %}
+                        <p><strong>Часы работы</strong><br>{{ place.work_time }}</p>
+                        {% endif %}
+
+                        <p><strong>Описание</strong><br>{{ place.short_description|linebreaksbr|default:"Нет описания" }}</p>
                     </div>
                 </div>
             </div>
