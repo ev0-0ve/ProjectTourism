@@ -429,6 +429,7 @@
     height: 120px;
     object-fit: cover;
     display: block;
+    border-radius: 16px;
 }
 
 .tour-card-title {
