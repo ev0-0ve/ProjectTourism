@@ -164,12 +164,10 @@ CLOUDINARY_STORAGE = {
 # В Django 4.2+ и выше используется словарь STORAGES для разделения статики и медиа
 STORAGES = {
     "default": {
-        # default отвечает за MEDIA файлы (картинки из моделей). Их отдаем в облако.
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
-        # staticfiles отвечает за CSS/JS. Оставляем твой работающий WhiteNoise.
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
     },
 }
 
