@@ -1,8 +1,5 @@
 
 from pathlib import Path
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 
 import os
 import dj_database_url
@@ -47,8 +44,6 @@ INSTALLED_APPS = [
     'guide',
     'favorites',
     'tours',
-    'cloudinary',
-    'cloudinary_storage',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -151,18 +146,16 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+STATICFILES_STORAGE = (
+    "whitenoise.storage.CompressedManifestStaticFilesStorage"
+)
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
-}
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Куда переходить после успешного входа
 LOGIN_REDIRECT_URL = 'profile'
 # Куда переходить после выхода
 LOGOUT_REDIRECT_URL = 'home'
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
