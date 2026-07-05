@@ -51,13 +51,13 @@ INSTALLED_APPS = [
     'guide',
     'favorites',
     'tours',
-    'cloudinary_storage',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -167,14 +167,9 @@ STORAGES = {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
-        # Базовый сборщик, который не проверяет битые ссылки внутри CSS админки
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
-
-# КОСТЫЛЬ ДЛЯ CLOUDINARY (ОБЯЗАТЕЛЬНО ДЛЯ DJANGO 6.0)
-# Cloudinary обязательно требует наличие этой переменной, иначе выдает AttributeError
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
