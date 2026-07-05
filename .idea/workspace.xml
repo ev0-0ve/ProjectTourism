@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="2.9. Подготовка к релизу">
-      <change beforePath="$PROJECT_DIR$/Tourism/main/static/main/css/tours.css" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/main/static/main/css/tours.css" afterDir="false" />
+    <list default="true" id="753dd35c-c9ff-43bd-9b95-338afbdaa8bf" name="Changes" comment="2.10 Почти готов к релизу (поправить страницу Собери Тур на ПК версии)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tourism/Tourism/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tourism/Tourism/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -416,7 +417,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783136906593</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="2.10 Почти готов к релизу (поправить страницу Собери Тур на ПК версии)">
+      <option name="closed" value="true" />
+      <created>1783165116326</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1783165116326</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -434,7 +443,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1.1.4. Практическая 1 по КСП, добавление страницы профиля и формы с записью и выводом данных без БД" />
     <MESSAGE value="1.1.5. Добавлено новое приложение для страницы &quot;События&quot;, переключение между страницыми, добавление записей через панель админа в адресной строке сайта" />
     <MESSAGE value="1.1.6. Добавлено новое приложение для регистрации пользователя, добавление записей через панель админа и на сайте (нужно исправить представление и вход не для админа)" />
     <MESSAGE value="1.1.6. Исправлено представление (доделать под Figma)" />
@@ -459,6 +467,7 @@
     <MESSAGE value="2.7. Исправлены стили страниц Вход и Регистрация с Главной страницей" />
     <MESSAGE value="2.8. Первая релизная версия сайта готова (Исправлены стили страниц-заглушек Купить авиабилеты и забронировать отель, а также только для мобилок страница Собери тур по макету Figma)" />
     <MESSAGE value="2.9. Подготовка к релизу" />
-    <option name="LAST_COMMIT_MESSAGE" value="2.9. Подготовка к релизу" />
+    <MESSAGE value="2.10 Почти готов к релизу (поправить страницу Собери Тур на ПК версии)" />
+    <option name="LAST_COMMIT_MESSAGE" value="2.10 Почти готов к релизу (поправить страницу Собери Тур на ПК версии)" />
   </component>
 </project>
