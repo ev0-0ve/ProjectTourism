@@ -167,9 +167,14 @@ STORAGES = {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+        # Базовый сборщик, который не проверяет битые ссылки внутри CSS админки
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
+
+# КОСТЫЛЬ ДЛЯ CLOUDINARY (ОБЯЗАТЕЛЬНО ДЛЯ DJANGO 6.0)
+# Cloudinary обязательно требует наличие этой переменной, иначе выдает AttributeError
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
